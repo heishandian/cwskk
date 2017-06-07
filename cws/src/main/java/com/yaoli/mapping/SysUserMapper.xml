@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.SysUserMapper">
+	<resultMap id="BaseResultMap" type="com.yaoli.beans.SysUser">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="loginpwd" property="loginpwd" jdbcType="VARCHAR" />
+		<result column="loginname" property="loginname" jdbcType="VARCHAR" />
+		<result column="useremail" property="useremail" jdbcType="VARCHAR" />
+		<result column="department" property="department" jdbcType="VARCHAR" />
+		<result column="telephone" property="telephone" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="rolenameResultMap" type="com.yaoli.vo.SysUserVO" extends="BaseResultMap">
+		<result column="rolename" property="rolename" jdbcType="VARCHAR" />
+	</resultMap>	
+	
+    
+	<update id="resetAllUserPwd" >
+		update sysuser
+		set loginpwd = sysuser.loginname
+	</update>
+	
+	<update id="resetUserPwdByUserId" parameterType="java.lang.Integer">
+		update sysuser
+		set loginpwd = sysuser.loginname
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<select id="getTotalCount" resultType="java.lang.Integer">
+		 select COUNT(*) from sysuser
+	</select>
+	
+	<select id="getAllUserWithRoleName" resultMap="rolenameResultMap" parameterType="hashmap">
+		SELECT TOP ${pageSize} * 
+			FROM  (
+        		SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM (
+        			<include refid="getAllUserWithRoleNameSql"></include>
+        		) as b
+    		)   as A  
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+	</select>
+	
+	<sql id="getAllUserWithRoleNameSql">
+		select top 100 percent sysuser.*,sysrole.name as rolename  from sysuser,sysrole,sysuserrole 
+		where sysrole.id = sysuserrole.roleid and sysuser.id = sysuserrole.userid order by sysuser.id
+	</sql>
+	
+	<sql id="Base_Column_List">
+		id, username, loginpwd, loginname, useremail,department,telephone
+	</sql>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from sysuser
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<select id="selectUserCountByUserloginname" resultType="java.lang.Integer"
+		parameterType="java.lang.String">
+		select COUNT(loginname) from sysuser where loginname = #{name,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getSysUserByLoginName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from sysuser
+		where loginname = #{loginname}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from sysuser
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.yaoli.beans.SysUser">
+		insert into sysuser (username, loginpwd,
+		loginname, useremail)
+		values (#{username,jdbcType=VARCHAR},
+		#{loginpwd,jdbcType=VARCHAR},
+		#{loginname,jdbcType=VARCHAR}, #{useremail,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.yaoli.beans.SysUser">
+		insert into sysuser
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="loginpwd != null">
+				loginpwd,
+			</if>
+			<if test="loginname != null">
+				loginname,
+			</if>
+			<if test="useremail != null">
+				useremail,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="loginpwd != null">
+				#{loginpwd,jdbcType=VARCHAR},
+			</if>
+			<if test="loginname != null">
+				#{loginname,jdbcType=VARCHAR},
+			</if>
+			<if test="useremail != null">
+				#{useremail,jdbcType=VARCHAR},
+			</if>
+			<if test="department != null">
+			    #{department,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.SysUser">
+		update sysuser
+		<set>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="loginpwd != null">
+				loginpwd = #{loginpwd,jdbcType=VARCHAR},
+			</if>
+			<if test="loginname != null">
+				loginname = #{loginname,jdbcType=VARCHAR},
+			</if>
+			<if test="useremail != null">
+				useremail = #{useremail,jdbcType=VARCHAR},
+			</if>
+			<if test="department != null">
+				department = #{department,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				telephone = #{telephone,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.yaoli.beans.SysUser">
+		update sysuser
+		set username = #{username,jdbcType=VARCHAR},
+		loginpwd = #{loginpwd,jdbcType=VARCHAR},
+		loginname = #{loginname,jdbcType=VARCHAR},
+		useremail = #{useremail,jdbcType=VARCHAR},
+		department = #{department,jdbcType=VARCHAR},
+		telephone = #{telephone,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

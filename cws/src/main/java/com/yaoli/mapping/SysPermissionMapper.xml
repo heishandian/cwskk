@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.SysPermissionMapper">
+	<resultMap id="BaseResultMap" type="com.yaoli.beans.SysPermission">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="urlLink" property="urllink" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, name, urlLink, description
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from sys_permission
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<select id="getPermissionsByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		SELECT
+		sys_permission.`id`,sys_permission.`name`,sys_permission.`urlLink`,sys_permission.`description`
+		FROM sys_permission,sys_role_permission,sys_user,sys_user_role
+		WHERE
+		sys_user.`id` = sys_user_role.`userid` AND sys_user_role.`roleid` =
+		sys_role_permission.`roleid`
+		AND sys_role_permission.`permissionid` =
+		sys_permission.`id`
+		AND sys_user.`id` = #{id,jdbcType=INTEGER}
+	</select>
+
+	<select id="getPermissionsByRoleId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		SELECT
+		sys_permission.`id`,sys_permission.`name`,sys_permission.`urlLink`,sys_permission.`description`
+		FROM sys_permission,sys_role_permission
+		WHERE sys_role_permission.`permissionid` = sys_permission.`id`
+		AND sys_role_permission.`roleid` = #{id,jdbcType=INTEGER}
+	</select>
+
+
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		sys_permission
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.yaoli.beans.SysPermission">
+		insert into sys_permission
+		(id, name, urlLink,
+		description)
+		values (#{id,jdbcType=INTEGER},
+		#{name,jdbcType=VARCHAR},
+		#{urllink,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.yaoli.beans.SysPermission">
+		insert into sys_permission
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="urllink != null">
+				urlLink,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="urllink != null">
+				#{urllink,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.SysPermission">
+		update sys_permission
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="urllink != null">
+				urlLink = #{urllink,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.yaoli.beans.SysPermission">
+		update
+		sys_permission
+		set name = #{name,jdbcType=VARCHAR},
+		urlLink =
+		#{urllink,jdbcType=VARCHAR},
+		description =
+		#{description,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.MessageMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.Message" >
+    <id column="messageID" property="messageid" jdbcType="BIGINT" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="messagedetail" property="messagedetail" jdbcType="NVARCHAR" />
+    <result column="sendtime" property="sendtime" jdbcType="TIMESTAMP" />
+    <result column="sewageid" property="sewageid" jdbcType="INTEGER" />
+    <result column="abnormaltype" property="abnormaltype" jdbcType="INTEGER" />
+    <result column="testingtime" property="testingtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    messageID, tel, messagedetail, sendtime, sewageid, abnormaltype, testingtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from message
+    where messageID = #{messageid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from message
+    where messageID = #{messageid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="messageID"  parameterType="com.yaoli.beans.Message" >
+    insert into message (messageID, tel, messagedetail, 
+      sendtime, sewageid, abnormaltype, 
+      testingtime)
+    values (#{messageid,jdbcType=BIGINT}, #{tel,jdbcType=VARCHAR}, #{messagedetail,jdbcType=NVARCHAR}, 
+      #{sendtime,jdbcType=TIMESTAMP}, #{sewageid,jdbcType=INTEGER}, #{abnormaltype,jdbcType=INTEGER}, 
+      #{testingtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective"  useGeneratedKeys="true" keyProperty="messageID"  parameterType="com.yaoli.beans.Message" >
+    insert into message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="messageid != null" >
+        messageID,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="messagedetail != null" >
+        messagedetail,
+      </if>
+      <if test="sendtime != null" >
+        sendtime,
+      </if>
+      <if test="sewageid != null" >
+        sewageid,
+      </if>
+      <if test="abnormaltype != null" >
+        abnormaltype,
+      </if>
+      <if test="testingtime != null" >
+        testingtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="messageid != null" >
+        #{messageid,jdbcType=BIGINT},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="messagedetail != null" >
+        #{messagedetail,jdbcType=NVARCHAR},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sewageid != null" >
+        #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="abnormaltype != null" >
+        #{abnormaltype,jdbcType=INTEGER},
+      </if>
+      <if test="testingtime != null" >
+        #{testingtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.Message" >
+    update message
+    <set >
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="messagedetail != null" >
+        messagedetail = #{messagedetail,jdbcType=NVARCHAR},
+      </if>
+      <if test="sendtime != null" >
+        sendtime = #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sewageid != null" >
+        sewageid = #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="abnormaltype != null" >
+        abnormaltype = #{abnormaltype,jdbcType=INTEGER},
+      </if>
+      <if test="testingtime != null" >
+        testingtime = #{testingtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where messageID = #{messageid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.Message" >
+    update message
+    set tel = #{tel,jdbcType=VARCHAR},
+      messagedetail = #{messagedetail,jdbcType=NVARCHAR},
+      sendtime = #{sendtime,jdbcType=TIMESTAMP},
+      sewageid = #{sewageid,jdbcType=INTEGER},
+      abnormaltype = #{abnormaltype,jdbcType=INTEGER},
+      testingtime = #{testingtime,jdbcType=TIMESTAMP}
+    where messageID = #{messageid,jdbcType=BIGINT}
+  </update>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from message
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from message
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY messageid desc) AS RowNumber,* FROM (
+					 <include refid="selectByPaingAndConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+
+  </select>
+  <sql id="selectByPaingAndConditionSQL" >
+    select top 100 percent messageID,tel,messagedetail,sendtime,sewageid,abnormaltype,testingtime from message where 1=1 
+	   	<if test="begintime != null" >
+	   		<![CDATA[
+	       		and sendtime >= #{begintime}
+	        ]]>
+	    </if>
+	   	<if test="endtime != null" >
+	   		<![CDATA[
+	       		and sendtime <= #{endtime}
+	        ]]>
+	    </if>
+	   	<if test="tel != null" >
+	   		<![CDATA[
+	       		and tel = #{tel}
+	        ]]>
+	    </if>
+  </sql>
+  
+  <select id="selectByPaingAndConditionCount" resultType="java.lang.Integer" parameterType="hashmap">
+    select count(*) from (<include refid="selectByPaingAndConditionSQL"></include>) as temp
+  </select>
+  
+  <!-- 获取每个站点最新的设备故障的数据 -->
+  <select id="getRunDataAbnormalForMessage" resultMap="BaseResultMap">
+  <![CDATA[
+	select temp2.tel ,temp1.sewageID as sewageid, temp2.areaname+','+temp1.name+','+temp1.operationnum+' 设备故障,尽快处理!' as messagedetail,1 as abnormaltype,temp1.testingtime from (
+	
+		select sewage.areaID,sewage.sewageID,sewage.name,sewage.operationnum,temp0.testingtime from sewage,
+			(select sewageid,MAX(lasttestingtime) as testingtime from run_data_abnormal group by sewageid) as temp0
+		where sewage.sewageID = temp0.sewageid
+			
+			) as temp1,
+		(
+		select messageLinker.name,messageLinker.tel,area.id as areaid,area.name as areaname from area left join messageLinker 
+			on area.id = messageLinker.areaId where area.isSendArea = 'true'
+			) as temp2 
+	where temp1.areaID = temp2.areaid and datediff(minute,temp1.testingtime,GETDATE()) <= (select value from sysparam where keyname = 'intervaltime') and temp2.name is not null
+  ]]>
+  </select>
+  
+  <select id="getDetectionAbnormalForMessage" resultMap="BaseResultMap">
+      <![CDATA[
+select temp2.tel ,temp1.sewageID as sewageid, temp2.areaname+','+temp1.name+','+temp1.operationnum+' 水质异常,尽快处理!' as messagedetail,2 as abnormaltype,temp1.testingtime from (
+
+	select sewage.areaID,sewage.sewageID,sewage.name,sewage.operationnum,temp0.testingtime from sewage,
+		(select sewageid,MAX(lasttestingtime) as testingtime from detection_data_abnormal group by sewageid) as temp0
+	where sewage.sewageID = temp0.sewageid
+		
+		) as temp1,
+	(
+	select messageLinker.name,messageLinker.tel,area.id as areaid,area.name as areaname from area left join messageLinker 
+		on area.id = messageLinker.areaId where area.isSendArea = 'true'
+		) as temp2 
+where temp1.areaID = temp2.areaid and datediff(minute,temp1.testingtime,GETDATE()) <= (select value from sysparam where keyname = 'intervaltime') and temp1.testingtime is not null
+		  ]]>
+  </select>
+  
+<!--   
+select COUNT(*) from message where 
+sewageid = #{sewageid}
+and tel = #{tel}  
+and abnormaltype = #{abnormaltype}
+and datediff(minute,sendtime,(select MAX(sendtime) from message where tel = #{tel} and sewageid = #{sewageid} and abnormaltype = #{abnormaltype})) < (select value from sysparam where keyname = 'intervaltime')
+ -->
+  
+  
+  
+  <select id="messageNeedToSend" resultType="java.lang.Integer" parameterType="com.yaoli.beans.Message">
+    <![CDATA[
+select 
+(
+	--说明相对应的的联系人某个时刻某个类型某个站点下面的这条短信是否已经发送过了，不用再次发送
+	--0为还没有发送 1这条短息已经发送过了
+	select COUNT(*) from message where 
+	sewageid = #{sewageid} and 
+	tel = #{tel}  and 
+	abnormaltype = #{abnormaltype} and 
+	convert(varchar(11),(select MAX(testingtime) from message where tel = #{tel}  and sewageid = #{sewageid} and abnormaltype = #{abnormaltype}),120) = 
+	convert(varchar(11),#{testingtime},120)
+)
++
+(
+	--对应的站点下面的故障 已经发送的短信中最新的已经发送的短信的时间距离现在时间的时间差是否小于1000
+	--如果小于1000 说明不需要再次发送
+	--大于1000 说明需要再次发送
+	select COUNT(*) from message where 
+	sewageid = #{sewageid} and 
+	tel = #{tel}  and 
+	abnormaltype = #{abnormaltype} and 
+	datediff(minute,(select MAX(sendtime) from message where tel = #{tel} and sewageid = #{sewageid} and abnormaltype = #{abnormaltype}),GETDATE()) < (select value from sysparam where keyname = 'intervaltime') 
+)
+	  ]]>
+  </select>
+  
+  <!-- 断电断线 -->
+  <select id="getWithoutElectricForMessage" resultMap="BaseResultMap">
+      <![CDATA[
+	select temp2.tel ,temp0.sewageID as sewageid,
+	 temp2.areaname+','+temp0.name+','+temp0.operationnum+' 断电断线,尽快处理! 最后一次数据发送时间：' +  ISNULL (CONVERT(varchar(19),temp0.maxTestingtime,120),'')  as messagedetail,
+	 3 as abnormaltype,temp0.testingtime from
+
+		(
+			select areaID,temp1.sewageID,name,operationnum,testingtime,maxTestingtime from
+
+			(	--temp1
+			select sewage.areaID,temp1.sewageID,sewage.name,sewage.operationnum,GETDATE() as testingtime from
+			(
+				(select sewageid from
+					(select temp1.sewageID,temp1.testingtime,sewage.areaID from sewage ,
+						(select sewageid,max(testingtime) as testingtime from run_data group by sewageid ) as temp1
+							where sewage.sewageID = temp1.sewageId and CONVERT(varchar(12),testingtime,111) != CONVERT(varchar(12),getdate() ,111)
+						)
+					as tmp)
+				union
+					(select sewage.sewageid from (select distinct detection_data.sewageid from detection_data)
+						tmp1 right join sewage on
+						sewage.sewageid = tmp1.sewageid where tmp1.sewageid is null
+					)
+			) as temp1,sewage where temp1.sewageID = sewage.sewageID
+
+				) as temp1
+
+			left join
+
+			(--temp3
+				select sewageid, MAX(testingtime) as maxTestingtime from run_data group by sewageID
+			) as temp3
+
+			on temp1.sewageId = temp3.sewageid
+
+
+		) as temp0,
+
+
+		(-- temp2
+
+			select messageLinker.name,messageLinker.tel,area.id as areaid,area.name as areaname from area left join messageLinker
+			on area.id = messageLinker.areaId where area.isSendArea = 'true'
+
+		) as temp2 --temp2
+
+	where temp0.areaID = temp2.areaid and datediff(minute,temp0.testingtime,GETDATE()) <= (select value from sysparam where keyname = 'intervaltime') and temp2.name is not null
+	]]>
+  </select>
+</mapper>

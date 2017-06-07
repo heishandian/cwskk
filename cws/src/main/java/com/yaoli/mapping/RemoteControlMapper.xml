@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.RemoteControlMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.RemoteControl" >
+    <id column="sewageId" property="sewageid" jdbcType="INTEGER" />
+    <result column="equip1" property="equip1" jdbcType="INTEGER" />
+    <result column="equip2" property="equip2" jdbcType="INTEGER" />
+    <result column="equip3" property="equip3" jdbcType="INTEGER" />
+    <result column="equip4" property="equip4" jdbcType="INTEGER" />
+    <result column="equip5" property="equip5" jdbcType="INTEGER" />
+    <result column="equip6" property="equip6" jdbcType="INTEGER" />
+    <result column="equip7" property="equip7" jdbcType="INTEGER" />
+    <result column="equip8" property="equip8" jdbcType="INTEGER" />
+    <result column="equip9" property="equip9" jdbcType="INTEGER" />
+    <result column="equip10" property="equip10" jdbcType="INTEGER" />
+    <result column="equip11" property="equip11" jdbcType="INTEGER" />
+    <result column="equip12" property="equip12" jdbcType="INTEGER" />
+    <result column="equip13" property="equip13" jdbcType="INTEGER" />
+    <result column="equip14" property="equip14" jdbcType="INTEGER" />
+    <result column="equip15" property="equip15" jdbcType="INTEGER" />
+    <result column="equip16" property="equip16" jdbcType="INTEGER" />
+    <result column="equip17" property="equip17" jdbcType="INTEGER" />
+    <result column="equip18" property="equip18" jdbcType="INTEGER" />
+    <result column="equip19" property="equip19" jdbcType="INTEGER" />
+    <result column="equip20" property="equip20" jdbcType="INTEGER" />
+    <result column="equip21" property="equip21" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sewageId, equip1, equip2, equip3, equip4, equip5, equip6, equip7, equip8, equip9, 
+    equip10, equip11, equip12, equip13, equip14, equip15, equip16, equip17, equip18, 
+    equip19, equip20, equip21
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from remoteControl
+    where sewageId = #{sewageid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from remoteControl
+    where sewageId = #{sewageid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yaoli.beans.RemoteControl" >
+    insert into remoteControl (sewageId, equip1, equip2, 
+      equip3, equip4, equip5, 
+      equip6, equip7, equip8, 
+      equip9, equip10, equip11, 
+      equip12, equip13, equip14, 
+      equip15, equip16, equip17, 
+      equip18, equip19, equip20, 
+      equip21)
+    values (#{sewageid,jdbcType=INTEGER}, #{equip1,jdbcType=INTEGER}, #{equip2,jdbcType=INTEGER}, 
+      #{equip3,jdbcType=INTEGER}, #{equip4,jdbcType=INTEGER}, #{equip5,jdbcType=INTEGER}, 
+      #{equip6,jdbcType=INTEGER}, #{equip7,jdbcType=INTEGER}, #{equip8,jdbcType=INTEGER}, 
+      #{equip9,jdbcType=INTEGER}, #{equip10,jdbcType=INTEGER}, #{equip11,jdbcType=INTEGER}, 
+      #{equip12,jdbcType=INTEGER}, #{equip13,jdbcType=INTEGER}, #{equip14,jdbcType=INTEGER}, 
+      #{equip15,jdbcType=INTEGER}, #{equip16,jdbcType=INTEGER}, #{equip17,jdbcType=INTEGER}, 
+      #{equip18,jdbcType=INTEGER}, #{equip19,jdbcType=INTEGER}, #{equip20,jdbcType=INTEGER}, 
+      #{equip21,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.RemoteControl" >
+    insert into remoteControl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sewageid != null" >
+        sewageId,
+      </if>
+      <if test="equip1 != null" >
+        equip1,
+      </if>
+      <if test="equip2 != null" >
+        equip2,
+      </if>
+      <if test="equip3 != null" >
+        equip3,
+      </if>
+      <if test="equip4 != null" >
+        equip4,
+      </if>
+      <if test="equip5 != null" >
+        equip5,
+      </if>
+      <if test="equip6 != null" >
+        equip6,
+      </if>
+      <if test="equip7 != null" >
+        equip7,
+      </if>
+      <if test="equip8 != null" >
+        equip8,
+      </if>
+      <if test="equip9 != null" >
+        equip9,
+      </if>
+      <if test="equip10 != null" >
+        equip10,
+      </if>
+      <if test="equip11 != null" >
+        equip11,
+      </if>
+      <if test="equip12 != null" >
+        equip12,
+      </if>
+      <if test="equip13 != null" >
+        equip13,
+      </if>
+      <if test="equip14 != null" >
+        equip14,
+      </if>
+      <if test="equip15 != null" >
+        equip15,
+      </if>
+      <if test="equip16 != null" >
+        equip16,
+      </if>
+      <if test="equip17 != null" >
+        equip17,
+      </if>
+      <if test="equip18 != null" >
+        equip18,
+      </if>
+      <if test="equip19 != null" >
+        equip19,
+      </if>
+      <if test="equip20 != null" >
+        equip20,
+      </if>
+      <if test="equip21 != null" >
+        equip21,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sewageid != null" >
+        #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="equip1 != null" >
+        #{equip1,jdbcType=INTEGER},
+      </if>
+      <if test="equip2 != null" >
+        #{equip2,jdbcType=INTEGER},
+      </if>
+      <if test="equip3 != null" >
+        #{equip3,jdbcType=INTEGER},
+      </if>
+      <if test="equip4 != null" >
+        #{equip4,jdbcType=INTEGER},
+      </if>
+      <if test="equip5 != null" >
+        #{equip5,jdbcType=INTEGER},
+      </if>
+      <if test="equip6 != null" >
+        #{equip6,jdbcType=INTEGER},
+      </if>
+      <if test="equip7 != null" >
+        #{equip7,jdbcType=INTEGER},
+      </if>
+      <if test="equip8 != null" >
+        #{equip8,jdbcType=INTEGER},
+      </if>
+      <if test="equip9 != null" >
+        #{equip9,jdbcType=INTEGER},
+      </if>
+      <if test="equip10 != null" >
+        #{equip10,jdbcType=INTEGER},
+      </if>
+      <if test="equip11 != null" >
+        #{equip11,jdbcType=INTEGER},
+      </if>
+      <if test="equip12 != null" >
+        #{equip12,jdbcType=INTEGER},
+      </if>
+      <if test="equip13 != null" >
+        #{equip13,jdbcType=INTEGER},
+      </if>
+      <if test="equip14 != null" >
+        #{equip14,jdbcType=INTEGER},
+      </if>
+      <if test="equip15 != null" >
+        #{equip15,jdbcType=INTEGER},
+      </if>
+      <if test="equip16 != null" >
+        #{equip16,jdbcType=INTEGER},
+      </if>
+      <if test="equip17 != null" >
+        #{equip17,jdbcType=INTEGER},
+      </if>
+      <if test="equip18 != null" >
+        #{equip18,jdbcType=INTEGER},
+      </if>
+      <if test="equip19 != null" >
+        #{equip19,jdbcType=INTEGER},
+      </if>
+      <if test="equip20 != null" >
+        #{equip20,jdbcType=INTEGER},
+      </if>
+      <if test="equip21 != null" >
+        #{equip21,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.RemoteControl" >
+    update remoteControl
+    <set >
+      <if test="equip1 != null" >
+        equip1 = #{equip1,jdbcType=INTEGER},
+      </if>
+      <if test="equip2 != null" >
+        equip2 = #{equip2,jdbcType=INTEGER},
+      </if>
+      <if test="equip3 != null" >
+        equip3 = #{equip3,jdbcType=INTEGER},
+      </if>
+      <if test="equip4 != null" >
+        equip4 = #{equip4,jdbcType=INTEGER},
+      </if>
+      <if test="equip5 != null" >
+        equip5 = #{equip5,jdbcType=INTEGER},
+      </if>
+      <if test="equip6 != null" >
+        equip6 = #{equip6,jdbcType=INTEGER},
+      </if>
+      <if test="equip7 != null" >
+        equip7 = #{equip7,jdbcType=INTEGER},
+      </if>
+      <if test="equip8 != null" >
+        equip8 = #{equip8,jdbcType=INTEGER},
+      </if>
+      <if test="equip9 != null" >
+        equip9 = #{equip9,jdbcType=INTEGER},
+      </if>
+      <if test="equip10 != null" >
+        equip10 = #{equip10,jdbcType=INTEGER},
+      </if>
+      <if test="equip11 != null" >
+        equip11 = #{equip11,jdbcType=INTEGER},
+      </if>
+      <if test="equip12 != null" >
+        equip12 = #{equip12,jdbcType=INTEGER},
+      </if>
+      <if test="equip13 != null" >
+        equip13 = #{equip13,jdbcType=INTEGER},
+      </if>
+      <if test="equip14 != null" >
+        equip14 = #{equip14,jdbcType=INTEGER},
+      </if>
+      <if test="equip15 != null" >
+        equip15 = #{equip15,jdbcType=INTEGER},
+      </if>
+      <if test="equip16 != null" >
+        equip16 = #{equip16,jdbcType=INTEGER},
+      </if>
+      <if test="equip17 != null" >
+        equip17 = #{equip17,jdbcType=INTEGER},
+      </if>
+      <if test="equip18 != null" >
+        equip18 = #{equip18,jdbcType=INTEGER},
+      </if>
+      <if test="equip19 != null" >
+        equip19 = #{equip19,jdbcType=INTEGER},
+      </if>
+      <if test="equip20 != null" >
+        equip20 = #{equip20,jdbcType=INTEGER},
+      </if>
+      <if test="equip21 != null" >
+        equip21 = #{equip21,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sewageId = #{sewageid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.RemoteControl" >
+    update remoteControl
+    set equip1 = #{equip1,jdbcType=INTEGER},
+      equip2 = #{equip2,jdbcType=INTEGER},
+      equip3 = #{equip3,jdbcType=INTEGER},
+      equip4 = #{equip4,jdbcType=INTEGER},
+      equip5 = #{equip5,jdbcType=INTEGER},
+      equip6 = #{equip6,jdbcType=INTEGER},
+      equip7 = #{equip7,jdbcType=INTEGER},
+      equip8 = #{equip8,jdbcType=INTEGER},
+      equip9 = #{equip9,jdbcType=INTEGER},
+      equip10 = #{equip10,jdbcType=INTEGER},
+      equip11 = #{equip11,jdbcType=INTEGER},
+      equip12 = #{equip12,jdbcType=INTEGER},
+      equip13 = #{equip13,jdbcType=INTEGER},
+      equip14 = #{equip14,jdbcType=INTEGER},
+      equip15 = #{equip15,jdbcType=INTEGER},
+      equip16 = #{equip16,jdbcType=INTEGER},
+      equip17 = #{equip17,jdbcType=INTEGER},
+      equip18 = #{equip18,jdbcType=INTEGER},
+      equip19 = #{equip19,jdbcType=INTEGER},
+      equip20 = #{equip20,jdbcType=INTEGER},
+      equip21 = #{equip21,jdbcType=INTEGER}
+    where sewageId = #{sewageid,jdbcType=INTEGER}
+  </update>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from remoteControl
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from remoteControl
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (				 SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM ( 
+					 <include refid="selectByPaingAndConditionSQL"></include> 
+				 ) as b 
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <sql id="selectByPaingAndConditionSQL" >
+    select top 100 percent sewageId,equip1,equip2,equip3,equip4,equip5,equip6,equip7,equip8,equip9,equip10,equip11,equip12,equip13,equip14,equip15,equip16,equip17,equip18,equip19,equip20,equip21 from remoteControl where 1=1 
+  </sql>
+</mapper>

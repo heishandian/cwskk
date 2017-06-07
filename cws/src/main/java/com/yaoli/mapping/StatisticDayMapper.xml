@@ -1,0 +1,1967 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.StatisticDayMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.StatisticDay" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sewageid" property="sewageid" jdbcType="INTEGER" />
+    <result column="testingtime" property="testingtime" jdbcType="TIMESTAMP" />
+    <result column="equip1normaltime" property="equip1normaltime" jdbcType="INTEGER" />
+    <result column="equip1abnormaltime" property="equip1abnormaltime" jdbcType="INTEGER" />
+    <result column="equip2normaltime" property="equip2normaltime" jdbcType="INTEGER" />
+    <result column="equip2abnormaltime" property="equip2abnormaltime" jdbcType="INTEGER" />
+    <result column="equip3normaltime" property="equip3normaltime" jdbcType="INTEGER" />
+    <result column="equip3abnormaltime" property="equip3abnormaltime" jdbcType="INTEGER" />
+    <result column="equip4normaltime" property="equip4normaltime" jdbcType="INTEGER" />
+    <result column="equip4abnormaltime" property="equip4abnormaltime" jdbcType="INTEGER" />
+    <result column="equip5normaltime" property="equip5normaltime" jdbcType="INTEGER" />
+    <result column="equip5abnormaltime" property="equip5abnormaltime" jdbcType="INTEGER" />
+    <result column="detection1avg" property="detection1avg" jdbcType="DOUBLE" />
+    <result column="detection1min" property="detection1min" jdbcType="DOUBLE" />
+    <result column="detection1max" property="detection1max" jdbcType="DOUBLE" />
+    <result column="detection2avg" property="detection2avg" jdbcType="DOUBLE" />
+    <result column="detection2min" property="detection2min" jdbcType="DOUBLE" />
+    <result column="detection2max" property="detection2max" jdbcType="DOUBLE" />
+    <result column="detection3avg" property="detection3avg" jdbcType="DOUBLE" />
+    <result column="detection3min" property="detection3min" jdbcType="DOUBLE" />
+    <result column="detection3max" property="detection3max" jdbcType="DOUBLE" />
+    <result column="detection4avg" property="detection4avg" jdbcType="DOUBLE" />
+    <result column="detection4min" property="detection4min" jdbcType="DOUBLE" />
+    <result column="detection4max" property="detection4max" jdbcType="DOUBLE" />
+    <result column="detection5avg" property="detection5avg" jdbcType="DOUBLE" />
+    <result column="detection5min" property="detection5min" jdbcType="DOUBLE" />
+    <result column="detection5max" property="detection5max" jdbcType="DOUBLE" />
+    <result column="equip6normaltime" property="equip6normaltime" jdbcType="INTEGER" />
+    <result column="equip6abnormaltime" property="equip6abnormaltime" jdbcType="INTEGER" />
+    <result column="equip7normaltime" property="equip7normaltime" jdbcType="INTEGER" />
+    <result column="equip7abnormaltime" property="equip7abnormaltime" jdbcType="INTEGER" />
+    <result column="equip8normaltime" property="equip8normaltime" jdbcType="INTEGER" />
+    <result column="equip8abnormaltime" property="equip8abnormaltime" jdbcType="INTEGER" />
+    <result column="equip9normaltime" property="equip9normaltime" jdbcType="INTEGER" />
+    <result column="equip9abnormaltime" property="equip9abnormaltime" jdbcType="INTEGER" />
+    <result column="equip10normaltime" property="equip10normaltime" jdbcType="INTEGER" />
+    <result column="equip10abnormaltime" property="equip10abnormaltime" jdbcType="INTEGER" />
+    <result column="equip11normaltime" property="equip11normaltime" jdbcType="INTEGER" />
+    <result column="equip11abnormaltime" property="equip11abnormaltime" jdbcType="INTEGER" />
+    <result column="equip12normaltime" property="equip12normaltime" jdbcType="INTEGER" />
+    <result column="equip12abnormaltime" property="equip12abnormaltime" jdbcType="INTEGER" />
+    <result column="equip13normaltime" property="equip13normaltime" jdbcType="INTEGER" />
+    <result column="equip13abnormaltime" property="equip13abnormaltime" jdbcType="INTEGER" />
+    <result column="equip14normaltime" property="equip14normaltime" jdbcType="INTEGER" />
+    <result column="equip14abnormaltime" property="equip14abnormaltime" jdbcType="INTEGER" />
+    <result column="equip15normaltime" property="equip15normaltime" jdbcType="INTEGER" />
+    <result column="equip15abnormaltime" property="equip15abnormaltime" jdbcType="INTEGER" />
+    <result column="equip16normaltime" property="equip16normaltime" jdbcType="INTEGER" />
+    <result column="equip16abnormaltime" property="equip16abnormaltime" jdbcType="INTEGER" />
+    <result column="equip17normaltime" property="equip17normaltime" jdbcType="INTEGER" />
+    <result column="equip17abnormaltime" property="equip17abnormaltime" jdbcType="INTEGER" />
+    <result column="equip18normaltime" property="equip18normaltime" jdbcType="INTEGER" />
+    <result column="equip18abnormaltime" property="equip18abnormaltime" jdbcType="INTEGER" />
+    <result column="equip19normaltime" property="equip19normaltime" jdbcType="INTEGER" />
+    <result column="equip19abnormaltime" property="equip19abnormaltime" jdbcType="INTEGER" />
+    <result column="equip20normaltime" property="equip20normaltime" jdbcType="INTEGER" />
+    <result column="equip20abnormaltime" property="equip20abnormaltime" jdbcType="INTEGER" />
+    <result column="equip21normaltime" property="equip21normaltime" jdbcType="INTEGER" />
+    <result column="equip21abnormaltime" property="equip21abnormaltime" jdbcType="INTEGER" />
+    <result column="equip22normaltime" property="equip22normaltime" jdbcType="INTEGER" />
+    <result column="equip22abnormaltime" property="equip22abnormaltime" jdbcType="INTEGER" />
+    <result column="equip23normaltime" property="equip23normaltime" jdbcType="INTEGER" />
+    <result column="equip23abnormaltime" property="equip23abnormaltime" jdbcType="INTEGER" />
+    <result column="equip24normaltime" property="equip24normaltime" jdbcType="INTEGER" />
+    <result column="equip24abnormaltime" property="equip24abnormaltime" jdbcType="INTEGER" />
+    <result column="detection6avg" property="detection6avg" jdbcType="DOUBLE" />
+    <result column="detection6min" property="detection6min" jdbcType="DOUBLE" />
+    <result column="detection6max" property="detection6max" jdbcType="DOUBLE" />
+    <result column="detection7avg" property="detection7avg" jdbcType="DOUBLE" />
+    <result column="detection7min" property="detection7min" jdbcType="DOUBLE" />
+    <result column="detection7max" property="detection7max" jdbcType="DOUBLE" />
+    <result column="detection8avg" property="detection8avg" jdbcType="DOUBLE" />
+    <result column="detection8min" property="detection8min" jdbcType="DOUBLE" />
+    <result column="detection8max" property="detection8max" jdbcType="DOUBLE" />
+    <result column="detection9avg" property="detection9avg" jdbcType="DOUBLE" />
+    <result column="detection9min" property="detection9min" jdbcType="DOUBLE" />
+    <result column="detection9max" property="detection9max" jdbcType="DOUBLE" />
+    <result column="detection10avg" property="detection10avg" jdbcType="DOUBLE" />
+    <result column="detection10min" property="detection10min" jdbcType="DOUBLE" />
+    <result column="detection10max" property="detection10max" jdbcType="DOUBLE" />
+    <result column="detection11avg" property="detection11avg" jdbcType="DOUBLE" />
+    <result column="detection11min" property="detection11min" jdbcType="DOUBLE" />
+    <result column="detection11max" property="detection11max" jdbcType="DOUBLE" />
+    <result column="detection12avg" property="detection12avg" jdbcType="DOUBLE" />
+    <result column="detection12min" property="detection12min" jdbcType="DOUBLE" />
+    <result column="detection12max" property="detection12max" jdbcType="DOUBLE" />
+    <result column="detection13avg" property="detection13avg" jdbcType="DOUBLE" />
+    <result column="detection13min" property="detection13min" jdbcType="DOUBLE" />
+    <result column="detection13max" property="detection13max" jdbcType="DOUBLE" />
+    <result column="detection14avg" property="detection14avg" jdbcType="DOUBLE" />
+    <result column="detection14min" property="detection14min" jdbcType="DOUBLE" />
+    <result column="detection14max" property="detection14max" jdbcType="DOUBLE" />
+    <result column="detection15avg" property="detection15avg" jdbcType="DOUBLE" />
+    <result column="detection15min" property="detection15min" jdbcType="DOUBLE" />
+    <result column="detection15max" property="detection15max" jdbcType="DOUBLE" />
+    <result column="detection16avg" property="detection16avg" jdbcType="DOUBLE" />
+    <result column="detection16min" property="detection16min" jdbcType="DOUBLE" />
+    <result column="detection16max" property="detection16max" jdbcType="DOUBLE" />
+    <result column="water" property="water" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sewageid, testingtime, equip1normaltime, equip1abnormaltime, equip2normaltime, 
+    equip2abnormaltime, equip3normaltime, equip3abnormaltime, equip4normaltime, equip4abnormaltime, 
+    equip5normaltime, equip5abnormaltime, detection1avg, detection1min, detection1max, 
+    detection2avg, detection2min, detection2max, detection3avg, detection3min, detection3max, 
+    detection4avg, detection4min, detection4max, detection5avg, detection5min, detection5max, 
+    equip6normaltime, equip6abnormaltime, equip7normaltime, equip7abnormaltime, equip8normaltime, 
+    equip8abnormaltime, equip9normaltime, equip9abnormaltime, equip10normaltime, equip10abnormaltime, 
+    equip11normaltime, equip11abnormaltime, equip12normaltime, equip12abnormaltime, equip13normaltime, 
+    equip13abnormaltime, equip14normaltime, equip14abnormaltime, equip15normaltime, equip15abnormaltime, 
+    equip16normaltime, equip16abnormaltime, equip17normaltime, equip17abnormaltime, equip18normaltime, 
+    equip18abnormaltime, equip19normaltime, equip19abnormaltime, equip20normaltime, equip20abnormaltime, 
+    equip21normaltime, equip21abnormaltime, equip22normaltime, equip22abnormaltime, equip23normaltime, 
+    equip23abnormaltime, equip24normaltime, equip24abnormaltime, detection6avg, detection6min, 
+    detection6max, detection7avg, detection7min, detection7max, detection8avg, detection8min, 
+    detection8max, detection9avg, detection9min, detection9max, detection10avg, detection10min, 
+    detection10max, detection11avg, detection11min, detection11max, detection12avg, detection12min, 
+    detection12max, detection13avg, detection13min, detection13max, detection14avg, detection14min, 
+    detection14max, detection15avg, detection15min, detection15max, detection16avg, detection16min, 
+    detection16max,water
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from statistic_day
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from statistic_day
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yaoli.beans.StatisticDay" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into statistic_day (sewageid, testingtime, equip1normaltime, 
+      equip1abnormaltime, equip2normaltime, equip2abnormaltime, 
+      equip3normaltime, equip3abnormaltime, equip4normaltime, 
+      equip4abnormaltime, equip5normaltime, equip5abnormaltime, 
+      detection1avg, detection1min, detection1max, 
+      detection2avg, detection2min, detection2max, 
+      detection3avg, detection3min, detection3max, 
+      detection4avg, detection4min, detection4max, 
+      detection5avg, detection5min, detection5max, 
+      equip6normaltime, equip6abnormaltime, equip7normaltime, 
+      equip7abnormaltime, equip8normaltime, equip8abnormaltime, 
+      equip9normaltime, equip9abnormaltime, equip10normaltime, 
+      equip10abnormaltime, equip11normaltime, 
+      equip11abnormaltime, equip12normaltime, 
+      equip12abnormaltime, equip13normaltime, 
+      equip13abnormaltime, equip14normaltime, 
+      equip14abnormaltime, equip15normaltime, 
+      equip15abnormaltime, equip16normaltime, 
+      equip16abnormaltime, equip17normaltime, 
+      equip17abnormaltime, equip18normaltime, 
+      equip18abnormaltime, equip19normaltime, 
+      equip19abnormaltime, equip20normaltime, 
+      equip20abnormaltime, equip21normaltime, 
+      equip21abnormaltime, equip22normaltime, 
+      equip22abnormaltime, equip23normaltime, 
+      equip23abnormaltime, equip24normaltime, 
+      equip24abnormaltime, detection6avg, detection6min, 
+      detection6max, detection7avg, detection7min, 
+      detection7max, detection8avg, detection8min, 
+      detection8max, detection9avg, detection9min, 
+      detection9max, detection10avg, detection10min, 
+      detection10max, detection11avg, detection11min, 
+      detection11max, detection12avg, detection12min, 
+      detection12max, detection13avg, detection13min, 
+      detection13max, detection14avg, detection14min, 
+      detection14max, detection15avg, detection15min, 
+      detection15max, detection16avg, detection16min, 
+      detection16max,water)
+    values (#{sewageid,jdbcType=INTEGER}, #{testingtime,jdbcType=TIMESTAMP}, #{equip1normaltime,jdbcType=INTEGER}, 
+      #{equip1abnormaltime,jdbcType=INTEGER}, #{equip2normaltime,jdbcType=INTEGER}, #{equip2abnormaltime,jdbcType=INTEGER}, 
+      #{equip3normaltime,jdbcType=INTEGER}, #{equip3abnormaltime,jdbcType=INTEGER}, #{equip4normaltime,jdbcType=INTEGER}, 
+      #{equip4abnormaltime,jdbcType=INTEGER}, #{equip5normaltime,jdbcType=INTEGER}, #{equip5abnormaltime,jdbcType=INTEGER}, 
+      #{detection1avg,jdbcType=DOUBLE}, #{detection1min,jdbcType=DOUBLE}, #{detection1max,jdbcType=DOUBLE}, 
+      #{detection2avg,jdbcType=DOUBLE}, #{detection2min,jdbcType=DOUBLE}, #{detection2max,jdbcType=DOUBLE}, 
+      #{detection3avg,jdbcType=DOUBLE}, #{detection3min,jdbcType=DOUBLE}, #{detection3max,jdbcType=DOUBLE}, 
+      #{detection4avg,jdbcType=DOUBLE}, #{detection4min,jdbcType=DOUBLE}, #{detection4max,jdbcType=DOUBLE}, 
+      #{detection5avg,jdbcType=DOUBLE}, #{detection5min,jdbcType=DOUBLE}, #{detection5max,jdbcType=DOUBLE}, 
+      #{equip6normaltime,jdbcType=INTEGER}, #{equip6abnormaltime,jdbcType=INTEGER}, #{equip7normaltime,jdbcType=INTEGER}, 
+      #{equip7abnormaltime,jdbcType=INTEGER}, #{equip8normaltime,jdbcType=INTEGER}, #{equip8abnormaltime,jdbcType=INTEGER}, 
+      #{equip9normaltime,jdbcType=INTEGER}, #{equip9abnormaltime,jdbcType=INTEGER}, #{equip10normaltime,jdbcType=INTEGER}, 
+      #{equip10abnormaltime,jdbcType=INTEGER}, #{equip11normaltime,jdbcType=INTEGER}, 
+      #{equip11abnormaltime,jdbcType=INTEGER}, #{equip12normaltime,jdbcType=INTEGER}, 
+      #{equip12abnormaltime,jdbcType=INTEGER}, #{equip13normaltime,jdbcType=INTEGER}, 
+      #{equip13abnormaltime,jdbcType=INTEGER}, #{equip14normaltime,jdbcType=INTEGER}, 
+      #{equip14abnormaltime,jdbcType=INTEGER}, #{equip15normaltime,jdbcType=INTEGER}, 
+      #{equip15abnormaltime,jdbcType=INTEGER}, #{equip16normaltime,jdbcType=INTEGER}, 
+      #{equip16abnormaltime,jdbcType=INTEGER}, #{equip17normaltime,jdbcType=INTEGER}, 
+      #{equip17abnormaltime,jdbcType=INTEGER}, #{equip18normaltime,jdbcType=INTEGER}, 
+      #{equip18abnormaltime,jdbcType=INTEGER}, #{equip19normaltime,jdbcType=INTEGER}, 
+      #{equip19abnormaltime,jdbcType=INTEGER}, #{equip20normaltime,jdbcType=INTEGER}, 
+      #{equip20abnormaltime,jdbcType=INTEGER}, #{equip21normaltime,jdbcType=INTEGER}, 
+      #{equip21abnormaltime,jdbcType=INTEGER}, #{equip22normaltime,jdbcType=INTEGER}, 
+      #{equip22abnormaltime,jdbcType=INTEGER}, #{equip23normaltime,jdbcType=INTEGER}, 
+      #{equip23abnormaltime,jdbcType=INTEGER}, #{equip24normaltime,jdbcType=INTEGER}, 
+      #{equip24abnormaltime,jdbcType=INTEGER}, #{detection6avg,jdbcType=DOUBLE}, #{detection6min,jdbcType=DOUBLE}, 
+      #{detection6max,jdbcType=DOUBLE}, #{detection7avg,jdbcType=DOUBLE}, #{detection7min,jdbcType=DOUBLE}, 
+      #{detection7max,jdbcType=DOUBLE}, #{detection8avg,jdbcType=DOUBLE}, #{detection8min,jdbcType=DOUBLE}, 
+      #{detection8max,jdbcType=DOUBLE}, #{detection9avg,jdbcType=DOUBLE}, #{detection9min,jdbcType=DOUBLE}, 
+      #{detection9max,jdbcType=DOUBLE}, #{detection10avg,jdbcType=DOUBLE}, #{detection10min,jdbcType=DOUBLE}, 
+      #{detection10max,jdbcType=DOUBLE}, #{detection11avg,jdbcType=DOUBLE}, #{detection11min,jdbcType=DOUBLE}, 
+      #{detection11max,jdbcType=DOUBLE}, #{detection12avg,jdbcType=DOUBLE}, #{detection12min,jdbcType=DOUBLE}, 
+      #{detection12max,jdbcType=DOUBLE}, #{detection13avg,jdbcType=DOUBLE}, #{detection13min,jdbcType=DOUBLE}, 
+      #{detection13max,jdbcType=DOUBLE}, #{detection14avg,jdbcType=DOUBLE}, #{detection14min,jdbcType=DOUBLE}, 
+      #{detection14max,jdbcType=DOUBLE}, #{detection15avg,jdbcType=DOUBLE}, #{detection15min,jdbcType=DOUBLE}, 
+      #{detection15max,jdbcType=DOUBLE}, #{detection16avg,jdbcType=DOUBLE}, #{detection16min,jdbcType=DOUBLE}, 
+      #{detection16max,jdbcType=DOUBLE},  #{water,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.StatisticDay" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into statistic_day
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sewageid != null" >
+        sewageid,
+      </if>
+      <if test="testingtime != null" >
+        testingtime,
+      </if>
+      <if test="equip1normaltime != null" >
+        equip1normaltime,
+      </if>
+      <if test="equip1abnormaltime != null" >
+        equip1abnormaltime,
+      </if>
+      <if test="equip2normaltime != null" >
+        equip2normaltime,
+      </if>
+      <if test="equip2abnormaltime != null" >
+        equip2abnormaltime,
+      </if>
+      <if test="equip3normaltime != null" >
+        equip3normaltime,
+      </if>
+      <if test="equip3abnormaltime != null" >
+        equip3abnormaltime,
+      </if>
+      <if test="equip4normaltime != null" >
+        equip4normaltime,
+      </if>
+      <if test="equip4abnormaltime != null" >
+        equip4abnormaltime,
+      </if>
+      <if test="equip5normaltime != null" >
+        equip5normaltime,
+      </if>
+      <if test="equip5abnormaltime != null" >
+        equip5abnormaltime,
+      </if>
+      <if test="detection1avg != null" >
+        detection1avg,
+      </if>
+      <if test="detection1min != null" >
+        detection1min,
+      </if>
+      <if test="detection1max != null" >
+        detection1max,
+      </if>
+      <if test="detection2avg != null" >
+        detection2avg,
+      </if>
+      <if test="detection2min != null" >
+        detection2min,
+      </if>
+      <if test="detection2max != null" >
+        detection2max,
+      </if>
+      <if test="detection3avg != null" >
+        detection3avg,
+      </if>
+      <if test="detection3min != null" >
+        detection3min,
+      </if>
+      <if test="detection3max != null" >
+        detection3max,
+      </if>
+      <if test="detection4avg != null" >
+        detection4avg,
+      </if>
+      <if test="detection4min != null" >
+        detection4min,
+      </if>
+      <if test="detection4max != null" >
+        detection4max,
+      </if>
+      <if test="detection5avg != null" >
+        detection5avg,
+      </if>
+      <if test="detection5min != null" >
+        detection5min,
+      </if>
+      <if test="detection5max != null" >
+        detection5max,
+      </if>
+      <if test="equip6normaltime != null" >
+        equip6normaltime,
+      </if>
+      <if test="equip6abnormaltime != null" >
+        equip6abnormaltime,
+      </if>
+      <if test="equip7normaltime != null" >
+        equip7normaltime,
+      </if>
+      <if test="equip7abnormaltime != null" >
+        equip7abnormaltime,
+      </if>
+      <if test="equip8normaltime != null" >
+        equip8normaltime,
+      </if>
+      <if test="equip8abnormaltime != null" >
+        equip8abnormaltime,
+      </if>
+      <if test="equip9normaltime != null" >
+        equip9normaltime,
+      </if>
+      <if test="equip9abnormaltime != null" >
+        equip9abnormaltime,
+      </if>
+      <if test="equip10normaltime != null" >
+        equip10normaltime,
+      </if>
+      <if test="equip10abnormaltime != null" >
+        equip10abnormaltime,
+      </if>
+      <if test="equip11normaltime != null" >
+        equip11normaltime,
+      </if>
+      <if test="equip11abnormaltime != null" >
+        equip11abnormaltime,
+      </if>
+      <if test="equip12normaltime != null" >
+        equip12normaltime,
+      </if>
+      <if test="equip12abnormaltime != null" >
+        equip12abnormaltime,
+      </if>
+      <if test="equip13normaltime != null" >
+        equip13normaltime,
+      </if>
+      <if test="equip13abnormaltime != null" >
+        equip13abnormaltime,
+      </if>
+      <if test="equip14normaltime != null" >
+        equip14normaltime,
+      </if>
+      <if test="equip14abnormaltime != null" >
+        equip14abnormaltime,
+      </if>
+      <if test="equip15normaltime != null" >
+        equip15normaltime,
+      </if>
+      <if test="equip15abnormaltime != null" >
+        equip15abnormaltime,
+      </if>
+      <if test="equip16normaltime != null" >
+        equip16normaltime,
+      </if>
+      <if test="equip16abnormaltime != null" >
+        equip16abnormaltime,
+      </if>
+      <if test="equip17normaltime != null" >
+        equip17normaltime,
+      </if>
+      <if test="equip17abnormaltime != null" >
+        equip17abnormaltime,
+      </if>
+      <if test="equip18normaltime != null" >
+        equip18normaltime,
+      </if>
+      <if test="equip18abnormaltime != null" >
+        equip18abnormaltime,
+      </if>
+      <if test="equip19normaltime != null" >
+        equip19normaltime,
+      </if>
+      <if test="equip19abnormaltime != null" >
+        equip19abnormaltime,
+      </if>
+      <if test="equip20normaltime != null" >
+        equip20normaltime,
+      </if>
+      <if test="equip20abnormaltime != null" >
+        equip20abnormaltime,
+      </if>
+      <if test="equip21normaltime != null" >
+        equip21normaltime,
+      </if>
+      <if test="equip21abnormaltime != null" >
+        equip21abnormaltime,
+      </if>
+      <if test="equip22normaltime != null" >
+        equip22normaltime,
+      </if>
+      <if test="equip22abnormaltime != null" >
+        equip22abnormaltime,
+      </if>
+      <if test="equip23normaltime != null" >
+        equip23normaltime,
+      </if>
+      <if test="equip23abnormaltime != null" >
+        equip23abnormaltime,
+      </if>
+      <if test="equip24normaltime != null" >
+        equip24normaltime,
+      </if>
+      <if test="equip24abnormaltime != null" >
+        equip24abnormaltime,
+      </if>
+      <if test="detection6avg != null" >
+        detection6avg,
+      </if>
+      <if test="detection6min != null" >
+        detection6min,
+      </if>
+      <if test="detection6max != null" >
+        detection6max,
+      </if>
+      <if test="detection7avg != null" >
+        detection7avg,
+      </if>
+      <if test="detection7min != null" >
+        detection7min,
+      </if>
+      <if test="detection7max != null" >
+        detection7max,
+      </if>
+      <if test="detection8avg != null" >
+        detection8avg,
+      </if>
+      <if test="detection8min != null" >
+        detection8min,
+      </if>
+      <if test="detection8max != null" >
+        detection8max,
+      </if>
+      <if test="detection9avg != null" >
+        detection9avg,
+      </if>
+      <if test="detection9min != null" >
+        detection9min,
+      </if>
+      <if test="detection9max != null" >
+        detection9max,
+      </if>
+      <if test="detection10avg != null" >
+        detection10avg,
+      </if>
+      <if test="detection10min != null" >
+        detection10min,
+      </if>
+      <if test="detection10max != null" >
+        detection10max,
+      </if>
+      <if test="detection11avg != null" >
+        detection11avg,
+      </if>
+      <if test="detection11min != null" >
+        detection11min,
+      </if>
+      <if test="detection11max != null" >
+        detection11max,
+      </if>
+      <if test="detection12avg != null" >
+        detection12avg,
+      </if>
+      <if test="detection12min != null" >
+        detection12min,
+      </if>
+      <if test="detection12max != null" >
+        detection12max,
+      </if>
+      <if test="detection13avg != null" >
+        detection13avg,
+      </if>
+      <if test="detection13min != null" >
+        detection13min,
+      </if>
+      <if test="detection13max != null" >
+        detection13max,
+      </if>
+      <if test="detection14avg != null" >
+        detection14avg,
+      </if>
+      <if test="detection14min != null" >
+        detection14min,
+      </if>
+      <if test="detection14max != null" >
+        detection14max,
+      </if>
+      <if test="detection15avg != null" >
+        detection15avg,
+      </if>
+      <if test="detection15min != null" >
+        detection15min,
+      </if>
+      <if test="detection15max != null" >
+        detection15max,
+      </if>
+      <if test="detection16avg != null" >
+        detection16avg,
+      </if>
+      <if test="detection16min != null" >
+        detection16min,
+      </if>
+      <if test="detection16max != null" >
+        detection16max,
+      </if>
+      <if test="water != null" >
+        water,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sewageid != null" >
+        #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="testingtime != null" >
+        #{testingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="equip1normaltime != null" >
+        #{equip1normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip1abnormaltime != null" >
+        #{equip1abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip2normaltime != null" >
+        #{equip2normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip2abnormaltime != null" >
+        #{equip2abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip3normaltime != null" >
+        #{equip3normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip3abnormaltime != null" >
+        #{equip3abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip4normaltime != null" >
+        #{equip4normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip4abnormaltime != null" >
+        #{equip4abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip5normaltime != null" >
+        #{equip5normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip5abnormaltime != null" >
+        #{equip5abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="detection1avg != null" >
+        #{detection1avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection1min != null" >
+        #{detection1min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection1max != null" >
+        #{detection1max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection2avg != null" >
+        #{detection2avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection2min != null" >
+        #{detection2min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection2max != null" >
+        #{detection2max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection3avg != null" >
+        #{detection3avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection3min != null" >
+        #{detection3min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection3max != null" >
+        #{detection3max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection4avg != null" >
+        #{detection4avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection4min != null" >
+        #{detection4min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection4max != null" >
+        #{detection4max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection5avg != null" >
+        #{detection5avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection5min != null" >
+        #{detection5min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection5max != null" >
+        #{detection5max,jdbcType=DOUBLE},
+      </if>
+      <if test="equip6normaltime != null" >
+        #{equip6normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip6abnormaltime != null" >
+        #{equip6abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip7normaltime != null" >
+        #{equip7normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip7abnormaltime != null" >
+        #{equip7abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip8normaltime != null" >
+        #{equip8normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip8abnormaltime != null" >
+        #{equip8abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip9normaltime != null" >
+        #{equip9normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip9abnormaltime != null" >
+        #{equip9abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip10normaltime != null" >
+        #{equip10normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip10abnormaltime != null" >
+        #{equip10abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip11normaltime != null" >
+        #{equip11normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip11abnormaltime != null" >
+        #{equip11abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip12normaltime != null" >
+        #{equip12normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip12abnormaltime != null" >
+        #{equip12abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip13normaltime != null" >
+        #{equip13normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip13abnormaltime != null" >
+        #{equip13abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip14normaltime != null" >
+        #{equip14normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip14abnormaltime != null" >
+        #{equip14abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip15normaltime != null" >
+        #{equip15normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip15abnormaltime != null" >
+        #{equip15abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip16normaltime != null" >
+        #{equip16normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip16abnormaltime != null" >
+        #{equip16abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip17normaltime != null" >
+        #{equip17normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip17abnormaltime != null" >
+        #{equip17abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip18normaltime != null" >
+        #{equip18normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip18abnormaltime != null" >
+        #{equip18abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip19normaltime != null" >
+        #{equip19normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip19abnormaltime != null" >
+        #{equip19abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip20normaltime != null" >
+        #{equip20normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip20abnormaltime != null" >
+        #{equip20abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip21normaltime != null" >
+        #{equip21normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip21abnormaltime != null" >
+        #{equip21abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip22normaltime != null" >
+        #{equip22normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip22abnormaltime != null" >
+        #{equip22abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip23normaltime != null" >
+        #{equip23normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip23abnormaltime != null" >
+        #{equip23abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip24normaltime != null" >
+        #{equip24normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip24abnormaltime != null" >
+        #{equip24abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="detection6avg != null" >
+        #{detection6avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection6min != null" >
+        #{detection6min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection6max != null" >
+        #{detection6max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection7avg != null" >
+        #{detection7avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection7min != null" >
+        #{detection7min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection7max != null" >
+        #{detection7max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection8avg != null" >
+        #{detection8avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection8min != null" >
+        #{detection8min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection8max != null" >
+        #{detection8max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection9avg != null" >
+        #{detection9avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection9min != null" >
+        #{detection9min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection9max != null" >
+        #{detection9max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection10avg != null" >
+        #{detection10avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection10min != null" >
+        #{detection10min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection10max != null" >
+        #{detection10max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection11avg != null" >
+        #{detection11avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection11min != null" >
+        #{detection11min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection11max != null" >
+        #{detection11max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection12avg != null" >
+        #{detection12avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection12min != null" >
+        #{detection12min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection12max != null" >
+        #{detection12max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection13avg != null" >
+        #{detection13avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection13min != null" >
+        #{detection13min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection13max != null" >
+        #{detection13max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection14avg != null" >
+        #{detection14avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection14min != null" >
+        #{detection14min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection14max != null" >
+        #{detection14max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection15avg != null" >
+        #{detection15avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection15min != null" >
+        #{detection15min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection15max != null" >
+        #{detection15max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection16avg != null" >
+        #{detection16avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection16min != null" >
+        #{detection16min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection16max != null" >
+        #{detection16max,jdbcType=DOUBLE},
+      </if>
+      <if test="water != null" >
+        #{water,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.StatisticDay" >
+    update statistic_day
+    <set >
+      <if test="sewageid != null" >
+        sewageid = #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="testingtime != null" >
+        testingtime = #{testingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="equip1normaltime != null" >
+        equip1normaltime = #{equip1normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip1abnormaltime != null" >
+        equip1abnormaltime = #{equip1abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip2normaltime != null" >
+        equip2normaltime = #{equip2normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip2abnormaltime != null" >
+        equip2abnormaltime = #{equip2abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip3normaltime != null" >
+        equip3normaltime = #{equip3normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip3abnormaltime != null" >
+        equip3abnormaltime = #{equip3abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip4normaltime != null" >
+        equip4normaltime = #{equip4normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip4abnormaltime != null" >
+        equip4abnormaltime = #{equip4abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip5normaltime != null" >
+        equip5normaltime = #{equip5normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip5abnormaltime != null" >
+        equip5abnormaltime = #{equip5abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="detection1avg != null" >
+        detection1avg = #{detection1avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection1min != null" >
+        detection1min = #{detection1min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection1max != null" >
+        detection1max = #{detection1max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection2avg != null" >
+        detection2avg = #{detection2avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection2min != null" >
+        detection2min = #{detection2min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection2max != null" >
+        detection2max = #{detection2max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection3avg != null" >
+        detection3avg = #{detection3avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection3min != null" >
+        detection3min = #{detection3min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection3max != null" >
+        detection3max = #{detection3max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection4avg != null" >
+        detection4avg = #{detection4avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection4min != null" >
+        detection4min = #{detection4min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection4max != null" >
+        detection4max = #{detection4max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection5avg != null" >
+        detection5avg = #{detection5avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection5min != null" >
+        detection5min = #{detection5min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection5max != null" >
+        detection5max = #{detection5max,jdbcType=DOUBLE},
+      </if>
+      <if test="equip6normaltime != null" >
+        equip6normaltime = #{equip6normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip6abnormaltime != null" >
+        equip6abnormaltime = #{equip6abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip7normaltime != null" >
+        equip7normaltime = #{equip7normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip7abnormaltime != null" >
+        equip7abnormaltime = #{equip7abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip8normaltime != null" >
+        equip8normaltime = #{equip8normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip8abnormaltime != null" >
+        equip8abnormaltime = #{equip8abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip9normaltime != null" >
+        equip9normaltime = #{equip9normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip9abnormaltime != null" >
+        equip9abnormaltime = #{equip9abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip10normaltime != null" >
+        equip10normaltime = #{equip10normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip10abnormaltime != null" >
+        equip10abnormaltime = #{equip10abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip11normaltime != null" >
+        equip11normaltime = #{equip11normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip11abnormaltime != null" >
+        equip11abnormaltime = #{equip11abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip12normaltime != null" >
+        equip12normaltime = #{equip12normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip12abnormaltime != null" >
+        equip12abnormaltime = #{equip12abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip13normaltime != null" >
+        equip13normaltime = #{equip13normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip13abnormaltime != null" >
+        equip13abnormaltime = #{equip13abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip14normaltime != null" >
+        equip14normaltime = #{equip14normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip14abnormaltime != null" >
+        equip14abnormaltime = #{equip14abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip15normaltime != null" >
+        equip15normaltime = #{equip15normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip15abnormaltime != null" >
+        equip15abnormaltime = #{equip15abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip16normaltime != null" >
+        equip16normaltime = #{equip16normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip16abnormaltime != null" >
+        equip16abnormaltime = #{equip16abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip17normaltime != null" >
+        equip17normaltime = #{equip17normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip17abnormaltime != null" >
+        equip17abnormaltime = #{equip17abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip18normaltime != null" >
+        equip18normaltime = #{equip18normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip18abnormaltime != null" >
+        equip18abnormaltime = #{equip18abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip19normaltime != null" >
+        equip19normaltime = #{equip19normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip19abnormaltime != null" >
+        equip19abnormaltime = #{equip19abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip20normaltime != null" >
+        equip20normaltime = #{equip20normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip20abnormaltime != null" >
+        equip20abnormaltime = #{equip20abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip21normaltime != null" >
+        equip21normaltime = #{equip21normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip21abnormaltime != null" >
+        equip21abnormaltime = #{equip21abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip22normaltime != null" >
+        equip22normaltime = #{equip22normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip22abnormaltime != null" >
+        equip22abnormaltime = #{equip22abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip23normaltime != null" >
+        equip23normaltime = #{equip23normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip23abnormaltime != null" >
+        equip23abnormaltime = #{equip23abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip24normaltime != null" >
+        equip24normaltime = #{equip24normaltime,jdbcType=INTEGER},
+      </if>
+      <if test="equip24abnormaltime != null" >
+        equip24abnormaltime = #{equip24abnormaltime,jdbcType=INTEGER},
+      </if>
+      <if test="detection6avg != null" >
+        detection6avg = #{detection6avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection6min != null" >
+        detection6min = #{detection6min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection6max != null" >
+        detection6max = #{detection6max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection7avg != null" >
+        detection7avg = #{detection7avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection7min != null" >
+        detection7min = #{detection7min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection7max != null" >
+        detection7max = #{detection7max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection8avg != null" >
+        detection8avg = #{detection8avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection8min != null" >
+        detection8min = #{detection8min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection8max != null" >
+        detection8max = #{detection8max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection9avg != null" >
+        detection9avg = #{detection9avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection9min != null" >
+        detection9min = #{detection9min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection9max != null" >
+        detection9max = #{detection9max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection10avg != null" >
+        detection10avg = #{detection10avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection10min != null" >
+        detection10min = #{detection10min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection10max != null" >
+        detection10max = #{detection10max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection11avg != null" >
+        detection11avg = #{detection11avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection11min != null" >
+        detection11min = #{detection11min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection11max != null" >
+        detection11max = #{detection11max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection12avg != null" >
+        detection12avg = #{detection12avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection12min != null" >
+        detection12min = #{detection12min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection12max != null" >
+        detection12max = #{detection12max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection13avg != null" >
+        detection13avg = #{detection13avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection13min != null" >
+        detection13min = #{detection13min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection13max != null" >
+        detection13max = #{detection13max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection14avg != null" >
+        detection14avg = #{detection14avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection14min != null" >
+        detection14min = #{detection14min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection14max != null" >
+        detection14max = #{detection14max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection15avg != null" >
+        detection15avg = #{detection15avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection15min != null" >
+        detection15min = #{detection15min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection15max != null" >
+        detection15max = #{detection15max,jdbcType=DOUBLE},
+      </if>
+      <if test="detection16avg != null" >
+        detection16avg = #{detection16avg,jdbcType=DOUBLE},
+      </if>
+      <if test="detection16min != null" >
+        detection16min = #{detection16min,jdbcType=DOUBLE},
+      </if>
+      <if test="detection16max != null" >
+        detection16max = #{detection16max,jdbcType=DOUBLE},
+      </if>
+      <if test="water != null" >
+        water = #{water,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.StatisticDay" >
+    update statistic_day
+    set sewageid = #{sewageid,jdbcType=INTEGER},
+      testingtime = #{testingtime,jdbcType=TIMESTAMP},
+      equip1normaltime = #{equip1normaltime,jdbcType=INTEGER},
+      equip1abnormaltime = #{equip1abnormaltime,jdbcType=INTEGER},
+      equip2normaltime = #{equip2normaltime,jdbcType=INTEGER},
+      equip2abnormaltime = #{equip2abnormaltime,jdbcType=INTEGER},
+      equip3normaltime = #{equip3normaltime,jdbcType=INTEGER},
+      equip3abnormaltime = #{equip3abnormaltime,jdbcType=INTEGER},
+      equip4normaltime = #{equip4normaltime,jdbcType=INTEGER},
+      equip4abnormaltime = #{equip4abnormaltime,jdbcType=INTEGER},
+      equip5normaltime = #{equip5normaltime,jdbcType=INTEGER},
+      equip5abnormaltime = #{equip5abnormaltime,jdbcType=INTEGER},
+      detection1avg = #{detection1avg,jdbcType=DOUBLE},
+      detection1min = #{detection1min,jdbcType=DOUBLE},
+      detection1max = #{detection1max,jdbcType=DOUBLE},
+      detection2avg = #{detection2avg,jdbcType=DOUBLE},
+      detection2min = #{detection2min,jdbcType=DOUBLE},
+      detection2max = #{detection2max,jdbcType=DOUBLE},
+      detection3avg = #{detection3avg,jdbcType=DOUBLE},
+      detection3min = #{detection3min,jdbcType=DOUBLE},
+      detection3max = #{detection3max,jdbcType=DOUBLE},
+      detection4avg = #{detection4avg,jdbcType=DOUBLE},
+      detection4min = #{detection4min,jdbcType=DOUBLE},
+      detection4max = #{detection4max,jdbcType=DOUBLE},
+      detection5avg = #{detection5avg,jdbcType=DOUBLE},
+      detection5min = #{detection5min,jdbcType=DOUBLE},
+      detection5max = #{detection5max,jdbcType=DOUBLE},
+      equip6normaltime = #{equip6normaltime,jdbcType=INTEGER},
+      equip6abnormaltime = #{equip6abnormaltime,jdbcType=INTEGER},
+      equip7normaltime = #{equip7normaltime,jdbcType=INTEGER},
+      equip7abnormaltime = #{equip7abnormaltime,jdbcType=INTEGER},
+      equip8normaltime = #{equip8normaltime,jdbcType=INTEGER},
+      equip8abnormaltime = #{equip8abnormaltime,jdbcType=INTEGER},
+      equip9normaltime = #{equip9normaltime,jdbcType=INTEGER},
+      equip9abnormaltime = #{equip9abnormaltime,jdbcType=INTEGER},
+      equip10normaltime = #{equip10normaltime,jdbcType=INTEGER},
+      equip10abnormaltime = #{equip10abnormaltime,jdbcType=INTEGER},
+      equip11normaltime = #{equip11normaltime,jdbcType=INTEGER},
+      equip11abnormaltime = #{equip11abnormaltime,jdbcType=INTEGER},
+      equip12normaltime = #{equip12normaltime,jdbcType=INTEGER},
+      equip12abnormaltime = #{equip12abnormaltime,jdbcType=INTEGER},
+      equip13normaltime = #{equip13normaltime,jdbcType=INTEGER},
+      equip13abnormaltime = #{equip13abnormaltime,jdbcType=INTEGER},
+      equip14normaltime = #{equip14normaltime,jdbcType=INTEGER},
+      equip14abnormaltime = #{equip14abnormaltime,jdbcType=INTEGER},
+      equip15normaltime = #{equip15normaltime,jdbcType=INTEGER},
+      equip15abnormaltime = #{equip15abnormaltime,jdbcType=INTEGER},
+      equip16normaltime = #{equip16normaltime,jdbcType=INTEGER},
+      equip16abnormaltime = #{equip16abnormaltime,jdbcType=INTEGER},
+      equip17normaltime = #{equip17normaltime,jdbcType=INTEGER},
+      equip17abnormaltime = #{equip17abnormaltime,jdbcType=INTEGER},
+      equip18normaltime = #{equip18normaltime,jdbcType=INTEGER},
+      equip18abnormaltime = #{equip18abnormaltime,jdbcType=INTEGER},
+      equip19normaltime = #{equip19normaltime,jdbcType=INTEGER},
+      equip19abnormaltime = #{equip19abnormaltime,jdbcType=INTEGER},
+      equip20normaltime = #{equip20normaltime,jdbcType=INTEGER},
+      equip20abnormaltime = #{equip20abnormaltime,jdbcType=INTEGER},
+      equip21normaltime = #{equip21normaltime,jdbcType=INTEGER},
+      equip21abnormaltime = #{equip21abnormaltime,jdbcType=INTEGER},
+      equip22normaltime = #{equip22normaltime,jdbcType=INTEGER},
+      equip22abnormaltime = #{equip22abnormaltime,jdbcType=INTEGER},
+      equip23normaltime = #{equip23normaltime,jdbcType=INTEGER},
+      equip23abnormaltime = #{equip23abnormaltime,jdbcType=INTEGER},
+      equip24normaltime = #{equip24normaltime,jdbcType=INTEGER},
+      equip24abnormaltime = #{equip24abnormaltime,jdbcType=INTEGER},
+      detection6avg = #{detection6avg,jdbcType=DOUBLE},
+      detection6min = #{detection6min,jdbcType=DOUBLE},
+      detection6max = #{detection6max,jdbcType=DOUBLE},
+      detection7avg = #{detection7avg,jdbcType=DOUBLE},
+      detection7min = #{detection7min,jdbcType=DOUBLE},
+      detection7max = #{detection7max,jdbcType=DOUBLE},
+      detection8avg = #{detection8avg,jdbcType=DOUBLE},
+      detection8min = #{detection8min,jdbcType=DOUBLE},
+      detection8max = #{detection8max,jdbcType=DOUBLE},
+      detection9avg = #{detection9avg,jdbcType=DOUBLE},
+      detection9min = #{detection9min,jdbcType=DOUBLE},
+      detection9max = #{detection9max,jdbcType=DOUBLE},
+      detection10avg = #{detection10avg,jdbcType=DOUBLE},
+      detection10min = #{detection10min,jdbcType=DOUBLE},
+      detection10max = #{detection10max,jdbcType=DOUBLE},
+      detection11avg = #{detection11avg,jdbcType=DOUBLE},
+      detection11min = #{detection11min,jdbcType=DOUBLE},
+      detection11max = #{detection11max,jdbcType=DOUBLE},
+      detection12avg = #{detection12avg,jdbcType=DOUBLE},
+      detection12min = #{detection12min,jdbcType=DOUBLE},
+      detection12max = #{detection12max,jdbcType=DOUBLE},
+      detection13avg = #{detection13avg,jdbcType=DOUBLE},
+      detection13min = #{detection13min,jdbcType=DOUBLE},
+      detection13max = #{detection13max,jdbcType=DOUBLE},
+      detection14avg = #{detection14avg,jdbcType=DOUBLE},
+      detection14min = #{detection14min,jdbcType=DOUBLE},
+      detection14max = #{detection14max,jdbcType=DOUBLE},
+      detection15avg = #{detection15avg,jdbcType=DOUBLE},
+      detection15min = #{detection15min,jdbcType=DOUBLE},
+      detection15max = #{detection15max,jdbcType=DOUBLE},
+      detection16avg = #{detection16avg,jdbcType=DOUBLE},
+      detection16min = #{detection16min,jdbcType=DOUBLE},
+      detection16max = #{detection16max,jdbcType=DOUBLE},
+      water = #{water,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from statistic_day
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from statistic_day
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM (
+					 <include refid="selectByPaingAndConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+
+  </select>
+  <sql id="selectByPaingAndConditionSQL" >
+    select top 100 percent id,sewageid,testingtime,equip1normaltime,equip1abnormaltime,equip2normaltime,equip2abnormaltime,equip3normaltime,equip3abnormaltime,equip4normaltime,equip4abnormaltime,equip5normaltime,equip5abnormaltime,detection1avg,detection1min,detection1max,detection2avg,detection2min,detection2max,detection3avg,detection3min,detection3max,detection4avg,detection4min,detection4max,detection5avg,detection5min,detection5max,equip6normaltime,equip6abnormaltime,equip7normaltime,equip7abnormaltime,equip8normaltime,equip8abnormaltime,equip9normaltime,equip9abnormaltime,equip10normaltime,equip10abnormaltime,equip11normaltime,equip11abnormaltime,equip12normaltime,equip12abnormaltime,equip13normaltime,equip13abnormaltime,equip14normaltime,equip14abnormaltime,equip15normaltime,equip15abnormaltime,equip16normaltime,equip16abnormaltime,equip17normaltime,equip17abnormaltime,equip18normaltime,equip18abnormaltime,equip19normaltime,equip19abnormaltime,equip20normaltime,equip20abnormaltime,equip21normaltime,equip21abnormaltime,equip22normaltime,equip22abnormaltime,equip23normaltime,equip23abnormaltime,equip24normaltime,equip24abnormaltime,detection6avg,detection6min,detection6max,detection7avg,detection7min,detection7max,detection8avg,detection8min,detection8max,detection9avg,detection9min,detection9max,detection10avg,detection10min,detection10max,detection11avg,detection11min,detection11max,detection12avg,detection12min,detection12max,detection13avg,detection13min,detection13max,detection14avg,detection14min,detection14max,detection15avg,detection15min,detection15max,detection16avg,detection16min,detection16max,water from statistic_day where 1=1 
+  </sql>
+  
+  
+  
+    <resultMap id="statisticDayVO" type="com.yaoli.vo.StatisticDayVO" extends="BaseResultMap">
+	    <result column="sewagename" property="sewagename" jdbcType="NVARCHAR" />
+	    <result column="adminname" property="adminname" jdbcType="NVARCHAR" />
+	    <result column="day" property="day" jdbcType="INTEGER" />
+	    <result column="equipment1energycost" property="equipment1energycost" jdbcType="DOUBLE" />
+	    <result column="equipment2energycost" property="equipment2energycost" jdbcType="DOUBLE" />
+	    <result column="equipment3energycost" property="equipment3energycost" jdbcType="DOUBLE" />
+	    <result column="equipment4energycost" property="equipment4energycost" jdbcType="DOUBLE" />
+        <result column="equipment5energycost" property="equipment5energycost" jdbcType="DOUBLE" />
+   </resultMap>
+   <!-- 获取日的统计数据 -->
+  <select id="getStatisticDayVOByCondition" resultMap="statisticDayVO" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM (
+					 <include refid="getStatisticDayVOByConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <sql id="getStatisticDayVOByConditionSQL" >
+<!-- 	select sewage.name as sewagename,area.name,statistic_day.* from statistic_day,sewage,area where 
+	sewage.sewageID = statistic_day.sewageid
+	and sewage.areaID = area.id
+	and #{testingtime} = CONVERT(varchar(11),testingtime,120)
+	and area.id = #{areaid} -->
+select temp.*  from (
+	select sewage.name as sewagename,sewage.areaID as areaid,statistic_day.* from sewage left join statistic_day  on 
+	sewage.sewageID = statistic_day.sewageid
+	and #{testingtime} = CONVERT(varchar(11),statistic_day.testingtime,120)
+) as temp,area
+where 
+temp.areaid = area.id
+and temp.areaID = #{areaid}
+  </sql>
+  
+  <select id="getStatisticDayTotalByCondition" resultType="java.lang.Integer" parameterType="hashmap">
+    select count(*) from ( <include refid="getStatisticDayVOByConditionSQL"></include>) as temp
+  </select>
+  
+  
+  <select id="getStatisticDayVO" resultMap="statisticDayVO" parameterType="hashmap" >
+	<include refid="getStatisticDayVOSQL"></include>
+  </select>
+  <sql id="getStatisticDayVOSQL" >
+<!-- 	select sewage.name as sewagename,area.name,statistic_day.* from statistic_day,sewage,area where 
+	sewage.sewageID = statistic_day.sewageid
+	and sewage.areaID = area.id
+	and #{testingtime} = CONVERT(varchar(11),testingtime,120)
+	and area.id = #{areaid}  -->
+select temp.*  from (
+	select sewage.name as sewagename,sewage.areaID as areaid,statistic_day.* from sewage left join statistic_day  on 
+	sewage.sewageID = statistic_day.sewageid
+	and #{testingtime} = CONVERT(varchar(11),statistic_day.testingtime,120)
+) as temp,area
+where 
+temp.areaid = area.id
+and temp.areaID = #{areaid}
+  </sql>
+  <select id="getStatisticDayTotal" resultType="java.lang.Integer" parameterType="hashmap">
+    select count(*) from ( <include refid="getStatisticDayVOSQL"></include>) as temp
+  </select>
+  
+  
+  
+  <!-- 获取月的统计数据 -->
+    <select id="getStatisticMonthVOByCondition" resultMap="statisticDayVO" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY sewageid) AS RowNumber,* FROM (
+					 <include refid="getStatisticMonthVOByConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <!-- 获取所有的月统计  -->
+  <sql id="getStatisticMonthVOByConditionSQL" >
+select temp.*  from (
+	select sewage.name as sewagename,sewage.sewageID as sewageid,sewage.areaID as areaid,statistic_day.* from sewage left join (
+	
+		select 
+	MAX(statistic_day.sewageid) as statistic_day_sewageid,--临时用 
+	COUNT(*) as count,
+	sum(equip1normaltime) as equip1normaltime,
+	sum(equip1abnormaltime) as equip1abnormaltime,
+	sum(equip2normaltime) as equip2normaltime,
+	sum(equip2abnormaltime) as equip2abnormaltime,
+	sum(equip3normaltime) as equip3normaltime,
+	sum(equip3abnormaltime) as equip3abnormaltime,
+	sum(equip4normaltime) as equip4normaltime,
+	sum(equip4abnormaltime) as equip4abnormaltime,
+	sum(equip5normaltime) as equip5normaltime,
+	sum(equip5abnormaltime) as equip5abnormaltime,
+	sum(equip6normaltime) as equip6normaltime,
+	sum(equip6abnormaltime) as equip6abnormaltime,
+	sum(equip7normaltime) as equip7normaltime,
+	sum(equip7abnormaltime) as equip7abnormaltime,
+	sum(equip8normaltime) as equip8normaltime,
+	sum(equip8abnormaltime) as equip8abnormaltime,
+	sum(equip9normaltime) as equip9normaltime,
+	sum(equip9abnormaltime) as equip9abnormaltime,
+	sum(equip10normaltime) as equip10normaltime,
+	sum(equip10abnormaltime) as equip10abnormaltime,
+	sum(equip11normaltime) as equip11normaltime,
+	sum(equip11abnormaltime) as equip11abnormaltime,
+	sum(equip12normaltime) as equip12normaltime,
+	sum(equip12abnormaltime) as equip12abnormaltime,
+	sum(equip13normaltime) as equip13normaltime,
+	sum(equip13abnormaltime) as equip13abnormaltime,
+	sum(equip14normaltime) as equip14normaltime,
+	sum(equip14abnormaltime) as equip14abnormaltime,
+	sum(equip15normaltime) as equip15normaltime,
+	sum(equip15abnormaltime) as equip15abnormaltime,
+	sum(equip16normaltime) as equip16normaltime,
+	sum(equip16abnormaltime) as equip16abnormaltime,
+	sum(equip17normaltime) as equip17normaltime,
+	sum(equip17abnormaltime) as equip17abnormaltime,
+	sum(equip18normaltime) as equip18normaltime,
+	sum(equip18abnormaltime) as equip18abnormaltime,
+	sum(equip19normaltime) as equip19normaltime,
+	sum(equip19abnormaltime) as equip19abnormaltime,
+	sum(equip20normaltime) as equip20normaltime,
+	sum(equip20abnormaltime) as equip20abnormaltime,
+	sum(equip21normaltime) as equip21normaltime,
+	sum(equip21abnormaltime) as equip21abnormaltime,
+	sum(equip22normaltime) as equip22normaltime,
+	sum(equip22abnormaltime) as equip22abnormaltime,
+	sum(equip23normaltime) as equip23normaltime,
+	sum(equip23abnormaltime) as equip23abnormaltime,
+	sum(equip24normaltime) as equip24normaltime,
+	sum(equip24abnormaltime) as equip24abnormaltime,
+	avg(detection1avg) as detection1avg,
+	min(detection1min) as detection1min,
+	max(detection1max) as detection1max,
+	avg(detection2avg) as detection2avg,
+	min(detection2min) as detection2min,
+	max(detection2max) as detection2max,
+	avg(detection3avg) as detection3avg,
+	min(detection3min) as detection3min,
+	max(detection3max) as detection3max,
+	avg(detection4avg) as detection4avg,
+	min(detection4min) as detection4min,
+	max(detection4max) as detection4max,
+	avg(detection5avg) as detection5avg,
+	min(detection5min) as detection5min,
+	max(detection5max) as detection5max,
+	avg(detection6avg) as detection6avg,
+	min(detection6min) as detection6min,
+	max(detection6max) as detection6max,
+	avg(detection7avg) as detection7avg,
+	min(detection7min) as detection7min,
+	max(detection7max) as detection7max,
+	avg(detection8avg) as detection8avg,
+	min(detection8min) as detection8min,
+	max(detection8max) as detection8max,
+	avg(detection9avg) as detection9avg,
+	min(detection9min) as detection9min,
+	max(detection9max) as detection9max,
+	avg(detection10avg) as detection10avg,
+	min(detection10min) as detection10min,
+	max(detection10max) as detection10max,
+	avg(detection11avg) as detection11avg,
+	min(detection11min) as detection11min,
+	max(detection11max) as detection11max,
+	avg(detection12avg) as detection12avg,
+	min(detection12min) as detection12min,
+	max(detection12max) as detection12max,
+	avg(detection13avg) as detection13avg,
+	min(detection13min) as detection13min,
+	max(detection13max) as detection13max,
+	avg(detection14avg) as detection14avg,
+	min(detection14min) as detection14min,
+	max(detection14max) as detection14max,
+	avg(detection15avg) as detection15avg,
+	min(detection15min) as detection15min,
+	max(detection15max) as detection15max,
+	avg(detection16avg) as detection16avg,
+	min(detection16min) as detection16min,
+	max(detection16max) as detection16max,
+	max(water) as water
+	from statistic_day where #{testingtime} = CONVERT(varchar(7),statistic_day.testingtime ,120)	
+	group by sewageid, CONVERT(varchar(7),statistic_day.testingtime,120)
+	
+	) as statistic_day  on 
+	sewage.sewageID = statistic_day.statistic_day_sewageid 
+) as temp,area
+where 
+temp.areaid = area.id
+and temp.areaID = #{areaid} 
+     <if test="sewageid != null" >
+       and temp.sewageid = #{sewageid}
+     </if>
+  </sql>
+  <select id="getStatisticMonthTotalByCondition" resultType="java.lang.Integer" parameterType="hashmap">
+    select count(*) from ( <include refid="getStatisticMonthVOByConditionSQL"></include>) as temp
+  </select>
+  
+  <select id="getStatisticMonthVO" resultMap="statisticDayVO" parameterType="hashmap" >
+	<include refid="getStatisticMonthVOByConditionSQL"></include>
+  </select>
+  
+  
+  <!-- 获取年的统计数据 -->
+    <select id="getStatisticYearVOByCondition" resultMap="statisticDayVO" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY sewageid) AS RowNumber,* FROM (
+					 <include refid="getStatisticYearVOByConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <sql id="getStatisticYearVOByConditionSQL" >
+select temp.*  from (
+	select sewage.name as sewagename,sewage.sewageID as sewageid,sewage.areaID as areaid,statistic_day.* from sewage left join (
+	
+		select 
+	MAX(statistic_day.sewageid) as statistic_day_sewageid,--临时用 
+	COUNT(*) as count,
+	sum(equip1normaltime) as equip1normaltime,
+	sum(equip1abnormaltime) as equip1abnormaltime,
+	sum(equip2normaltime) as equip2normaltime,
+	sum(equip2abnormaltime) as equip2abnormaltime,
+	sum(equip3normaltime) as equip3normaltime,
+	sum(equip3abnormaltime) as equip3abnormaltime,
+	sum(equip4normaltime) as equip4normaltime,
+	sum(equip4abnormaltime) as equip4abnormaltime,
+	sum(equip5normaltime) as equip5normaltime,
+	sum(equip5abnormaltime) as equip5abnormaltime,
+	sum(equip6normaltime) as equip6normaltime,
+	sum(equip6abnormaltime) as equip6abnormaltime,
+	sum(equip7normaltime) as equip7normaltime,
+	sum(equip7abnormaltime) as equip7abnormaltime,
+	sum(equip8normaltime) as equip8normaltime,
+	sum(equip8abnormaltime) as equip8abnormaltime,
+	sum(equip9normaltime) as equip9normaltime,
+	sum(equip9abnormaltime) as equip9abnormaltime,
+	sum(equip10normaltime) as equip10normaltime,
+	sum(equip10abnormaltime) as equip10abnormaltime,
+	sum(equip11normaltime) as equip11normaltime,
+	sum(equip11abnormaltime) as equip11abnormaltime,
+	sum(equip12normaltime) as equip12normaltime,
+	sum(equip12abnormaltime) as equip12abnormaltime,
+	sum(equip13normaltime) as equip13normaltime,
+	sum(equip13abnormaltime) as equip13abnormaltime,
+	sum(equip14normaltime) as equip14normaltime,
+	sum(equip14abnormaltime) as equip14abnormaltime,
+	sum(equip15normaltime) as equip15normaltime,
+	sum(equip15abnormaltime) as equip15abnormaltime,
+	sum(equip16normaltime) as equip16normaltime,
+	sum(equip16abnormaltime) as equip16abnormaltime,
+	sum(equip17normaltime) as equip17normaltime,
+	sum(equip17abnormaltime) as equip17abnormaltime,
+	sum(equip18normaltime) as equip18normaltime,
+	sum(equip18abnormaltime) as equip18abnormaltime,
+	sum(equip19normaltime) as equip19normaltime,
+	sum(equip19abnormaltime) as equip19abnormaltime,
+	sum(equip20normaltime) as equip20normaltime,
+	sum(equip20abnormaltime) as equip20abnormaltime,
+	sum(equip21normaltime) as equip21normaltime,
+	sum(equip21abnormaltime) as equip21abnormaltime,
+	sum(equip22normaltime) as equip22normaltime,
+	sum(equip22abnormaltime) as equip22abnormaltime,
+	sum(equip23normaltime) as equip23normaltime,
+	sum(equip23abnormaltime) as equip23abnormaltime,
+	sum(equip24normaltime) as equip24normaltime,
+	sum(equip24abnormaltime) as equip24abnormaltime,
+	avg(detection1avg) as detection1avg,
+	min(detection1min) as detection1min,
+	max(detection1max) as detection1max,
+	avg(detection2avg) as detection2avg,
+	min(detection2min) as detection2min,
+	max(detection2max) as detection2max,
+	avg(detection3avg) as detection3avg,
+	min(detection3min) as detection3min,
+	max(detection3max) as detection3max,
+	avg(detection4avg) as detection4avg,
+	min(detection4min) as detection4min,
+	max(detection4max) as detection4max,
+	avg(detection5avg) as detection5avg,
+	min(detection5min) as detection5min,
+	max(detection5max) as detection5max,
+	avg(detection6avg) as detection6avg,
+	min(detection6min) as detection6min,
+	max(detection6max) as detection6max,
+	avg(detection7avg) as detection7avg,
+	min(detection7min) as detection7min,
+	max(detection7max) as detection7max,
+	avg(detection8avg) as detection8avg,
+	min(detection8min) as detection8min,
+	max(detection8max) as detection8max,
+	avg(detection9avg) as detection9avg,
+	min(detection9min) as detection9min,
+	max(detection9max) as detection9max,
+	avg(detection10avg) as detection10avg,
+	min(detection10min) as detection10min,
+	max(detection10max) as detection10max,
+	avg(detection11avg) as detection11avg,
+	min(detection11min) as detection11min,
+	max(detection11max) as detection11max,
+	avg(detection12avg) as detection12avg,
+	min(detection12min) as detection12min,
+	max(detection12max) as detection12max,
+	avg(detection13avg) as detection13avg,
+	min(detection13min) as detection13min,
+	max(detection13max) as detection13max,
+	avg(detection14avg) as detection14avg,
+	min(detection14min) as detection14min,
+	max(detection14max) as detection14max,
+	avg(detection15avg) as detection15avg,
+	min(detection15min) as detection15min,
+	max(detection15max) as detection15max,
+	avg(detection16avg) as detection16avg,
+	min(detection16min) as detection16min,
+	max(detection16max) as detection16max,
+	max(water) as water
+	from statistic_day where #{testingtime} = CONVERT(varchar(4),statistic_day.testingtime ,120) --求得年的总和	
+	group by sewageid, CONVERT(varchar(4),statistic_day.testingtime,120)
+	
+	) as statistic_day  on 
+	sewage.sewageID = statistic_day.statistic_day_sewageid 
+) as temp,area
+where 
+temp.areaid = area.id
+and temp.areaID = #{areaid}
+      <if test="sewageid != null" >
+        and temp.sewageid = #{sewageid}
+      </if>
+  </sql>
+  <select id="getStatisticYearTotalByCondition" resultType="java.lang.Integer" parameterType="hashmap">
+    select count(*) from ( <include refid="getStatisticYearVOByConditionSQL"></include>) as temp
+  </select>
+  
+  <select id="getStatisticYearVO" resultMap="statisticDayVO" parameterType="hashmap" >
+	<include refid="getStatisticYearVOByConditionSQL"></include>
+  </select>
+  
+  <!-- 站点运行记录 的 站点月报 统计数据 就是那个月报的图数据 -->
+    <select id="getsewagerunrecordmonthreport" resultMap="statisticDayVO" parameterType="hashmap" >
+select temp.*  from (
+	select sewage.name as sewagename,sewage.sewageID as sewageid,sewage.areaID as areaid,statistic_day.* from sewage left join (
+
+		select 
+	statistic_day.sewageid as statistic_day_sewageid,--临时用 
+	statistic_day.testingtime as testingtime,
+	day(statistic_day.testingtime) as day,
+	equip1normaltime as equip1normaltime,
+	equip1abnormaltime as equip1abnormaltime,
+	equip2normaltime as equip2normaltime,
+	equip2abnormaltime as equip2abnormaltime,
+	equip3normaltime as equip3normaltime,
+	equip3abnormaltime as equip3abnormaltime,
+	equip4normaltime as equip4normaltime,
+	equip4abnormaltime as equip4abnormaltime,
+	equip5normaltime as equip5normaltime,
+	equip5abnormaltime as equip5abnormaltime,
+	equip6normaltime as equip6normaltime,
+	equip6abnormaltime as equip6abnormaltime,
+	equip7normaltime as equip7normaltime,
+	equip7abnormaltime as equip7abnormaltime,
+	equip8normaltime as equip8normaltime,
+	equip8abnormaltime as equip8abnormaltime,
+	equip9normaltime as equip9normaltime,
+	equip9abnormaltime as equip9abnormaltime,
+	equip10normaltime as equip10normaltime,
+	equip10abnormaltime as equip10abnormaltime,
+	equip11normaltime as equip11normaltime,
+	equip11abnormaltime as equip11abnormaltime,
+	equip12normaltime as equip12normaltime,
+	equip12abnormaltime as equip12abnormaltime,
+	equip13normaltime as equip13normaltime,
+	equip13abnormaltime as equip13abnormaltime,
+	equip14normaltime as equip14normaltime,
+	equip14abnormaltime as equip14abnormaltime,
+	equip15normaltime as equip15normaltime,
+	equip15abnormaltime as equip15abnormaltime,
+	equip16normaltime as equip16normaltime,
+	equip16abnormaltime as equip16abnormaltime,
+	equip17normaltime as equip17normaltime,
+	equip17abnormaltime as equip17abnormaltime,
+	equip18normaltime as equip18normaltime,
+	equip18abnormaltime as equip18abnormaltime,
+	equip19normaltime as equip19normaltime,
+	equip19abnormaltime as equip19abnormaltime,
+	equip20normaltime as equip20normaltime,
+	equip20abnormaltime as equip20abnormaltime,
+	equip21normaltime as equip21normaltime,
+	equip21abnormaltime as equip21abnormaltime,
+	equip22normaltime as equip22normaltime,
+	equip22abnormaltime as equip22abnormaltime,
+	equip23normaltime as equip23normaltime,
+	equip23abnormaltime as equip23abnormaltime,
+	equip24normaltime as equip24normaltime,
+	equip24abnormaltime as equip24abnormaltime,
+	detection1avg as detection1avg,
+	detection1min as detection1min,
+	detection1max as detection1max,
+	detection2avg as detection2avg,
+	detection2min as detection2min,
+	detection2max as detection2max,
+	detection3avg as detection3avg,
+	detection3min as detection3min,
+	detection3max as detection3max,
+	detection4avg as detection4avg,
+	detection4min as detection4min,
+	detection4max as detection4max,
+	detection5avg as detection5avg,
+	detection5min as detection5min,
+	detection5max as detection5max,
+	detection6avg as detection6avg,
+	detection6min as detection6min,
+	detection6max as detection6max,
+	detection7avg as detection7avg,
+	detection7min as detection7min,
+	detection7max as detection7max,
+	detection8avg as detection8avg,
+	detection8min as detection8min,
+	detection8max as detection8max,
+	detection9avg as detection9avg,
+	detection9min as detection9min,
+	detection9max as detection9max,
+	detection10avg as detection10avg,
+	detection10min as detection10min,
+	detection10max as detection10max,
+	detection11avg as detection11avg,
+	detection11min as detection11min,
+	detection11max as detection11max,
+	detection12avg as detection12avg,
+	detection12min as detection12min,
+	detection12max as detection12max,
+	detection13avg as detection13avg,
+	detection13min as detection13min,
+	detection13max as detection13max,
+	detection14avg as detection14avg,
+	detection14min as detection14min,
+	detection14max as detection14max,
+	detection15avg as detection15avg,
+	detection15min as detection15min,
+	detection15max as detection15max,
+	detection16avg as detection16avg,
+	detection16min as detection16min,
+	detection16max as detection16max,
+	water as water
+	from statistic_day 	
+	where #{testingtime} = CONVERT(varchar(7),statistic_day.testingtime,120)
+	) as statistic_day on 
+	sewage.sewageID = statistic_day.statistic_day_sewageid 
+) as temp,area
+where 
+temp.areaid = area.id
+and temp.areaID = #{areaid} --28
+and temp.sewageid = #{sewageid} --100
+  </select>
+  
+  <!-- 站点运行记录 的 站点月报 统计数据 就是那个月报的图数据 -->
+    <select id="getsewagerunrecordyearreport" resultMap="statisticDayVO" parameterType="hashmap" >
+select temp.*  from (
+	select sewage.name as sewagename,sewage.sewageID as sewageid,sewage.areaID as areaid,statistic_day.* from sewage left join (
+		
+		
+		select 
+	MAX(statistic_day.sewageid) as statistic_day_sewageid,--临时用 
+	COUNT(*) as count,
+	month(MAX(statistic_day.testingtime)) as month,
+	sum(equip1normaltime) as equip1normaltime,
+	sum(equip1abnormaltime) as equip1abnormaltime,
+	sum(equip2normaltime) as equip2normaltime,
+	sum(equip2abnormaltime) as equip2abnormaltime,
+	sum(equip3normaltime) as equip3normaltime,
+	sum(equip3abnormaltime) as equip3abnormaltime,
+	sum(equip4normaltime) as equip4normaltime,
+	sum(equip4abnormaltime) as equip4abnormaltime,
+	sum(equip5normaltime) as equip5normaltime,
+	sum(equip5abnormaltime) as equip5abnormaltime,
+	sum(equip6normaltime) as equip6normaltime,
+	sum(equip6abnormaltime) as equip6abnormaltime,
+	sum(equip7normaltime) as equip7normaltime,
+	sum(equip7abnormaltime) as equip7abnormaltime,
+	sum(equip8normaltime) as equip8normaltime,
+	sum(equip8abnormaltime) as equip8abnormaltime,
+	sum(equip9normaltime) as equip9normaltime,
+	sum(equip9abnormaltime) as equip9abnormaltime,
+	sum(equip10normaltime) as equip10normaltime,
+	sum(equip10abnormaltime) as equip10abnormaltime,
+	sum(equip11normaltime) as equip11normaltime,
+	sum(equip11abnormaltime) as equip11abnormaltime,
+	sum(equip12normaltime) as equip12normaltime,
+	sum(equip12abnormaltime) as equip12abnormaltime,
+	sum(equip13normaltime) as equip13normaltime,
+	sum(equip13abnormaltime) as equip13abnormaltime,
+	sum(equip14normaltime) as equip14normaltime,
+	sum(equip14abnormaltime) as equip14abnormaltime,
+	sum(equip15normaltime) as equip15normaltime,
+	sum(equip15abnormaltime) as equip15abnormaltime,
+	sum(equip16normaltime) as equip16normaltime,
+	sum(equip16abnormaltime) as equip16abnormaltime,
+	sum(equip17normaltime) as equip17normaltime,
+	sum(equip17abnormaltime) as equip17abnormaltime,
+	sum(equip18normaltime) as equip18normaltime,
+	sum(equip18abnormaltime) as equip18abnormaltime,
+	sum(equip19normaltime) as equip19normaltime,
+	sum(equip19abnormaltime) as equip19abnormaltime,
+	sum(equip20normaltime) as equip20normaltime,
+	sum(equip20abnormaltime) as equip20abnormaltime,
+	sum(equip21normaltime) as equip21normaltime,
+	sum(equip21abnormaltime) as equip21abnormaltime,
+	sum(equip22normaltime) as equip22normaltime,
+	sum(equip22abnormaltime) as equip22abnormaltime,
+	sum(equip23normaltime) as equip23normaltime,
+	sum(equip23abnormaltime) as equip23abnormaltime,
+	sum(equip24normaltime) as equip24normaltime,
+	sum(equip24abnormaltime) as equip24abnormaltime,
+	avg(detection1avg) as detection1avg,
+	min(detection1min) as detection1min,
+	max(detection1max) as detection1max,
+	avg(detection2avg) as detection2avg,
+	min(detection2min) as detection2min,
+	max(detection2max) as detection2max,
+	avg(detection3avg) as detection3avg,
+	min(detection3min) as detection3min,
+	max(detection3max) as detection3max,
+	avg(detection4avg) as detection4avg,
+	min(detection4min) as detection4min,
+	max(detection4max) as detection4max,
+	avg(detection5avg) as detection5avg,
+	min(detection5min) as detection5min,
+	max(detection5max) as detection5max,
+	avg(detection6avg) as detection6avg,
+	min(detection6min) as detection6min,
+	max(detection6max) as detection6max,
+	avg(detection7avg) as detection7avg,
+	min(detection7min) as detection7min,
+	max(detection7max) as detection7max,
+	avg(detection8avg) as detection8avg,
+	min(detection8min) as detection8min,
+	max(detection8max) as detection8max,
+	avg(detection9avg) as detection9avg,
+	min(detection9min) as detection9min,
+	max(detection9max) as detection9max,
+	avg(detection10avg) as detection10avg,
+	min(detection10min) as detection10min,
+	max(detection10max) as detection10max,
+	avg(detection11avg) as detection11avg,
+	min(detection11min) as detection11min,
+	max(detection11max) as detection11max,
+	avg(detection12avg) as detection12avg,
+	min(detection12min) as detection12min,
+	max(detection12max) as detection12max,
+	avg(detection13avg) as detection13avg,
+	min(detection13min) as detection13min,
+	max(detection13max) as detection13max,
+	avg(detection14avg) as detection14avg,
+	min(detection14min) as detection14min,
+	max(detection14max) as detection14max,
+	avg(detection15avg) as detection15avg,
+	min(detection15min) as detection15min,
+	max(detection15max) as detection15max,
+	avg(detection16avg) as detection16avg,
+	min(detection16min) as detection16min,
+	max(detection16max) as detection16max,
+	max(water) as water
+	from statistic_day 
+	where #{testingtime} = CONVERT(varchar(4),statistic_day.testingtime,120) --一年中所有数据
+	group by sewageid,CONVERT(varchar(7),statistic_day.testingtime,120) --根据月份分组
+	
+	) as statistic_day on 
+	sewage.sewageID = statistic_day.statistic_day_sewageid 
+) as temp,area
+where 
+temp.areaid = area.id
+and temp.areaID = #{areaid} --28
+and temp.sewageid = #{sewageid} --100
+  </select>
+  
+  <!-- 获取当天的水量 -->
+   <select id="getSewageDayTotalWater" resultType="java.lang.Double" parameterType="hashmap" >
+	select top 1 water from statistic_day where sewageid = #{sewageid} and convert(varchar(10),testingtime,120) = convert(varchar(10),getdate(),120)
+  </select>
+  
+  
+   <select id="getSewageWaterStatisticMonth" resultMap="statisticDayVO" parameterType="hashmap" >
+	select statistic_day.* from statistic_day left join sewage on sewage.sewageid = statistic_day.sewageid 
+	where convert(varchar(7),statistic_day.testingtime,120) = convert(varchar(7),#{testingtime},120)
+	  <if test="sewageid != null" >
+        and statistic_day.sewageid = #{sewageid}
+      </if>
+      <if test="operationnum != null" >
+        and sewage.operationnum =  = #{operationnum}
+      </if>
+  </select>
+  
+   <select id="getSewageWaterStatisticYear" resultMap="BaseResultMap" parameterType="hashmap" >
+	select convert(varchar(7),statistic_day.testingtime,120)+'-01 00:00:00' as testingtime,sum(statistic_day.water) as water from statistic_day , sewage 
+	where sewage.sewageid = statistic_day.sewageid and
+	convert(varchar(4),statistic_day.testingtime,120) = convert(varchar(4),#{testingtime},120)
+	  <if test="sewageid != null" >
+        and statistic_day.sewageid = #{sewageid}
+      </if>
+      <if test="operationnum != null" >
+        and sewage.operationnum = #{operationnum}
+      </if>
+	group by convert(varchar(7),statistic_day.testingtime,120)
+	order by testingtime
+  </select>
+  
+  
+  
+    <select id="getEnergycostsCountByCondition" resultType="java.lang.Integer" parameterType="hashmap" >
+    select count(*) from (<include refid="getEnergycostsByConditionSQL"></include>) as a
+  </select>
+  <select id="getEnergycostsByCondition" resultMap="statisticDayVO" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY sewageid) AS RowNumber,* FROM (
+					 <include refid="getEnergycostsByConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <sql id="getEnergycostsByConditionSQL" >
+		select 
+		sewage.sewageid,
+		sewage.name as sewagename,
+	sewage.equipment1power * ISNULL(temp.time1,0.00) as equipment1energycost,
+	sewage.equipment2power * ISNULL(temp.time2,0.00) as equipment2energycost,
+	sewage.equipment3power * ISNULL(temp.time3,0.00) as equipment3energycost,
+	sewage.equipment4power * ISNULL(temp.time4,0.00) as equipment4energycost,
+    sewage.equipment5power * ISNULL(temp.time5,0.00) as equipment5energycost
+	from sewage left join (
+	select sd.sewageid,
+      sum(sd.equip1normaltime) as time1,
+      sum(sd.equip2normaltime) as time2,
+      sum(sd.equip3normaltime) as time3,
+      sum(sd.equip4normaltime) as time4,
+      sum(sd.equip5normaltime) as time5
+    from statistic_day as sd
+	<if test="type == 'day'" >
+		where CONVERT(varchar(11),sd.testingtime,120) = CONVERT(varchar(11),#{testingtime},120)
+	</if>
+	<if test="type == 'month'" >
+		where CONVERT(varchar(7),sd.testingtime,120) = CONVERT(varchar(7),#{testingtime},120)
+	</if>
+	<if test="type == 'year'" >
+		where CONVERT(varchar(4),sd.testingtime,120) = CONVERT(varchar(4),#{testingtime},120)
+	</if>
+	group by sd.sewageid
+	) as temp on temp.sewageid = sewage.sewageID
+	where 
+	1 = 1 
+	<if test="sewageid != null" >
+        and  sewage.sewageID = #{sewageid}  
+    </if>
+	<if test="areaid != null" >
+        and sewage.areaID = #{areaid}
+    </if>
+  </sql>
+  
+    <select id="getEnergycostsByDay" resultMap="statisticDayVO" parameterType="hashmap" >
+		<include refid="getEnergycostsByConditionSQL"></include>
+	</select>
+  
+      <select id="gethistoryenergymonthsearch" resultMap="statisticDayVO" parameterType="hashmap" >
+		select 
+		sewage.sewageid,
+		sewage.name as sewagename,
+		temp.day,
+		sewage.equipment1power * ISNULL(temp.time1,0.00) as equipment1energycost,
+		sewage.equipment2power * ISNULL(temp.time2,0.00) as equipment2energycost,
+		sewage.equipment3power * ISNULL(temp.time3,0.00) as equipment3energycost,
+		sewage.equipment4power * ISNULL(temp.time4,0.00) as equipment4energycost,
+		sewage.equipment5power * ISNULL(temp.time5,0.00) as equipment5energycost
+		from sewage left join (
+		select sd.sewageid,DATENAME(day,sd.testingtime) as day,
+		sd.equip1normaltime as time1,
+		sd.equip2normaltime as time2,
+		sd.equip3normaltime as time3,
+		sd.equip4normaltime as time4,
+		sd.equip5normaltime as time5
+		from statistic_day as sd
+		where CONVERT(varchar(7),sd.testingtime,120) = CONVERT(varchar(7),#{testingtime},120)
+		) as temp on temp.sewageid = sewage.sewageID
+		where 
+		1 = 1 
+		and  sewage.sewageID = #{sewageid} order by day asc
+	</select>
+	
+    <select id="gethistoryenergyyearsearch" resultMap="statisticDayVO" parameterType="hashmap" >
+		select 
+		sewage.sewageid,
+		sewage.name as sewagename,
+		cast(temp.month as int) as month,
+		sewage.equipment1power * ISNULL(temp.time1,0.00) as equipment1energycost,
+		sewage.equipment2power * ISNULL(temp.time2,0.00) as equipment2energycost,
+		sewage.equipment3power * ISNULL(temp.time3,0.00) as equipment3energycost,
+		sewage.equipment4power * ISNULL(temp.time4,0.00) as equipment4energycost
+		from sewage left join (
+		select sd.sewageid,max(DATENAME(month,sd.testingtime)) as month,sum(sd.equip1normaltime) as time1,sum(sd.equip2normaltime) as time2,sum(sd.equip3normaltime) as time3,sum(sd.equip4normaltime) as time4 from statistic_day as sd
+		where CONVERT(varchar(4),sd.testingtime,120) = CONVERT(varchar(4),#{testingtime},120)
+		group by sd.sewageid
+		) as temp on temp.sewageid = sewage.sewageID
+		where 
+		1 = 1 
+		and  sewage.sewageID = #{sewageid} order by month asc
+	</select>
+
+
+  <select id="getStatisticDayVOBySewageidAndDatetime" resultMap="BaseResultMap" parameterType="hashmap" >
+    select * from statistic_day where sewageid = #{sewageid} and CONVERT(varchar(11),sd.testingtime,120) = CONVERT(varchar(11),#{testingtime},120)
+  </select>
+
+  <update id="updateWaterBySewageidAndDatetime" parameterType="hashmap" >
+    update statistic_day
+    set water = #{water}
+    where sewageid = #{sewageid}
+    and testingtime = #{testingtime}
+  </update>
+
+</mapper>

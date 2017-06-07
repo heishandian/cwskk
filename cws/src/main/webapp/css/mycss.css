@@ -1,0 +1,71 @@
+<style type="text/css">
+A.mu:link { font-family: "宋体"; font-size: 12px;text-decoration: none; color: ffffff}
+A.mu:visited { font-family: "宋体"; font-size: 12px; text-decoration: none; color: ffffff}
+A.mu:active { font-family: "宋体"; font-size: 12px; text-decoration: none;color: cc0000}
+A.mu:hover { font-family: "宋体"; font-size: 12px; text-decoration: none; color: ff3300}
+
+
+A:link { font-family: "宋体"; font-size: 12px;text-decoration: none; color: 0000ff}
+A:visited { font-family: "宋体"; font-size: 12px; text-decoration: none; color: 0000ff}
+A:active { font-family: "宋体"; font-size: 12px; text-decoration: none;color: cc0000}
+A:hover { font-family: "宋体"; font-size: 12px; text-decoration: underline; color: 0f0000}
+td {  font-family: "宋体"; font-size: 12px; font-style: normal}
+.mainmu {  font-family: "宋体"; font-size: 12px; font-style: normal; color: #FFFFFF; text-decoration: none}
+.mulayer {  overflow: auto; position: relative; visibility: inherit; z-index: auto; clip:  rect(   )}
+
+
+.word {
+	font-family: "宋体";
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+}
+.redword {
+	font-family: "宋体";
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	color: #ff0000;
+}
+.whiteword {
+	font-family: "宋体";
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	color: #ffffff;
+}
+
+.greenword {
+	font-family: "宋体";
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	color: #00aa00;
+}
+
+.h_greenword {
+	font-family: "宋体";
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #00cc00;
+}
+
+.bigword {
+	font-family: "宋体";
+	font-size: 22px;
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+}
+
+.bword {
+	font-family: "宋体";
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #000000;
+}
+
+</style>

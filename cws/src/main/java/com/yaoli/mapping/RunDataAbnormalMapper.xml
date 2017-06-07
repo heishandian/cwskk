@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.RunDataAbnormalMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.RunDataAbnormal" >
+    <result column="runid" property="runid" jdbcType="INTEGER" />
+    <result column="sewageid" property="sewageid" jdbcType="INTEGER" />
+    <result column="testingtime" property="testingtime" jdbcType="TIMESTAMP" />
+    <result column="equipmentstate" property="equipmentstate" jdbcType="TINYINT" />
+    <result column="equipmentno" property="equipmentno" jdbcType="TINYINT" />
+    <result column="isrepaired" property="isrepaired" jdbcType="TINYINT" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yaoli.beans.RunDataAbnormal" >
+    insert into run_data_abnormal (runid, sewageid, testingtime, 
+      equipmentstate, equipmentno, isrepaired
+      )
+    values (#{runid,jdbcType=INTEGER}, #{sewageid,jdbcType=INTEGER}, #{testingtime,jdbcType=TIMESTAMP}, 
+      #{equipmentstate,jdbcType=TINYINT}, #{equipmentno,jdbcType=TINYINT}, #{isrepaired,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.RunDataAbnormal" >
+    insert into run_data_abnormal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="runid != null" >
+        runid,
+      </if>
+      <if test="sewageid != null" >
+        sewageid,
+      </if>
+      <if test="testingtime != null" >
+        testingtime,
+      </if>
+      <if test="equipmentstate != null" >
+        equipmentstate,
+      </if>
+      <if test="equipmentno != null" >
+        equipmentno,
+      </if>
+      <if test="isrepaired != null" >
+        isrepaired,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="runid != null" >
+        #{runid,jdbcType=INTEGER},
+      </if>
+      <if test="sewageid != null" >
+        #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="testingtime != null" >
+        #{testingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="equipmentstate != null" >
+        #{equipmentstate,jdbcType=TINYINT},
+      </if>
+      <if test="equipmentno != null" >
+        #{equipmentno,jdbcType=TINYINT},
+      </if>
+      <if test="isrepaired != null" >
+        #{isrepaired,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from run_data_abnormal
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from run_data_abnormal
+  </select>
+
+  
+  <resultMap type="com.yaoli.vo.RunDataAbnormalVO" id="rundataabnormalvo">
+        <result column="sewagename" property="sewageName" jdbcType="TINYINT" />
+        <result column="equipmentname" property="equipmentname" jdbcType="TINYINT" />
+        <result column="isrepaired" property="isrepaired" jdbcType="TINYINT" />
+        <result column="controlmethod" property="controlmethod" jdbcType="INTEGER" />
+        <result column="operationnum" property="operationnum" jdbcType="NVARCHAR" />
+        <result column="lasttestingtime" property="lasttestingtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+<select id="selectByPaingAndCondition" resultMap="rundataabnormalvo" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY b.runid) AS RowNumber,* FROM (
+					 <include refid="selectByPaingAndConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+
+  </select>
+  
+  <sql id="selectByPaingAndConditionSQL" >
+	select sewage.name as sewageName,sewage.areaID,sewage.controlmethod,sewage.operationnum, rda.* from run_data_abnormal as rda , sewage where rda.sewageID = sewage.sewageID
+	and CONVERT(varchar(12),testingtime,111) = CONVERT(varchar(12),getdate(),111)
+	and rda.isrepaired = 0
+   	<if test="sewageid != null || begintime != null || endtime != null || operationnum != null" >
+   		and (
+	   	<if test="sewageid != null" >
+	       rda.sewageID = #{sewageid}
+	    </if>
+	   	<if test="operationnum != null &amp;&amp; sewageid != null" >
+	   		<![CDATA[
+	       		or sewage.operationnum = #{operationnum}
+	        ]]>
+	    </if>
+	   	<if test="operationnum != null &amp;&amp; sewageid == null" >
+	   		<![CDATA[
+	       		sewage.operationnum = #{operationnum}
+	        ]]>
+	    </if>
+	   	<if test="begintime != null" >
+	   		<![CDATA[
+	       		and rda.testingtime >= #{begintime}
+	        ]]>
+	    </if>
+	   	<if test="endtime != null" >
+	   		<![CDATA[
+	       		and rda.testingtime <= #{endtime}
+	        ]]>
+	    </if>
+	    )
+    </if>
+  </sql>
+  
+  <select id="getHandlePagingAndConditionTotalCount" resultType="java.lang.Integer" parameterType="hashmap" >
+    select count(*) from (<include refid="selectByPaingAndConditionSQL"></include>) as temp
+  </select>
+  
+  <update id="updateHandleRunDataAbnormalByRunId" parameterType="hashmap" >
+  	update run_data_abnormal set isrepaired = 1 where runID = #{runid}
+  </update>
+  
+    <select id="getEquipmentAbnormalByPagingAndConditionMap" resultMap="rundataabnormalvo" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY testingtime desc) AS RowNumber,* FROM (
+					 <include refid="getEquipmentAbnormalByPagingAndConditionMapSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  
+  <sql id="getEquipmentAbnormalByPagingAndConditionMapSQL" >
+	select sewage.name as sewagename,sewage.areaID,sewage.controlmethod,sewage.operationnum, rda.* from run_data_abnormal as rda left join sewage on rda.sewageID = sewage.sewageID
+	where CONVERT(varchar(12),testingtime,111) = CONVERT(varchar(12),getdate(),111)
+	<if test="areaid != null" >
+		and sewage.areaid = #{areaid}
+	</if>
+   	<if test="sewageid != null || begintime != null || endtime != null || operationnum != null" >
+   		and (
+	   	<if test="sewageid != null" >
+	       rda.sewageID = #{sewageid}
+	    </if>
+	   	<if test="operationnum != null &amp;&amp; sewageid != null" >
+	   		<![CDATA[
+	       		or sewage.operationnum = #{operationnum}
+	        ]]>
+	    </if>
+	   	<if test="operationnum != null &amp;&amp; sewageid == null" >
+	   		<![CDATA[
+	       		sewage.operationnum = #{operationnum}
+	        ]]>
+	    </if>
+		<if test="areaid != null" >
+        	and sewage.areaID = #{areaid}
+   		</if>
+	   	<if test="begintime != null" >
+	   		<![CDATA[
+	       		and rda.testingtime >= #{begintime}
+	        ]]>
+	    </if>
+	   	<if test="endtime != null" >
+	   		<![CDATA[
+	       		and rda.testingtime <= #{endtime}
+	        ]]>
+	    </if>
+	    )
+    </if>
+    
+  </sql>
+  
+    <select id="getEquipmentAbnormalByPagingAndConditionMapTotalCount" resultType="java.lang.Integer" parameterType="hashmap" >
+   		select count(*) from (<include refid="getEquipmentAbnormalByPagingAndConditionMapSQL"></include>) as temp  
+  	</select>
+  	
+    <select id="getLatestSewageRunDataAbnormal" resultMap="BaseResultMap" >
+   		select distinct sewageID from run_data_abnormal where CONVERT(varchar(12),testingtime,111) = CONVERT(varchar(12),GETDATE() ,111) and isrepaired = 0
+  	</select>
+  	
+    <select id="getRunDataAbnormalsForMessage" resultMap="BaseResultMap" >
+		select * from run_data_abnormal , (
+				select sewage.sewageID from sewage,area where sewage.areaID = area.id and area.isSendArea = 'true'
+			) as temp where run_data_abnormal.sewageid = temp.sewageID and 
+		CONVERT(varchar(11),testingtime,120) = CONVERT(varchar(11),GETDATE(),120)
+  	</select>  	
+</mapper>

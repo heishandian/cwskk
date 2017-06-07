@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.AreaMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.Area" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="coordinateX" property="coordinatex" jdbcType="DOUBLE" />
+    <result column="coordinateY" property="coordinatey" jdbcType="DOUBLE" />
+    <result column="introduce" property="introduce" jdbcType="NVARCHAR" />
+    <result column="isSendArea" property="issendarea" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, pid, name, coordinateX, coordinateY, introduce, isSendArea
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from area
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from area
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.yaoli.beans.Area" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT @@IDENTITY
+    </selectKey>
+    insert into area (pid, name, coordinateX, 
+      coordinateY, introduce, isSendArea
+      )
+    values (#{pid,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{coordinatex,jdbcType=DOUBLE}, 
+      #{coordinatey,jdbcType=DOUBLE}, #{introduce,jdbcType=NVARCHAR}, #{issendarea,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.yaoli.beans.Area" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT @@IDENTITY
+    </selectKey>
+    insert into area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="coordinatex != null" >
+        coordinateX,
+      </if>
+      <if test="coordinatey != null" >
+        coordinateY,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+      <if test="issendarea != null" >
+        isSendArea,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="coordinatex != null" >
+        #{coordinatex,jdbcType=DOUBLE},
+      </if>
+      <if test="coordinatey != null" >
+        #{coordinatey,jdbcType=DOUBLE},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=NVARCHAR},
+      </if>
+      <if test="issendarea != null" >
+        #{issendarea,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.Area" >
+    update area
+    <set >
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="coordinatex != null" >
+        coordinateX = #{coordinatex,jdbcType=DOUBLE},
+      </if>
+      <if test="coordinatey != null" >
+        coordinateY = #{coordinatey,jdbcType=DOUBLE},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=NVARCHAR},
+      </if>
+      <if test="issendarea != null" >
+        isSendArea = #{issendarea,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.Area" >
+    update area
+    set pid = #{pid,jdbcType=INTEGER},
+      name = #{name,jdbcType=NVARCHAR},
+      coordinateX = #{coordinatex,jdbcType=DOUBLE},
+      coordinateY = #{coordinatey,jdbcType=DOUBLE},
+      introduce = #{introduce,jdbcType=NVARCHAR},
+      isSendArea = #{issendarea,jdbcType=NVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from area
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from area
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM (
+					 <include refid="selectByPaingAndConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+
+  </select>
+  <sql id="selectByPaingAndConditionSQL" >
+    select top 100 percent id,pid,name,coordinateX,coordinateY,introduce,isSendArea from area where 1=1 
+  </sql>
+  
+  
+  <resultMap id="BaseResultAreaVOMap" type="com.yaoli.vo.AreaVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="adminName" property="adminName" jdbcType="NVARCHAR" />
+    <result column="adminTelephone" property="adminTelephone" jdbcType="NVARCHAR" />
+  </resultMap>
+
+  <select id="getTotalAreaCount" resultType="java.lang.Integer" >
+		select count(id) from area
+  </select>
+  
+   <select id="getAreaVOByPaging" resultMap="BaseResultAreaVOMap" parameterType="hashmap" >
+		SELECT TOP ${pageSize} * 
+			FROM  (
+        		SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM 
+        			(
+        				select area.id , area.name,admin.name as adminName,admin.telephone as adminTelephone from area left join admin_area on admin_area.areaid = area.id left join admin on admin_area.adminid = admin.id
+        			) as b
+    		)   as A  
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  
+  
+  <select id="getAllAreas" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from area order by name
+  </select>
+  
+  <update id="updateSendAreaToFalse">
+	update area set issendarea = 'false' 
+  </update>
+  
+  <update id="updateSendAreaToTrueByAreaid">
+	update area set issendarea = 'true' where id = #{id} 
+  </update>
+  
+  
+</mapper>

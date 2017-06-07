@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.MessageLinkerMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.MessageLinker" >
+    <result column="areaId" property="areaid" jdbcType="NCHAR" />
+    <result column="tel" property="tel" jdbcType="NCHAR" />
+    <result column="name" property="name" jdbcType="NCHAR" />
+    <result column="isSend" property="issend" jdbcType="NCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yaoli.beans.MessageLinker" >
+    insert into messageLinker (areaId, tel, name, 
+      isSend)
+    values (#{areaid,jdbcType=NCHAR}, #{tel,jdbcType=NCHAR}, #{name,jdbcType=NCHAR}, 
+      #{issend,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.MessageLinker" >
+    insert into messageLinker
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areaid != null" >
+        areaId,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="issend != null" >
+        isSend,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areaid != null" >
+        #{areaid,jdbcType=NCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=NCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NCHAR},
+      </if>
+      <if test="issend != null" >
+        #{issend,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from messageLinker
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from messageLinker
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM (
+					 <include refid="selectByPaingAndConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+
+  </select>
+  <sql id="selectByPaingAndConditionSQL" >
+    select top 100 percent areaId,tel,name,isSend from messageLinker where 1=1 
+
+  </sql>
+  <delete id="deleteMessagerLinkerByAreaid" parameterType="java.lang.String" >
+    delete from messageLinker
+    where areaId = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <select id="getMessageLinkers" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select * from messagelinker where areaid = #{id}
+  </select>
+
+</mapper>

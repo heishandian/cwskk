@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.WithoutElectricDataAbnormalMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.WithoutElectricDataAbnormal" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sewageid" property="sewageid" jdbcType="INTEGER" />
+    <result column="testingtime" property="testingtime" jdbcType="TIMESTAMP" />
+    <result column="isrepaired" property="isrepaired" jdbcType="TINYINT" />
+    <result column="lasttestingtime" property="lasttestingtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List" >
+    id, sewageid, testingtime, isrepaired, lasttestingtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from withoutElectric_data_abnormal
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from withoutElectric_data_abnormal
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yaoli.beans.WithoutElectricDataAbnormal" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT @@IDENTITY
+    </selectKey>
+    insert into withoutElectric_data_abnormal (sewageid, testingtime, isrepaired, 
+      lasttestingtime)
+    values (#{sewageid,jdbcType=INTEGER}, #{testingtime,jdbcType=TIMESTAMP}, #{isrepaired,jdbcType=TINYINT}, 
+      #{lasttestingtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.WithoutElectricDataAbnormal" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT @@IDENTITY
+    </selectKey>
+    insert into withoutElectric_data_abnormal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sewageid != null" >
+        sewageid,
+      </if>
+      <if test="testingtime != null" >
+        testingtime,
+      </if>
+      <if test="isrepaired != null" >
+        isrepaired,
+      </if>
+      <if test="lasttestingtime != null" >
+        lasttestingtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sewageid != null" >
+        #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="testingtime != null" >
+        #{testingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isrepaired != null" >
+        #{isrepaired,jdbcType=TINYINT},
+      </if>
+      <if test="lasttestingtime != null" >
+        #{lasttestingtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.WithoutElectricDataAbnormal" >
+    update withoutElectric_data_abnormal
+    <set >
+      <if test="sewageid != null" >
+        sewageid = #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="testingtime != null" >
+        testingtime = #{testingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isrepaired != null" >
+        isrepaired = #{isrepaired,jdbcType=TINYINT},
+      </if>
+      <if test="lasttestingtime != null" >
+        lasttestingtime = #{lasttestingtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.WithoutElectricDataAbnormal" >
+    update withoutElectric_data_abnormal
+    set sewageid = #{sewageid,jdbcType=INTEGER},
+      testingtime = #{testingtime,jdbcType=TIMESTAMP},
+      isrepaired = #{isrepaired,jdbcType=TINYINT},
+      lasttestingtime = #{lasttestingtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from withoutElectric_data_abnormal
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from withoutElectric_data_abnormal
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (				 SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM ( 
+					 <include refid="selectByPaingAndConditionSQL"></include> 
+				 ) as b 
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <sql id="selectByPaingAndConditionSQL" >
+    select top 100 percent id,sewageid,testingtime,isrepaired,lasttestingtime from withoutElectric_data_abnormal where 1=1 
+  </sql>
+
+
+
+  <resultMap id="warmingDayLogVo" type="com.yaoli.vo.WarmingDayLogVO" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sewageid" property="sewageid" jdbcType="INTEGER" />
+    <result column="testingtime" property="testingtime" jdbcType="TIMESTAMP" />
+    <result column="isrepaired" property="isrepaired" jdbcType="TINYINT" />
+    <result column="lasttestingtime" property="lasttestingtime" jdbcType="TIMESTAMP" />
+    <result column="abnormalType" property="abnormalType" jdbcType="INTEGER" />
+    <result column="abnormalTypeName" property="abnormalTypeName" jdbcType="NVARCHAR" />
+    <result column="abnormalTypeValue" property="abnormalTypeValue" jdbcType="DOUBLE" />
+    <result column="sewageName" property="sewageName" jdbcType="NVARCHAR" />
+    <result column="operationnum" property="operationnum" jdbcType="NVARCHAR" />
+    <result column="detection_count" property="detection_count" jdbcType="INTEGER" />
+    <result column="withoutElectric_count" property="withoutElectric_count" jdbcType="INTEGER" />
+    <result column="equip1_count" property="equip1_count" jdbcType="INTEGER" />
+    <result column="equip25_count" property="equip25_count" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="getWarmingDayLogsByCondition" resultMap="warmingDayLogVo" parameterType="hashmap" >
+    SELECT TOP ${pageSize} *
+    FROM  (				 SELECT ROW_NUMBER() OVER (ORDER BY testingtime desc) AS RowNumber,* FROM (
+    <include refid="getWarmingDayLogsByConditionSQL"></include>
+    ) as b
+    ) as A
+    WHERE RowNumber > ${pageSize} * (${pageNum} - 1)
+  </select>
+  <select id="getWarmingDayLogsCountByCondition" resultType="java.lang.Integer" parameterType="hashmap" >
+    select count(*) from(<include refid="getWarmingDayLogsByConditionSQL"></include>) as temp
+  </select>
+  <sql id="getWarmingDayLogsByConditionSQL" >
+
+        <if test='abnormaltype == "1"'>
+          select sewage.sewageID as id,sewage.name as sewageName, sewage.operationnum, abnormatable.testingtime,abnormatable.isrepaired,abnormatable.lasttestingtime ,
+          null as abnormalTypeValue, 1 as abnormalType,
+          case
+          when abnormatable.detectionno = 1 then '温度'
+          when abnormatable.detectionno = 2 then 'PH'
+          when abnormatable.detectionno = 3 then 'ORP'
+          when abnormatable.detectionno = 4 then '液位计1'
+          when abnormatable.detectionno = 5 then 'DO'
+          when abnormatable.detectionno = 6 then '瞬时流量'
+          when abnormatable.detectionno = 7 then '液位计2'
+          when abnormatable.detectionno = 8 then '瞬时流量'
+          when abnormatable.detectionno = 9 then '总流量'
+          when abnormatable.detectionno = 10 then 'COD'
+          when abnormatable.detectionno = 11 then 'AN'
+          when abnormatable.detectionno = 12 then 'FTU'
+          when abnormatable.detectionno = 13 then 'TP'
+          when abnormatable.detectionno = 14 then 'RH'
+          end + '异常' as abnormalTypeName
+          from detection_data_abnormal as abnormatable left join sewage on abnormatable.sewageid = sewage.sewageID where 1 = 1
+        </if>
+        <if test='abnormaltype == "2"'>
+          select sewage.sewageID as id,sewage.name as sewageName, sewage.operationnum, abnormatable.testingtime,abnormatable.isrepaired,abnormatable.lasttestingtime ,null as abnormalTypeValue, 2 as abnormalType,
+          case
+          when abnormatable.equipmentno = 1 then '曝气机'
+          when abnormatable.equipmentno = 2 then '污水泵'
+          when abnormatable.equipmentno = 3 then '回流泵'
+          when abnormatable.equipmentno = 4 then '液位计1'
+          when abnormatable.equipmentno = 5 then '排水泵'
+          when abnormatable.equipmentno = 6 then '瞬时流量'
+          when abnormatable.equipmentno = 7 then '液位计2'
+          when abnormatable.equipmentno = 8 then '提升泵1'
+          when abnormatable.equipmentno = 9 then '提升泵2'
+          when abnormatable.equipmentno = 10 then '原水泵1'
+          when abnormatable.equipmentno = 11 then '原水泵2'
+          when abnormatable.equipmentno = 12 then '风机1'
+          when abnormatable.equipmentno = 13 then '风机2'
+          when abnormatable.equipmentno = 14 then '混合液回流泵1'
+          when abnormatable.equipmentno = 15 then '混合液回流泵2'
+          when abnormatable.equipmentno = 16 then '污泥回流泵1'
+          when abnormatable.equipmentno = 17 then '污泥回流泵2'
+          when abnormatable.equipmentno = 18 then '消毒机'
+          when abnormatable.equipmentno = 19 then '电磁阀1'
+          when abnormatable.equipmentno = 20 then '电磁阀2'
+          when abnormatable.equipmentno = 21 then '电磁阀3'
+          end + '故障' as abnormalTypeName
+          from run_data_abnormal as abnormatable left join sewage on abnormatable.sewageid = sewage.sewageID where 1 = 1
+        </if>
+        <if test='abnormaltype == "3"'>
+          select sewage.sewageID as id,sewage.name as sewageName, sewage.operationnum, abnormatable.testingtime,abnormatable.isrepaired,abnormatable.lasttestingtime ,null as abnormalTypeValue, 3 as abnormalType, '断电断线' as abnormalTypeName
+          from withoutElectric_data_abnormal as abnormatable left join sewage on abnormatable.sewageid = sewage.sewageID where 1 = 1
+        </if>
+
+        <if test="areaid != null or sewageid != null or sewageName != null or  operationnum != null">
+          and
+          (
+            <if test="areaid != null" >
+              sewage.areaid = #{areaid}
+            </if>
+            <if test="areaid != null and sewageid != null" >
+              and
+            </if>
+            <if test="sewageid != null" >
+              sewage.sewageID = #{sewageid}
+            </if>
+            <if test="(areaid != null or sewageid != null) and sewageName != null " >
+              or
+            </if>
+            <if test="sewageName != null" >
+              sewage.name = #{sewageName}
+            </if>
+            <if test="(areaid != null or sewageid != null or sewageName != null) and operationnum != null" >
+              or
+            </if>
+            <if test="operationnum != null" >
+              sewage.operationnum = #{operationnum}
+            </if>
+          )
+        </if>
+
+        <if test="begintime != null" >
+          <![CDATA[
+            and abnormatable.testingtime >= #{begintime}
+                ]]>
+        </if>
+        <if test="endtime != null" >
+          <![CDATA[
+            and abnormatable.testingtime <= #{endtime}
+                ]]>
+        </if>
+  </sql>
+  <select id="getWarmingDayLogsByConditionWithoutPaing" resultMap="warmingDayLogVo" parameterType="hashmap" >
+    select * from (<include refid="getWarmingDayLogsByConditionSQL"></include>) as temp
+  </select>
+
+
+
+
+  <select id="getWarmingLogReportByCondition" resultMap="warmingDayLogVo" parameterType="hashmap" >
+    SELECT TOP ${pageSize} *
+    FROM  (				 SELECT ROW_NUMBER() OVER (ORDER BY sewageid desc) AS RowNumber,* FROM (
+      <include refid="getWarmingLogReportByConditionSQL"></include>
+    ) as b
+    ) as A
+    WHERE RowNumber > ${pageSize} * (${pageNum} - 1)
+  </select>
+  <select id="getWarmingLogReportCountByCondition" resultType="java.lang.Integer" parameterType="hashmap" >
+    select count(*) from(<include refid="getWarmingLogReportByConditionSQL"></include>) as temp
+  </select>
+  <sql id="getWarmingLogReportByConditionSQL" >
+      select sewage.areaID as areaid, sewage.sewageid as sewageId ,sewage.name as sewageName,sewage.operationnum as operationnum,
+      isnull(a.detection_data_abnormal_count,0) as detection_count,
+      isnull(b.withoutElectric_data_abnormal_count,0) as withoutElectric_count,
+      isnull(c.equipment1_abnormal_count,0) as equip1_count,
+      isnull(d.equipment2_5_abnormal_count,0) as equip25_count
+      from sewage
+      left join (
+      select sewageid,count(*) as detection_data_abnormal_count from detection_data_abnormal
+       where
+          <include refid="dateCondition"></include>
+        group by sewageid
+      ) as a on a.sewageid = sewage.sewageid
+
+      left join (
+      select sewageid,count(*) as withoutElectric_data_abnormal_count from withoutElectric_data_abnormal
+      where
+          <include refid="dateCondition"></include>
+        group by sewageid
+      ) as b on b.sewageid = sewage.sewageid
+
+      left join (
+      select sewageid,count(*) as equipment1_abnormal_count from run_data_abnormal
+      where equipmentno = 1  and <include refid="dateCondition"></include> group by sewageid
+      ) as c on c.sewageid = sewage.sewageid
+
+      left join (
+      select sewageid,count(*) as equipment2_5_abnormal_count from run_data_abnormal
+      where equipmentno != 1 and <include refid="dateCondition"></include>  group by sewageid
+      )as d on d.sewageid = sewage.sewageid
+      where 1=1
+      <if test="sewageid != null">
+          and sewage.sewageID = #{sewageid}
+      </if>
+      <if test="areaid != null">
+          and sewage.areaid = #{areaid}
+      </if>
+  </sql>
+
+  <sql id="dateCondition">
+    <if test="reporttype == 1">
+      convert(varchar(11),testingtime,120) = convert(varchar(11),#{testingtime},120)
+    </if>
+    <if test="reporttype == 2">
+      convert(varchar(7),testingtime,120) = convert(varchar(7),#{testingtime},120)
+    </if>
+    <if test="reporttype == 3">
+      convert(varchar(4),testingtime,120) = convert(varchar(4),#{testingtime},120)
+    </if>
+  </sql>
+
+
+  <select id="getWarmingLogReportByConditionWithOutPaging" resultMap="warmingDayLogVo" parameterType="hashmap" >
+    <include refid="getWarmingLogReportByConditionSQL"></include>
+  </select>
+
+</mapper>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.WaterTestManagerMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.WaterTestManager" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sewageid" property="sewageid" jdbcType="INTEGER" />
+    <result column="testingtime" property="testingtime" jdbcType="TIMESTAMP" />
+    <result column="outcod" property="outcod" jdbcType="REAL" />
+    <result column="outnh3n" property="outnh3n" jdbcType="REAL" />
+    <result column="outp" property="outp" jdbcType="REAL" />
+    <result column="incod" property="incod" jdbcType="REAL" />
+    <result column="innh3n" property="innh3n" jdbcType="REAL" />
+    <result column="inp" property="inp" jdbcType="REAL" />
+    <result column="reportNO" property="reportNO" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sewageid, testingtime, outcod, outnh3n, outp, incod, innh3n, inp, reportNO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from waterTestManager
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from waterTestManager
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yaoli.beans.WaterTestManager" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into waterTestManager (sewageid, testingtime, outcod, 
+      outnh3n, outp, incod, innh3n, 
+      inp,reportNO)
+    values (#{sewageid,jdbcType=INTEGER}, #{testingtime,jdbcType=TIMESTAMP}, #{outcod,jdbcType=REAL}, 
+      #{outnh3n,jdbcType=REAL}, #{outp,jdbcType=REAL}, #{incod,jdbcType=REAL}, #{innh3n,jdbcType=REAL},
+    #{inp,jdbcType=REAL},#{reportNO,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.WaterTestManager" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into waterTestManager
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sewageid != null" >
+        sewageid,
+      </if>
+      <if test="testingtime != null" >
+        testingtime,
+      </if>
+      <if test="outcod != null" >
+        outcod,
+      </if>
+      <if test="outnh3n != null" >
+        outnh3n,
+      </if>
+      <if test="outp != null" >
+        outp,
+      </if>
+      <if test="incod != null" >
+        incod,
+      </if>
+      <if test="innh3n != null" >
+        innh3n,
+      </if>
+      <if test="inp != null" >
+        inp,
+      </if>
+      <if test="reportNO != null" >
+        reportNO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sewageid != null" >
+        #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="testingtime != null" >
+        #{testingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outcod != null" >
+        #{outcod,jdbcType=REAL},
+      </if>
+      <if test="outnh3n != null" >
+        #{outnh3n,jdbcType=REAL},
+      </if>
+      <if test="outp != null" >
+        #{outp,jdbcType=REAL},
+      </if>
+      <if test="incod != null" >
+        #{incod,jdbcType=REAL},
+      </if>
+      <if test="innh3n != null" >
+        #{innh3n,jdbcType=REAL},
+      </if>
+      <if test="inp != null" >
+        #{inp,jdbcType=REAL},
+      </if>
+      <if test="reportNO != null" >
+        #{reportNO,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.WaterTestManager" >
+    update waterTestManager
+    <set >
+      <if test="sewageid != null" >
+        sewageid = #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="testingtime != null" >
+        testingtime = #{testingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outcod != null" >
+        outcod = #{outcod,jdbcType=REAL},
+      </if>
+      <if test="outnh3n != null" >
+        outnh3n = #{outnh3n,jdbcType=REAL},
+      </if>
+      <if test="outp != null" >
+        outp = #{outp,jdbcType=REAL},
+      </if>
+      <if test="incod != null" >
+        incod = #{incod,jdbcType=REAL},
+      </if>
+      <if test="innh3n != null" >
+        innh3n = #{innh3n,jdbcType=REAL},
+      </if>
+      <if test="inp != null" >
+        inp = #{inp,jdbcType=REAL},
+      </if>
+      <if test="reportNO != null" >
+        inp = #{reportNO,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.WaterTestManager" >
+    update waterTestManager
+    set sewageid = #{sewageid,jdbcType=INTEGER},
+      testingtime = #{testingtime,jdbcType=TIMESTAMP},
+      outcod = #{outcod,jdbcType=REAL},
+      outnh3n = #{outnh3n,jdbcType=REAL},
+      outp = #{outp,jdbcType=REAL},
+      incod = #{incod,jdbcType=REAL},
+      innh3n = #{innh3n,jdbcType=REAL},
+      inp = #{inp,jdbcType=REAL},
+      reportNO = #{reportNO,jdbcType=NVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from waterTestManager
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from waterTestManager
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (				 SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM ( 
+					 <include refid="selectByPaingAndConditionSQL"></include> 
+				 ) as b 
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <sql id="selectByPaingAndConditionSQL" >
+    select top 100 percent id,sewageid,testingtime,outcod,outnh3n,outp,incod,innh3n,inp,reportNO from waterTestManager where 1=1
+  </sql>
+  
+  
+  
+   <resultMap id="waterTestManagerVO" type="com.yaoli.vo.WaterTestManagerVO" extends="BaseResultMap">
+    <result column="areaname" property="areaname" jdbcType="NVARCHAR" />
+    <result column="sewagename" property="sewagename" jdbcType="NVARCHAR" />
+    <result column="operationnum" property="operationnum" jdbcType="NVARCHAR" />
+    <result column="controlid" property="controlid" jdbcType="INTEGER" />
+  </resultMap>
+  
+ <select id="getWaterTestManagerVOsByCondition" resultMap="waterTestManagerVO" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY testingtime desc) AS RowNumber,* FROM (
+					 <include refid="getWaterTestManagerVOsByConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+
+  </select>
+  
+  <sql id="getWaterTestManagerVOsByConditionSQL" >
+    select waterTestManager.*,sewage.name as sewagename,sewage.controlID as controlid,area.name as areaname,sewage.operationnum from waterTestManager 
+	left join sewage on sewage.sewageID = waterTestManager.sewageid
+	inner join area on sewage.areaID = area.id
+	<if test="sewageid != null" >
+       and waterTestManager.sewageid = #{sewageid}
+    </if>
+	<if test="areaid != null" >
+       and sewage.areaid = #{areaid}
+    </if>
+   	<if test="begintime != null" >
+   		<![CDATA[
+       		and waterTestManager.testingtime >= #{begintime}
+        ]]>
+    </if>
+   	<if test="endtime != null" >
+   		<![CDATA[
+       		and waterTestManager.testingtime <= #{endtime}
+        ]]>
+    </if>
+    <if test="operationnum != null" >
+      <![CDATA[
+       		and sewage.operationnum =  #{operationnum}
+        ]]>
+    </if>
+  </sql>
+  
+   <select id="getWaterTestManagerVOsCountByCondition" resultType="java.lang.Integer" >
+    select count(*) from ( <include refid="getWaterTestManagerVOsByConditionSQL"></include>) as temp
+  </select>
+
+  
+ <select id="getTop15WaterTestManager" resultMap="waterTestManagerVO" parameterType="hashmap" >
+	select top 15 * from waterTestManager where sewageid = #{sewageid} order by testingtime asc
+  </select>
+</mapper>

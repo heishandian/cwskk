@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="  
+	http://www.springframework.org/schema/aop   
+    http://www.springframework.org/schema/aop/spring-aop-3.2.xsd   
+    http://www.springframework.org/schema/beans   
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+    http://www.springframework.org/schema/context  
+    http://www.springframework.org/schema/context/spring-context-3.2.xsd  
+    http://www.springframework.org/schema/mvc  
+    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd  
+    http://www.springframework.org/schema/tx   
+    http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+    http://www.springframework.org/schema/task 
+    http://www.springframework.org/schema/task/spring-task-3.0.xsd
+    ">
+    
+<!-- 	<bean id="job2" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+		<property name="targetObject">  
+			<bean class="com.yaoli.quartzjob.StatisticJob" />  
+		</property>  
+		<property name="targetMethod" value="executeInternal" />  
+		<property name="concurrent" value="false" />
+	</bean>  
+	
+	<bean id="doWork2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	        <property name="jobDetail" ref="job2" />
+	        <property name="cronExpression" value="5/5 * * * * ?" />
+	</bean> -->
+
+	<!-- 用来校正水量 -->
+	<bean id="job3" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<bean class="com.yaoli.component.CorrectingWater" />
+		</property>
+		<property name="targetMethod" value="executeInternal" />
+		<property name="concurrent" value="false" />
+	</bean>
+
+	<bean id="doWork3" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="job3" />
+		<property name="cronExpression" value="0 0 9 * * ?" />
+	</bean>
+	<!-- end -->
+	
+	<!-- 用来发送短信 每30s 执行一次 -->
+	<bean id="job1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+		<property name="targetObject">  
+			<bean class="com.yaoli.component.SendMessageJob" />
+		</property>  
+		<property name="targetMethod" value="executeInternal" />  
+		<property name="concurrent" value="false" />
+	</bean>  
+	
+	<bean id="doWork1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	        <property name="jobDetail" ref="job1" />
+	        <property name="cronExpression" value="0/30 * * * * ?" />
+	</bean>
+	<!-- end -->
+
+	<!-- 每天9点，执行一次当天数据是否有异常情况 -->
+	<bean id="job2" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<bean class="com.yaoli.component.CheckWithoutElectricityEveryday" />
+		</property>
+		<property name="targetMethod" value="executeInternal" />
+		<property name="concurrent" value="false" />
+	</bean>
+
+	<bean id="doWork2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="job2" />
+		<property name="cronExpression" value="0 0 9 * * ?" />
+	</bean>
+	
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+	        <property name="triggers">
+	            <list>
+	                <ref local="doWork1"/>
+					<ref local="doWork2"/>
+					<ref local="doWork3"/>
+	            </list>
+	        </property>
+	</bean>
+
+</beans>

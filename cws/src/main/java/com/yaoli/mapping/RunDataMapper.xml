@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.RunDataMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.RunData" >
+    <id column="runID" property="runid" jdbcType="BIGINT" />
+    <result column="sewageID" property="sewageid" jdbcType="INTEGER" />
+    <result column="testingtime" property="testingtime" jdbcType="TIMESTAMP" />
+    <result column="equipment1state" property="equipment1state" jdbcType="TINYINT" />
+    <result column="equipment3state" property="equipment3state" jdbcType="TINYINT" />
+    <result column="equipment4state" property="equipment4state" jdbcType="TINYINT" />
+    <result column="equipment5state" property="equipment5state" jdbcType="TINYINT" />
+    <result column="equipment6state" property="equipment6state" jdbcType="TINYINT" />
+    <result column="equipment7state" property="equipment7state" jdbcType="TINYINT" />
+    <result column="equipment8state" property="equipment8state" jdbcType="TINYINT" />
+    <result column="equipment9state" property="equipment9state" jdbcType="TINYINT" />
+    <result column="equipment10state" property="equipment10state" jdbcType="TINYINT" />
+    <result column="equipment11state" property="equipment11state" jdbcType="TINYINT" />
+    <result column="equipment12state" property="equipment12state" jdbcType="TINYINT" />
+    <result column="equipment13state" property="equipment13state" jdbcType="TINYINT" />
+    <result column="equipment14state" property="equipment14state" jdbcType="TINYINT" />
+    <result column="equipment15state" property="equipment15state" jdbcType="TINYINT" />
+    <result column="equipment16state" property="equipment16state" jdbcType="TINYINT" />
+    <result column="equipment17state" property="equipment17state" jdbcType="TINYINT" />
+    <result column="equipment18state" property="equipment18state" jdbcType="TINYINT" />
+    <result column="equipment19state" property="equipment19state" jdbcType="TINYINT" />
+    <result column="equipment20state" property="equipment20state" jdbcType="TINYINT" />
+    <result column="equipment21state" property="equipment21state" jdbcType="TINYINT" />
+    <result column="equipment22state" property="equipment22state" jdbcType="TINYINT" />
+    <result column="equipment23state" property="equipment23state" jdbcType="TINYINT" />
+    <result column="equipment24state" property="equipment24state" jdbcType="TINYINT" />
+    <result column="equipment25state" property="equipment25state" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    runID, sewageID, testingtime, equipment1state, equipment2state, equipment3state, 
+    equipment4state, equipment5state, equipment6state, equipment7state, equipment8state, 
+    equipment9state, equipment10state, equipment11state, equipment12state, equipment13state, 
+    equipment14state, equipment15state, equipment16state, equipment17state, equipment18state, 
+    equipment19state, equipment20state, equipment21state, equipment22state, equipment23state, 
+    equipment24state, equipment25state
+  </sql>
+  
+  <select id="getLatestRunData" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+	select top 1  * from run_data where 
+	sewageid = #{sewageid,jdbcType=INTEGER} order by testingtime desc
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from run_data
+    where runID = #{runid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from run_data
+    where runID = #{runid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yaoli.beans.RunData" >
+    <selectKey resultType="java.lang.Integer" keyProperty="runid" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into run_data ( sewageID, testingtime,
+      equipment1state, equipment2state, equipment3state, 
+      equipment4state, equipment5state, equipment6state, 
+      equipment7state, equipment8state, equipment9state, 
+      equipment10state, equipment11state, equipment12state, 
+      equipment13state, equipment14state, equipment15state, 
+      equipment16state, equipment17state, equipment18state, 
+      equipment19state, equipment20state, equipment21state, 
+      equipment22state, equipment23state, equipment24state, 
+      equipment25state)
+    values ( #{sewageid,jdbcType=INTEGER}, #{testingtime,jdbcType=TIMESTAMP},
+      #{equipment1state,jdbcType=TINYINT}, #{equipment2state,jdbcType=TINYINT}, #{equipment3state,jdbcType=TINYINT}, 
+      #{equipment4state,jdbcType=TINYINT}, #{equipment5state,jdbcType=TINYINT}, #{equipment6state,jdbcType=TINYINT}, 
+      #{equipment7state,jdbcType=TINYINT}, #{equipment8state,jdbcType=TINYINT}, #{equipment9state,jdbcType=TINYINT}, 
+      #{equipment10state,jdbcType=TINYINT}, #{equipment11state,jdbcType=TINYINT}, #{equipment12state,jdbcType=TINYINT}, 
+      #{equipment13state,jdbcType=TINYINT}, #{equipment14state,jdbcType=TINYINT}, #{equipment15state,jdbcType=TINYINT}, 
+      #{equipment16state,jdbcType=TINYINT}, #{equipment17state,jdbcType=TINYINT}, #{equipment18state,jdbcType=TINYINT}, 
+      #{equipment19state,jdbcType=TINYINT}, #{equipment20state,jdbcType=TINYINT}, #{equipment21state,jdbcType=TINYINT}, 
+      #{equipment22state,jdbcType=TINYINT}, #{equipment23state,jdbcType=TINYINT}, #{equipment24state,jdbcType=TINYINT}, 
+      #{equipment25state,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.RunData" >
+    <selectKey resultType="java.lang.Integer" keyProperty="runid" order="AFTER" >
+      SELECT @@IDENTITY
+    </selectKey>
+    insert into run_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="runid != null" >
+        runID,
+      </if>
+      <if test="sewageid != null" >
+        sewageID,
+      </if>
+      <if test="testingtime != null" >
+        testingtime,
+      </if>
+      <if test="equipment1state != null" >
+        equipment1state,
+      </if>
+      <if test="equipment2state != null" >
+        equipment2state,
+      </if>
+      <if test="equipment3state != null" >
+        equipment3state,
+      </if>
+      <if test="equipment4state != null" >
+        equipment4state,
+      </if>
+      <if test="equipment5state != null" >
+        equipment5state,
+      </if>
+      <if test="equipment6state != null" >
+        equipment6state,
+      </if>
+      <if test="equipment7state != null" >
+        equipment7state,
+      </if>
+      <if test="equipment8state != null" >
+        equipment8state,
+      </if>
+      <if test="equipment9state != null" >
+        equipment9state,
+      </if>
+      <if test="equipment10state != null" >
+        equipment10state,
+      </if>
+      <if test="equipment11state != null" >
+        equipment11state,
+      </if>
+      <if test="equipment12state != null" >
+        equipment12state,
+      </if>
+      <if test="equipment13state != null" >
+        equipment13state,
+      </if>
+      <if test="equipment14state != null" >
+        equipment14state,
+      </if>
+      <if test="equipment15state != null" >
+        equipment15state,
+      </if>
+      <if test="equipment16state != null" >
+        equipment16state,
+      </if>
+      <if test="equipment17state != null" >
+        equipment17state,
+      </if>
+      <if test="equipment18state != null" >
+        equipment18state,
+      </if>
+      <if test="equipment19state != null" >
+        equipment19state,
+      </if>
+      <if test="equipment20state != null" >
+        equipment20state,
+      </if>
+      <if test="equipment21state != null" >
+        equipment21state,
+      </if>
+      <if test="equipment22state != null" >
+        equipment22state,
+      </if>
+      <if test="equipment23state != null" >
+        equipment23state,
+      </if>
+      <if test="equipment24state != null" >
+        equipment24state,
+      </if>
+      <if test="equipment25state != null" >
+        equipment25state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="runid != null" >
+        #{runid,jdbcType=BIGINT},
+      </if>
+      <if test="sewageid != null" >
+        #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="testingtime != null" >
+        #{testingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="equipment1state != null" >
+        #{equipment1state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment2state != null" >
+        #{equipment2state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment3state != null" >
+        #{equipment3state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment4state != null" >
+        #{equipment4state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment5state != null" >
+        #{equipment5state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment6state != null" >
+        #{equipment6state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment7state != null" >
+        #{equipment7state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment8state != null" >
+        #{equipment8state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment9state != null" >
+        #{equipment9state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment10state != null" >
+        #{equipment10state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment11state != null" >
+        #{equipment11state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment12state != null" >
+        #{equipment12state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment13state != null" >
+        #{equipment13state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment14state != null" >
+        #{equipment14state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment15state != null" >
+        #{equipment15state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment16state != null" >
+        #{equipment16state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment17state != null" >
+        #{equipment17state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment18state != null" >
+        #{equipment18state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment19state != null" >
+        #{equipment19state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment20state != null" >
+        #{equipment20state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment21state != null" >
+        #{equipment21state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment22state != null" >
+        #{equipment22state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment23state != null" >
+        #{equipment23state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment24state != null" >
+        #{equipment24state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment25state != null" >
+        #{equipment25state,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.RunData" >
+    update run_data
+    <set >
+      <if test="sewageid != null" >
+        sewageID = #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="testingtime != null" >
+        testingtime = #{testingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="equipment1state != null" >
+        equipment1state = #{equipment1state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment2state != null" >
+        equipment2state = #{equipment2state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment3state != null" >
+        equipment3state = #{equipment3state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment4state != null" >
+        equipment4state = #{equipment4state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment5state != null" >
+        equipment5state = #{equipment5state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment6state != null" >
+        equipment6state = #{equipment6state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment7state != null" >
+        equipment7state = #{equipment7state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment8state != null" >
+        equipment8state = #{equipment8state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment9state != null" >
+        equipment9state = #{equipment9state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment10state != null" >
+        equipment10state = #{equipment10state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment11state != null" >
+        equipment11state = #{equipment11state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment12state != null" >
+        equipment12state = #{equipment12state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment13state != null" >
+        equipment13state = #{equipment13state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment14state != null" >
+        equipment14state = #{equipment14state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment15state != null" >
+        equipment15state = #{equipment15state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment16state != null" >
+        equipment16state = #{equipment16state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment17state != null" >
+        equipment17state = #{equipment17state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment18state != null" >
+        equipment18state = #{equipment18state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment19state != null" >
+        equipment19state = #{equipment19state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment20state != null" >
+        equipment20state = #{equipment20state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment21state != null" >
+        equipment21state = #{equipment21state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment22state != null" >
+        equipment22state = #{equipment22state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment23state != null" >
+        equipment23state = #{equipment23state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment24state != null" >
+        equipment24state = #{equipment24state,jdbcType=TINYINT},
+      </if>
+      <if test="equipment25state != null" >
+        equipment25state = #{equipment25state,jdbcType=TINYINT},
+      </if>
+    </set>
+    where runID = #{runid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.RunData" >
+    update run_data
+    set sewageID = #{sewageid,jdbcType=INTEGER},
+      testingtime = #{testingtime,jdbcType=TIMESTAMP},
+      equipment1state = #{equipment1state,jdbcType=TINYINT},
+      equipment2state = #{equipment2state,jdbcType=TINYINT},
+      equipment3state = #{equipment3state,jdbcType=TINYINT},
+      equipment4state = #{equipment4state,jdbcType=TINYINT},
+      equipment5state = #{equipment5state,jdbcType=TINYINT},
+      equipment6state = #{equipment6state,jdbcType=TINYINT},
+      equipment7state = #{equipment7state,jdbcType=TINYINT},
+      equipment8state = #{equipment8state,jdbcType=TINYINT},
+      equipment9state = #{equipment9state,jdbcType=TINYINT},
+      equipment10state = #{equipment10state,jdbcType=TINYINT},
+      equipment11state = #{equipment11state,jdbcType=TINYINT},
+      equipment12state = #{equipment12state,jdbcType=TINYINT},
+      equipment13state = #{equipment13state,jdbcType=TINYINT},
+      equipment14state = #{equipment14state,jdbcType=TINYINT},
+      equipment15state = #{equipment15state,jdbcType=TINYINT},
+      equipment16state = #{equipment16state,jdbcType=TINYINT},
+      equipment17state = #{equipment17state,jdbcType=TINYINT},
+      equipment18state = #{equipment18state,jdbcType=TINYINT},
+      equipment19state = #{equipment19state,jdbcType=TINYINT},
+      equipment20state = #{equipment20state,jdbcType=TINYINT},
+      equipment21state = #{equipment21state,jdbcType=TINYINT},
+      equipment22state = #{equipment22state,jdbcType=TINYINT},
+      equipment23state = #{equipment23state,jdbcType=TINYINT},
+      equipment24state = #{equipment24state,jdbcType=TINYINT},
+      equipment25state = #{equipment25state,jdbcType=TINYINT}
+    where runID = #{runid,jdbcType=BIGINT}
+  </update>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from run_data
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from run_data
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM (
+					 <include refid="selectByPaingAndConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+
+  </select>
+  <sql id="selectByPaingAndConditionSQL" >
+    select top 100 percent * from run_data where 1=1 
+
+  </sql>
+  
+   	<!-- 获取站点最新的数据 -->
+  	<!-- fix 获取该站点最新的数据，而不是当天最新的数据，去掉下面这句话即可
+  		 where CONVERT(varchar(12),GETDATE(),111) = CONVERT(varchar(12),testingtime,111)
+  	-->
+   	<select id="getLatestSewageRunData" resultMap="BaseResultMap" >
+   		select * from (select sewageid,max(testingtime) as testingtime from run_data with (nolock) group by sewageid) as temp left join run_data with (nolock)
+		on run_data.testingtime = temp.testingtime and run_data.sewageid = temp.sewageid
+  	</select>
+  	
+   	<!-- 获取站点最新的数据 -->
+  	<!-- fix 获取该站点最新的数据，而不是当天最新的数据，去掉下面这句话即可
+  		 where CONVERT(varchar(12),GETDATE(),111) = CONVERT(varchar(12),testingtime,111)
+  	-->
+  	<select id="getLatestSewageRunDataByAreaid" resultMap="BaseResultMap" >
+		select * from 
+		(select temp1.sewageID,temp1.testingtime,sewage.areaID from sewage , (select sewageid,max(testingtime) as testingtime from run_data group by sewageid ) as temp1 
+		where sewage.sewageID = temp1.sewageID and areaid = #{id}) 
+		as tmp 
+		left join run_data 
+		on run_data.testingtime = tmp.testingtime and run_data.sewageid = tmp.sewageid
+  	</select>
+
+  	
+  	
+  	
+  <select id="getEquipmentRunDataRecord" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY testingtime desc) AS RowNumber,* FROM (
+					 <include refid="getEquipmentRunDataRecordSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <sql id="getEquipmentRunDataRecordSQL" >
+    select top 100 percent run_data.* from run_data,sewage where sewage.sewageID=run_data.sewageID
+          and
+          (
+              <if test="sewageid != null" >
+                sewage.sewageID = #{sewageid}
+              </if>
+              <if test="sewageid != null and sewageName != null " >
+                or
+              </if>
+              <if test="sewageName != null" >
+                           sewage.name = #{sewageName}
+              </if>
+              <if test="(sewageid != null or sewageName != null) and operationnum != null" >
+                or
+              </if>
+              <if test="operationnum != null" >
+                          sewage.operationnum = #{operationnum}
+              </if>
+          )
+
+	   	<if test="begintime != null" >
+	   		<![CDATA[
+	       		and testingtime >= #{begintime}
+	        ]]>
+	    </if>
+	   	<if test="endtime != null" >
+	   		<![CDATA[
+	       		and testingtime <= #{endtime}
+	        ]]>
+	    </if>
+
+  </sql>
+  <select id="getEquipmentRunDatasRecordTotal" resultType="java.lang.Integer" >
+	select count(*) from(<include refid="getEquipmentRunDataRecordSQL"></include>) as temp
+  </select>
+</mapper>

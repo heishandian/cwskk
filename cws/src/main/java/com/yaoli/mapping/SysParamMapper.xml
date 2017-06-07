@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.SysParamMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.SysParam" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="keyname" property="keyname" jdbcType="NVARCHAR" />
+    <result column="value" property="value" jdbcType="NVARCHAR" />
+    <result column="remark" property="remark" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, keyname, value, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sysparam
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sysparam
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yaoli.beans.SysParam" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into sysparam (keyname, value, remark
+      )
+    values (#{keyname,jdbcType=NVARCHAR}, #{value,jdbcType=NVARCHAR}, #{remark,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.SysParam" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into sysparam
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="keyname != null" >
+        keyname,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="keyname != null" >
+        #{keyname,jdbcType=NVARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.SysParam" >
+    update sysparam
+    <set >
+      <if test="keyname != null" >
+        keyname = #{keyname,jdbcType=NVARCHAR},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.SysParam" >
+    update sysparam
+    set keyname = #{keyname,jdbcType=NVARCHAR},
+      value = #{value,jdbcType=NVARCHAR},
+      remark = #{remark,jdbcType=NVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from sysparam
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from sysparam
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM (
+					 <include refid="selectByPaingAndConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+
+  </select>
+  <sql id="selectByPaingAndConditionSQL" >
+    select top 100 percent id,keyname,value,remark from sysparam where 1=1 
+  </sql>
+  
+  <select id="getAbnormalType" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select * from sysparam where keyname = #{keyname}
+  </select>
+  
+  <update id="updateAbnormalTypeToFalse">
+	update sysparam set remark = 'false' where keyname = 'abnormaltype'
+  </update>
+  
+  <update id="updateAbnormalTypeToTrueById">
+	update sysparam set remark = 'true' where keyname = 'abnormaltype' and id = #{id}
+  </update>
+  
+   <update id="updateIntervaltime"  parameterType="java.lang.String" >
+	update sysparam set value = #{value} where keyname = 'intervaltime'
+  </update>
+  
+   <select id="getAbnormalTypeForMessage" resultMap="BaseResultMap" >
+    select * from sysparam where keyname = 'abnormaltype' and remark = 'true'
+  </select>
+  
+  <select id="existSendMessageDay" resultType="java.lang.Integer">
+    select COUNT(*) from message where 
+    CONVERT(varchar(11),sendtime,120) = CONVERT(varchar(11),getdate(),120) and 
+    sewageid = #{sewageid} and 
+    abnormaltype = #{abnormaltype}
+  </select>
+
+  <select id="getComPort" resultType="java.lang.Integer">
+  	select value from sysparam where keyname = 'com'
+  </select>
+  
+  <update id="updateMessagesendbegintime"  parameterType="java.lang.String" >
+	update sysparam set value = #{value} where keyname = 'messagesendbegintime'
+  </update>
+  
+  <update id="updateMessagesendendtime"  parameterType="java.lang.String" >
+	update sysparam set value = #{value} where keyname = 'messagesendendtime'
+  </update>
+</mapper>

@@ -1,0 +1,1761 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.SewageMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.Sewage" >
+    <id column="sewageID" property="sewageid" jdbcType="INTEGER" />
+    <result column="areaID" property="areaid" jdbcType="INTEGER" />
+    <result column="controlID" property="controlid" jdbcType="INTEGER" />
+    <result column="AdministratorID" property="administratorid" jdbcType="INTEGER" />
+    <result column="short_title" property="shortTitle" jdbcType="NVARCHAR" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="address" property="address" jdbcType="NVARCHAR" />
+    <result column="coordinateX" property="coordinatex" jdbcType="DOUBLE" />
+    <result column="coordinateY" property="coordinatey" jdbcType="DOUBLE" />
+    <result column="equipment1state" property="equipment1state" jdbcType="NVARCHAR" />
+    <result column="equipment2state" property="equipment2state" jdbcType="NVARCHAR" />
+    <result column="equipment3state" property="equipment3state" jdbcType="NVARCHAR" />
+    <result column="equipment4state" property="equipment4state" jdbcType="NVARCHAR" />
+    <result column="equipment5state" property="equipment5state" jdbcType="NVARCHAR" />
+    <result column="detection1" property="detection1" jdbcType="REAL" />
+    <result column="detection1UL" property="detection1ul" jdbcType="REAL" />
+    <result column="detection1DL" property="detection1dl" jdbcType="REAL" />
+    <result column="detection2" property="detection2" jdbcType="REAL" />
+    <result column="detection2UL" property="detection2ul" jdbcType="REAL" />
+    <result column="detection2DL" property="detection2dl" jdbcType="REAL" />
+    <result column="detection3UL" property="detection3ul" jdbcType="REAL" />
+    <result column="detection3" property="detection3" jdbcType="REAL" />
+    <result column="detection3DL" property="detection3dl" jdbcType="REAL" />
+    <result column="detection4" property="detection4" jdbcType="REAL" />
+    <result column="detection4UL" property="detection4ul" jdbcType="REAL" />
+    <result column="detection4DL" property="detection4dl" jdbcType="REAL" />
+    <result column="detection5" property="detection5" jdbcType="REAL" />
+    <result column="detection5UL" property="detection5ul" jdbcType="REAL" />
+    <result column="detection5DL" property="detection5dl" jdbcType="REAL" />
+    <result column="detection6" property="detection6" jdbcType="REAL" />
+    <result column="detection6UL" property="detection6ul" jdbcType="REAL" />
+    <result column="detection6DL" property="detection6dl" jdbcType="REAL" />
+    <result column="air_sched" property="airSched" jdbcType="NCHAR" />
+    <result column="water_sched" property="waterSched" jdbcType="NCHAR" />
+    <result column="mud_sched" property="mudSched" jdbcType="NCHAR" />
+    <result column="flow_sched" property="flowSched" jdbcType="NCHAR" />
+    <result column="backup_sched" property="backupSched" jdbcType="NCHAR" />
+    <result column="control_strategy" property="controlStrategy" jdbcType="NCHAR" />
+    <result column="device_alert" property="deviceAlert" jdbcType="NCHAR" />
+    <result column="gratingDays" property="gratingdays" jdbcType="INTEGER" />
+    <result column="confirmGratingTime" property="confirmgratingtime" jdbcType="TIMESTAMP" />
+    <result column="action" property="action" jdbcType="BIGINT" />
+    <result column="waterflow" property="waterflow" jdbcType="REAL" />
+    <result column="reduceCOD" property="reducecod" jdbcType="REAL" />
+    <result column="reduceNH3N" property="reducenh3n" jdbcType="REAL" />
+    <result column="reduceP" property="reducep" jdbcType="REAL" />
+    <result column="operationnum" property="operationnum" jdbcType="NVARCHAR" />
+    <result column="controlMethod" property="controlmethod" jdbcType="INTEGER" />
+    <result column="detection7" property="detection7" jdbcType="REAL" />
+    <result column="detection8" property="detection8" jdbcType="REAL" />
+    <result column="detection9" property="detection9" jdbcType="REAL" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="detection10DL" property="detection10dl" jdbcType="NUMERIC" />
+    <result column="detection11DL" property="detection11dl" jdbcType="NUMERIC" />
+    <result column="detection12DL" property="detection12dl" jdbcType="NUMERIC" />
+    <result column="detection13DL" property="detection13dl" jdbcType="NUMERIC" />
+    <result column="detection14DL" property="detection14dl" jdbcType="NUMERIC" />
+    <result column="detection15DL" property="detection15dl" jdbcType="NUMERIC" />
+    <result column="detection16DL" property="detection16dl" jdbcType="NUMERIC" />
+    <result column="detection17DL" property="detection17dl" jdbcType="NUMERIC" />
+    <result column="detection18DL" property="detection18dl" jdbcType="NUMERIC" />
+    <result column="detection19DL" property="detection19dl" jdbcType="NUMERIC" />
+    <result column="detection20DL" property="detection20dl" jdbcType="NUMERIC" />
+    <result column="detection10UL" property="detection10ul" jdbcType="NUMERIC" />
+    <result column="detection11UL" property="detection11ul" jdbcType="NUMERIC" />
+    <result column="detection12UL" property="detection12ul" jdbcType="NUMERIC" />
+    <result column="detection13UL" property="detection13ul" jdbcType="NUMERIC" />
+    <result column="detection14UL" property="detection14ul" jdbcType="NUMERIC" />
+    <result column="detection15UL" property="detection15ul" jdbcType="NUMERIC" />
+    <result column="detection16UL" property="detection16ul" jdbcType="NUMERIC" />
+    <result column="detection17UL" property="detection17ul" jdbcType="NUMERIC" />
+    <result column="detection18UL" property="detection18ul" jdbcType="NUMERIC" />
+    <result column="detection19UL" property="detection19ul" jdbcType="NUMERIC" />
+    <result column="detection20UL" property="detection20ul" jdbcType="NUMERIC" />
+    <result column="detection7UL" property="detection7ul" jdbcType="NUMERIC" />
+    <result column="detection7DL" property="detection7dl" jdbcType="NUMERIC" />
+    <result column="detection8UL" property="detection8ul" jdbcType="NUMERIC" />
+    <result column="detection8DL" property="detection8dl" jdbcType="NUMERIC" />
+    <result column="detection9UL" property="detection9ul" jdbcType="NUMERIC" />
+    <result column="detection9DL" property="detection9dl" jdbcType="NUMERIC" />
+    <result column="runtimeperiod1" property="runtimeperiod1" jdbcType="INTEGER" />
+    <result column="stoptimeperiod1" property="stoptimeperiod1" jdbcType="INTEGER" />
+    <result column="runtimeperiod2" property="runtimeperiod2" jdbcType="INTEGER" />
+    <result column="stoptimeperiod2" property="stoptimeperiod2" jdbcType="INTEGER" />
+    <result column="runtimeperiod3" property="runtimeperiod3" jdbcType="INTEGER" />
+    <result column="stoptimeperiod3" property="stoptimeperiod3" jdbcType="INTEGER" />
+    <result column="runtimeperiod4" property="runtimeperiod4" jdbcType="INTEGER" />
+    <result column="stoptimeperiod4" property="stoptimeperiod4" jdbcType="INTEGER" />
+    <result column="runtimeperiod5" property="runtimeperiod5" jdbcType="INTEGER" />
+    <result column="stoptimeperiod5" property="stoptimeperiod5" jdbcType="INTEGER" />
+    <result column="runtimeperiod6" property="runtimeperiod6" jdbcType="INTEGER" />
+    <result column="stoptimeperiod6" property="stoptimeperiod6" jdbcType="INTEGER" />
+    <result column="runtimeperiod7" property="runtimeperiod7" jdbcType="INTEGER" />
+    <result column="stoptimeperiod7" property="stoptimeperiod7" jdbcType="INTEGER" />
+    <result column="runtimeperiod8" property="runtimeperiod8" jdbcType="INTEGER" />
+    <result column="stoptimeperiod8" property="stoptimeperiod8" jdbcType="INTEGER" />
+    <result column="runtimeperiod9" property="runtimeperiod9" jdbcType="INTEGER" />
+    <result column="stoptimeperiod9" property="stoptimeperiod9" jdbcType="INTEGER" />
+    <result column="runtimeperiod10" property="runtimeperiod10" jdbcType="INTEGER" />
+    <result column="stoptimeperiod10" property="stoptimeperiod10" jdbcType="INTEGER" />
+    <result column="videourl" property="videourl" jdbcType="NVARCHAR" />
+	<result column="tonnage" property="tonnage" jdbcType="REAL" />
+	<result column="videopuid" property="videopuid" jdbcType="NVARCHAR" />
+	<result column="emissionStandard" property="emissionStandard" jdbcType="NVARCHAR" />
+	<result column="equipment1power" property="equipment1power" jdbcType="REAL" />
+	<result column="equipment2power" property="equipment2power" jdbcType="REAL" />
+	<result column="equipment3power" property="equipment3power" jdbcType="REAL" />
+	<result column="equipment4power" property="equipment4power" jdbcType="REAL" />
+    <result column="equipment5power" property="equipment5power" jdbcType="REAL" />
+    <result column="lasttestingtime" property="lasttestingtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sewageID, areaID, controlID, AdministratorID, short_title, name, address, coordinateX, 
+    coordinateY, equipment1state, equipment2state, equipment3state, equipment4state, 
+    equipment5state, detection1, detection1UL, detection1DL, detection2, detection2UL, 
+    detection2DL, detection3UL, detection3, detection3DL, detection4, detection4UL, detection4DL, 
+    detection5, detection5UL, detection5DL, detection6, detection6UL, detection6DL, air_sched, 
+    water_sched, mud_sched, flow_sched, backup_sched, control_strategy, device_alert, 
+    gratingDays, confirmGratingTime, action, waterflow, reduceCOD, reduceNH3N, reduceP, 
+    operationnum, controlMethod, detection7, detection8, detection9, updatetime, detection10DL, 
+    detection11DL, detection12DL, detection13DL, detection14DL, detection15DL, detection16DL, 
+    detection17DL, detection18DL, detection19DL, detection20DL, detection10UL, detection11UL, 
+    detection12UL, detection13UL, detection14UL, detection15UL, detection16UL, detection17UL, 
+    detection18UL, detection19UL, detection20UL, detection7UL, detection7DL, detection8UL, 
+    detection8DL, detection9UL, detection9DL, runtimeperiod1, stoptimeperiod1, runtimeperiod2, 
+    stoptimeperiod2, runtimeperiod3, stoptimeperiod3, runtimeperiod4, stoptimeperiod4, 
+    runtimeperiod5, stoptimeperiod5, runtimeperiod6, stoptimeperiod6, runtimeperiod7, 
+    stoptimeperiod7, runtimeperiod8, stoptimeperiod8, runtimeperiod9, stoptimeperiod9, 
+    runtimeperiod10, stoptimeperiod10,videourl,tonnage,videopuid,emissionStandard,equipment1power,equipment2power,equipment3power,equipment4power,equipment5power
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sewage
+    where sewageID = #{sewageid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sewage
+    where sewageID = #{sewageid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="sewageID"  parameterType="com.yaoli.beans.Sewage" >
+    insert into sewage (sewageID, areaID, controlID, 
+      AdministratorID, short_title, name, 
+      address, coordinateX, coordinateY, 
+      equipment1state, equipment2state, equipment3state, 
+      equipment4state, equipment5state, detection1, 
+      detection1UL, detection1DL, detection2, 
+      detection2UL, detection2DL, detection3UL, 
+      detection3, detection3DL, detection4, 
+      detection4UL, detection4DL, detection5, 
+      detection5UL, detection5DL, detection6, 
+      detection6UL, detection6DL, air_sched, 
+      water_sched, mud_sched, flow_sched, 
+      backup_sched, control_strategy, device_alert, 
+      gratingDays, confirmGratingTime, action, 
+      waterflow, reduceCOD, reduceNH3N, 
+      reduceP, operationnum, controlMethod, 
+      detection7, detection8, detection9, 
+      updatetime, detection10DL, detection11DL, 
+      detection12DL, detection13DL, detection14DL, 
+      detection15DL, detection16DL, detection17DL, 
+      detection18DL, detection19DL, detection20DL, 
+      detection10UL, detection11UL, detection12UL, 
+      detection13UL, detection14UL, detection15UL, 
+      detection16UL, detection17UL, detection18UL, 
+      detection19UL, detection20UL, detection7UL, 
+      detection7DL, detection8UL, detection8DL, 
+      detection9UL, detection9DL, runtimeperiod1, 
+      stoptimeperiod1, runtimeperiod2, stoptimeperiod2, 
+      runtimeperiod3, stoptimeperiod3, runtimeperiod4, 
+      stoptimeperiod4, runtimeperiod5, stoptimeperiod5, 
+      runtimeperiod6, stoptimeperiod6, runtimeperiod7, 
+      stoptimeperiod7, runtimeperiod8, stoptimeperiod8, 
+      runtimeperiod9, stoptimeperiod9, runtimeperiod10, 
+      stoptimeperiod10,videourl,tonnage,videopuid,emissionStandard,equipment1power,equipment2power,equipment3power,equipment4power,equipment5power)
+    values (#{sewageid,jdbcType=INTEGER}, #{areaid,jdbcType=INTEGER}, #{controlid,jdbcType=INTEGER}, 
+      #{administratorid,jdbcType=INTEGER}, #{shortTitle,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, 
+      #{address,jdbcType=NVARCHAR}, #{coordinatex,jdbcType=DOUBLE}, #{coordinatey,jdbcType=DOUBLE}, 
+      #{equipment1state,jdbcType=NVARCHAR}, #{equipment2state,jdbcType=NVARCHAR}, #{equipment3state,jdbcType=NVARCHAR}, 
+      #{equipment4state,jdbcType=NVARCHAR}, #{equipment5state,jdbcType=NVARCHAR}, #{detection1,jdbcType=REAL}, 
+      #{detection1ul,jdbcType=REAL}, #{detection1dl,jdbcType=REAL}, #{detection2,jdbcType=REAL}, 
+      #{detection2ul,jdbcType=REAL}, #{detection2dl,jdbcType=REAL}, #{detection3ul,jdbcType=REAL}, 
+      #{detection3,jdbcType=REAL}, #{detection3dl,jdbcType=REAL}, #{detection4,jdbcType=REAL}, 
+      #{detection4ul,jdbcType=REAL}, #{detection4dl,jdbcType=REAL}, #{detection5,jdbcType=REAL}, 
+      #{detection5ul,jdbcType=REAL}, #{detection5dl,jdbcType=REAL}, #{detection6,jdbcType=REAL}, 
+      #{detection6ul,jdbcType=REAL}, #{detection6dl,jdbcType=REAL}, #{airSched,jdbcType=NCHAR}, 
+      #{waterSched,jdbcType=NCHAR}, #{mudSched,jdbcType=NCHAR}, #{flowSched,jdbcType=NCHAR}, 
+      #{backupSched,jdbcType=NCHAR}, #{controlStrategy,jdbcType=NCHAR}, #{deviceAlert,jdbcType=NCHAR}, 
+      #{gratingdays,jdbcType=INTEGER}, #{confirmgratingtime,jdbcType=TIMESTAMP}, #{action,jdbcType=BIGINT}, 
+      #{waterflow,jdbcType=REAL}, #{reducecod,jdbcType=REAL}, #{reducenh3n,jdbcType=REAL}, 
+      #{reducep,jdbcType=REAL}, #{operationnum,jdbcType=NVARCHAR}, #{controlmethod,jdbcType=INTEGER}, 
+      #{detection7,jdbcType=REAL}, #{detection8,jdbcType=REAL}, #{detection9,jdbcType=REAL}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{detection10dl,jdbcType=NUMERIC}, #{detection11dl,jdbcType=NUMERIC}, 
+      #{detection12dl,jdbcType=NUMERIC}, #{detection13dl,jdbcType=NUMERIC}, #{detection14dl,jdbcType=NUMERIC}, 
+      #{detection15dl,jdbcType=NUMERIC}, #{detection16dl,jdbcType=NUMERIC}, #{detection17dl,jdbcType=NUMERIC}, 
+      #{detection18dl,jdbcType=NUMERIC}, #{detection19dl,jdbcType=NUMERIC}, #{detection20dl,jdbcType=NUMERIC}, 
+      #{detection10ul,jdbcType=NUMERIC}, #{detection11ul,jdbcType=NUMERIC}, #{detection12ul,jdbcType=NUMERIC}, 
+      #{detection13ul,jdbcType=NUMERIC}, #{detection14ul,jdbcType=NUMERIC}, #{detection15ul,jdbcType=NUMERIC}, 
+      #{detection16ul,jdbcType=NUMERIC}, #{detection17ul,jdbcType=NUMERIC}, #{detection18ul,jdbcType=NUMERIC}, 
+      #{detection19ul,jdbcType=NUMERIC}, #{detection20ul,jdbcType=NUMERIC}, #{detection7ul,jdbcType=NUMERIC}, 
+      #{detection7dl,jdbcType=NUMERIC}, #{detection8ul,jdbcType=NUMERIC}, #{detection8dl,jdbcType=NUMERIC}, 
+      #{detection9ul,jdbcType=NUMERIC}, #{detection9dl,jdbcType=NUMERIC}, #{runtimeperiod1,jdbcType=INTEGER}, 
+      #{stoptimeperiod1,jdbcType=INTEGER}, #{runtimeperiod2,jdbcType=INTEGER}, #{stoptimeperiod2,jdbcType=INTEGER}, 
+      #{runtimeperiod3,jdbcType=INTEGER}, #{stoptimeperiod3,jdbcType=INTEGER}, #{runtimeperiod4,jdbcType=INTEGER}, 
+      #{stoptimeperiod4,jdbcType=INTEGER}, #{runtimeperiod5,jdbcType=INTEGER}, #{stoptimeperiod5,jdbcType=INTEGER}, 
+      #{runtimeperiod6,jdbcType=INTEGER}, #{stoptimeperiod6,jdbcType=INTEGER}, #{runtimeperiod7,jdbcType=INTEGER}, 
+      #{stoptimeperiod7,jdbcType=INTEGER}, #{runtimeperiod8,jdbcType=INTEGER}, #{stoptimeperiod8,jdbcType=INTEGER}, 
+      #{runtimeperiod9,jdbcType=INTEGER}, #{stoptimeperiod9,jdbcType=INTEGER}, #{runtimeperiod10,jdbcType=INTEGER}, 
+      #{stoptimeperiod10,jdbcType=INTEGER}, #{videourl,jdbcType=NVARCHAR},#{tonnage,jdbcType=REAL},#{videopuid,jdbcType=NVARCHAR},#{emissionStandard,jdbcType=NVARCHAR},
+      #{equipment1power,jdbcType=REAL},#{equipment2power,jdbcType=REAL},#{equipment3power,jdbcType=REAL},#{equipment4power,jdbcType=REAL},#{equipment5power,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="sewageID"  parameterType="com.yaoli.beans.Sewage" >
+    insert into sewage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sewageid != null" >
+        sewageID,
+      </if>
+      <if test="areaid != null" >
+        areaID,
+      </if>
+      <if test="controlid != null" >
+        controlID,
+      </if>
+      <if test="administratorid != null" >
+        AdministratorID,
+      </if>
+      <if test="shortTitle != null" >
+        short_title,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="coordinatex != null" >
+        coordinateX,
+      </if>
+      <if test="coordinatey != null" >
+        coordinateY,
+      </if>
+      <if test="equipment1state != null" >
+        equipment1state,
+      </if>
+      <if test="equipment2state != null" >
+        equipment2state,
+      </if>
+      <if test="equipment3state != null" >
+        equipment3state,
+      </if>
+      <if test="equipment4state != null" >
+        equipment4state,
+      </if>
+      <if test="equipment5state != null" >
+        equipment5state,
+      </if>
+      <if test="detection1 != null" >
+        detection1,
+      </if>
+      <if test="detection1ul != null" >
+        detection1UL,
+      </if>
+      <if test="detection1dl != null" >
+        detection1DL,
+      </if>
+      <if test="detection2 != null" >
+        detection2,
+      </if>
+      <if test="detection2ul != null" >
+        detection2UL,
+      </if>
+      <if test="detection2dl != null" >
+        detection2DL,
+      </if>
+      <if test="detection3ul != null" >
+        detection3UL,
+      </if>
+      <if test="detection3 != null" >
+        detection3,
+      </if>
+      <if test="detection3dl != null" >
+        detection3DL,
+      </if>
+      <if test="detection4 != null" >
+        detection4,
+      </if>
+      <if test="detection4ul != null" >
+        detection4UL,
+      </if>
+      <if test="detection4dl != null" >
+        detection4DL,
+      </if>
+      <if test="detection5 != null" >
+        detection5,
+      </if>
+      <if test="detection5ul != null" >
+        detection5UL,
+      </if>
+      <if test="detection5dl != null" >
+        detection5DL,
+      </if>
+      <if test="detection6 != null" >
+        detection6,
+      </if>
+      <if test="detection6ul != null" >
+        detection6UL,
+      </if>
+      <if test="detection6dl != null" >
+        detection6DL,
+      </if>
+      <if test="airSched != null" >
+        air_sched,
+      </if>
+      <if test="waterSched != null" >
+        water_sched,
+      </if>
+      <if test="mudSched != null" >
+        mud_sched,
+      </if>
+      <if test="flowSched != null" >
+        flow_sched,
+      </if>
+      <if test="backupSched != null" >
+        backup_sched,
+      </if>
+      <if test="controlStrategy != null" >
+        control_strategy,
+      </if>
+      <if test="deviceAlert != null" >
+        device_alert,
+      </if>
+      <if test="gratingdays != null" >
+        gratingDays,
+      </if>
+      <if test="confirmgratingtime != null" >
+        confirmGratingTime,
+      </if>
+      <if test="action != null" >
+        action,
+      </if>
+      <if test="waterflow != null" >
+        waterflow,
+      </if>
+      <if test="reducecod != null" >
+        reduceCOD,
+      </if>
+      <if test="reducenh3n != null" >
+        reduceNH3N,
+      </if>
+      <if test="reducep != null" >
+        reduceP,
+      </if>
+      <if test="operationnum != null" >
+        operationnum,
+      </if>
+      <if test="controlmethod != null" >
+        controlMethod,
+      </if>
+      <if test="detection7 != null" >
+        detection7,
+      </if>
+      <if test="detection8 != null" >
+        detection8,
+      </if>
+      <if test="detection9 != null" >
+        detection9,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="detection10dl != null" >
+        detection10DL,
+      </if>
+      <if test="detection11dl != null" >
+        detection11DL,
+      </if>
+      <if test="detection12dl != null" >
+        detection12DL,
+      </if>
+      <if test="detection13dl != null" >
+        detection13DL,
+      </if>
+      <if test="detection14dl != null" >
+        detection14DL,
+      </if>
+      <if test="detection15dl != null" >
+        detection15DL,
+      </if>
+      <if test="detection16dl != null" >
+        detection16DL,
+      </if>
+      <if test="detection17dl != null" >
+        detection17DL,
+      </if>
+      <if test="detection18dl != null" >
+        detection18DL,
+      </if>
+      <if test="detection19dl != null" >
+        detection19DL,
+      </if>
+      <if test="detection20dl != null" >
+        detection20DL,
+      </if>
+      <if test="detection10ul != null" >
+        detection10UL,
+      </if>
+      <if test="detection11ul != null" >
+        detection11UL,
+      </if>
+      <if test="detection12ul != null" >
+        detection12UL,
+      </if>
+      <if test="detection13ul != null" >
+        detection13UL,
+      </if>
+      <if test="detection14ul != null" >
+        detection14UL,
+      </if>
+      <if test="detection15ul != null" >
+        detection15UL,
+      </if>
+      <if test="detection16ul != null" >
+        detection16UL,
+      </if>
+      <if test="detection17ul != null" >
+        detection17UL,
+      </if>
+      <if test="detection18ul != null" >
+        detection18UL,
+      </if>
+      <if test="detection19ul != null" >
+        detection19UL,
+      </if>
+      <if test="detection20ul != null" >
+        detection20UL,
+      </if>
+      <if test="detection7ul != null" >
+        detection7UL,
+      </if>
+      <if test="detection7dl != null" >
+        detection7DL,
+      </if>
+      <if test="detection8ul != null" >
+        detection8UL,
+      </if>
+      <if test="detection8dl != null" >
+        detection8DL,
+      </if>
+      <if test="detection9ul != null" >
+        detection9UL,
+      </if>
+      <if test="detection9dl != null" >
+        detection9DL,
+      </if>
+      <if test="runtimeperiod1 != null" >
+        runtimeperiod1,
+      </if>
+      <if test="stoptimeperiod1 != null" >
+        stoptimeperiod1,
+      </if>
+      <if test="runtimeperiod2 != null" >
+        runtimeperiod2,
+      </if>
+      <if test="stoptimeperiod2 != null" >
+        stoptimeperiod2,
+      </if>
+      <if test="runtimeperiod3 != null" >
+        runtimeperiod3,
+      </if>
+      <if test="stoptimeperiod3 != null" >
+        stoptimeperiod3,
+      </if>
+      <if test="runtimeperiod4 != null" >
+        runtimeperiod4,
+      </if>
+      <if test="stoptimeperiod4 != null" >
+        stoptimeperiod4,
+      </if>
+      <if test="runtimeperiod5 != null" >
+        runtimeperiod5,
+      </if>
+      <if test="stoptimeperiod5 != null" >
+        stoptimeperiod5,
+      </if>
+      <if test="runtimeperiod6 != null" >
+        runtimeperiod6,
+      </if>
+      <if test="stoptimeperiod6 != null" >
+        stoptimeperiod6,
+      </if>
+      <if test="runtimeperiod7 != null" >
+        runtimeperiod7,
+      </if>
+      <if test="stoptimeperiod7 != null" >
+        stoptimeperiod7,
+      </if>
+      <if test="runtimeperiod8 != null" >
+        runtimeperiod8,
+      </if>
+      <if test="stoptimeperiod8 != null" >
+        stoptimeperiod8,
+      </if>
+      <if test="runtimeperiod9 != null" >
+        runtimeperiod9,
+      </if>
+      <if test="stoptimeperiod9 != null" >
+        stoptimeperiod9,
+      </if>
+      <if test="runtimeperiod10 != null" >
+        runtimeperiod10,
+      </if>
+      <if test="stoptimeperiod10 != null" >
+        stoptimeperiod10,
+      </if>
+      <if test="videourl != null" >
+        videourl,
+      </if>
+      <if test="tonnage != null" >
+        tonnage,
+      </if>
+      <if test="videopuid != null" >
+        videopuid,
+      </if>
+      <if test="emissionStandard != null" >
+        emissionStandard,
+      </if>
+      <if test="equipment1power != null" >
+        equipment1power,
+      </if>
+      <if test="equipment2power != null" >
+        equipment2power,
+      </if>
+      <if test="equipment3power != null" >
+        equipment3power,
+      </if>
+      <if test="equipment4power != null" >
+        equipment4power,
+      </if>
+      <if test="equipment5power != null" >
+        equipment5power,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sewageid != null" >
+        #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="areaid != null" >
+        #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="controlid != null" >
+        #{controlid,jdbcType=INTEGER},
+      </if>
+      <if test="administratorid != null" >
+        #{administratorid,jdbcType=INTEGER},
+      </if>
+      <if test="shortTitle != null" >
+        #{shortTitle,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=NVARCHAR},
+      </if>
+      <if test="coordinatex != null" >
+        #{coordinatex,jdbcType=DOUBLE},
+      </if>
+      <if test="coordinatey != null" >
+        #{coordinatey,jdbcType=DOUBLE},
+      </if>
+      <if test="equipment1state != null" >
+        #{equipment1state,jdbcType=NVARCHAR},
+      </if>
+      <if test="equipment2state != null" >
+        #{equipment2state,jdbcType=NVARCHAR},
+      </if>
+      <if test="equipment3state != null" >
+        #{equipment3state,jdbcType=NVARCHAR},
+      </if>
+      <if test="equipment4state != null" >
+        #{equipment4state,jdbcType=NVARCHAR},
+      </if>
+      <if test="equipment5state != null" >
+        #{equipment5state,jdbcType=NVARCHAR},
+      </if>
+      <if test="detection1 != null" >
+        #{detection1,jdbcType=REAL},
+      </if>
+      <if test="detection1ul != null" >
+        #{detection1ul,jdbcType=REAL},
+      </if>
+      <if test="detection1dl != null" >
+        #{detection1dl,jdbcType=REAL},
+      </if>
+      <if test="detection2 != null" >
+        #{detection2,jdbcType=REAL},
+      </if>
+      <if test="detection2ul != null" >
+        #{detection2ul,jdbcType=REAL},
+      </if>
+      <if test="detection2dl != null" >
+        #{detection2dl,jdbcType=REAL},
+      </if>
+      <if test="detection3ul != null" >
+        #{detection3ul,jdbcType=REAL},
+      </if>
+      <if test="detection3 != null" >
+        #{detection3,jdbcType=REAL},
+      </if>
+      <if test="detection3dl != null" >
+        #{detection3dl,jdbcType=REAL},
+      </if>
+      <if test="detection4 != null" >
+        #{detection4,jdbcType=REAL},
+      </if>
+      <if test="detection4ul != null" >
+        #{detection4ul,jdbcType=REAL},
+      </if>
+      <if test="detection4dl != null" >
+        #{detection4dl,jdbcType=REAL},
+      </if>
+      <if test="detection5 != null" >
+        #{detection5,jdbcType=REAL},
+      </if>
+      <if test="detection5ul != null" >
+        #{detection5ul,jdbcType=REAL},
+      </if>
+      <if test="detection5dl != null" >
+        #{detection5dl,jdbcType=REAL},
+      </if>
+      <if test="detection6 != null" >
+        #{detection6,jdbcType=REAL},
+      </if>
+      <if test="detection6ul != null" >
+        #{detection6ul,jdbcType=REAL},
+      </if>
+      <if test="detection6dl != null" >
+        #{detection6dl,jdbcType=REAL},
+      </if>
+      <if test="airSched != null" >
+        #{airSched,jdbcType=NCHAR},
+      </if>
+      <if test="waterSched != null" >
+        #{waterSched,jdbcType=NCHAR},
+      </if>
+      <if test="mudSched != null" >
+        #{mudSched,jdbcType=NCHAR},
+      </if>
+      <if test="flowSched != null" >
+        #{flowSched,jdbcType=NCHAR},
+      </if>
+      <if test="backupSched != null" >
+        #{backupSched,jdbcType=NCHAR},
+      </if>
+      <if test="controlStrategy != null" >
+        #{controlStrategy,jdbcType=NCHAR},
+      </if>
+      <if test="deviceAlert != null" >
+        #{deviceAlert,jdbcType=NCHAR},
+      </if>
+      <if test="gratingdays != null" >
+        #{gratingdays,jdbcType=INTEGER},
+      </if>
+      <if test="confirmgratingtime != null" >
+        #{confirmgratingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="action != null" >
+        #{action,jdbcType=BIGINT},
+      </if>
+      <if test="waterflow != null" >
+        #{waterflow,jdbcType=REAL},
+      </if>
+      <if test="reducecod != null" >
+        #{reducecod,jdbcType=REAL},
+      </if>
+      <if test="reducenh3n != null" >
+        #{reducenh3n,jdbcType=REAL},
+      </if>
+      <if test="reducep != null" >
+        #{reducep,jdbcType=REAL},
+      </if>
+      <if test="operationnum != null" >
+        #{operationnum,jdbcType=NVARCHAR},
+      </if>
+      <if test="controlmethod != null" >
+        #{controlmethod,jdbcType=INTEGER},
+      </if>
+      <if test="detection7 != null" >
+        #{detection7,jdbcType=REAL},
+      </if>
+      <if test="detection8 != null" >
+        #{detection8,jdbcType=REAL},
+      </if>
+      <if test="detection9 != null" >
+        #{detection9,jdbcType=REAL},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detection10dl != null" >
+        #{detection10dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection11dl != null" >
+        #{detection11dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection12dl != null" >
+        #{detection12dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection13dl != null" >
+        #{detection13dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection14dl != null" >
+        #{detection14dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection15dl != null" >
+        #{detection15dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection16dl != null" >
+        #{detection16dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection17dl != null" >
+        #{detection17dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection18dl != null" >
+        #{detection18dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection19dl != null" >
+        #{detection19dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection20dl != null" >
+        #{detection20dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection10ul != null" >
+        #{detection10ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection11ul != null" >
+        #{detection11ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection12ul != null" >
+        #{detection12ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection13ul != null" >
+        #{detection13ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection14ul != null" >
+        #{detection14ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection15ul != null" >
+        #{detection15ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection16ul != null" >
+        #{detection16ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection17ul != null" >
+        #{detection17ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection18ul != null" >
+        #{detection18ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection19ul != null" >
+        #{detection19ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection20ul != null" >
+        #{detection20ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection7ul != null" >
+        #{detection7ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection7dl != null" >
+        #{detection7dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection8ul != null" >
+        #{detection8ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection8dl != null" >
+        #{detection8dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection9ul != null" >
+        #{detection9ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection9dl != null" >
+        #{detection9dl,jdbcType=NUMERIC},
+      </if>
+      <if test="runtimeperiod1 != null" >
+        #{runtimeperiod1,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod1 != null" >
+        #{stoptimeperiod1,jdbcType=INTEGER},
+      </if>
+      <if test="runtimeperiod2 != null" >
+        #{runtimeperiod2,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod2 != null" >
+        #{stoptimeperiod2,jdbcType=INTEGER},
+      </if>
+      <if test="runtimeperiod3 != null" >
+        #{runtimeperiod3,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod3 != null" >
+        #{stoptimeperiod3,jdbcType=INTEGER},
+      </if>
+      <if test="runtimeperiod4 != null" >
+        #{runtimeperiod4,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod4 != null" >
+        #{stoptimeperiod4,jdbcType=INTEGER},
+      </if>
+      <if test="runtimeperiod5 != null" >
+        #{runtimeperiod5,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod5 != null" >
+        #{stoptimeperiod5,jdbcType=INTEGER},
+      </if>
+      <if test="runtimeperiod6 != null" >
+        #{runtimeperiod6,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod6 != null" >
+        #{stoptimeperiod6,jdbcType=INTEGER},
+      </if>
+      <if test="runtimeperiod7 != null" >
+        #{runtimeperiod7,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod7 != null" >
+        #{stoptimeperiod7,jdbcType=INTEGER},
+      </if>
+      <if test="runtimeperiod8 != null" >
+        #{runtimeperiod8,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod8 != null" >
+        #{stoptimeperiod8,jdbcType=INTEGER},
+      </if>
+      <if test="runtimeperiod9 != null" >
+        #{runtimeperiod9,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod9 != null" >
+        #{stoptimeperiod9,jdbcType=INTEGER},
+      </if>
+      <if test="runtimeperiod10 != null" >
+        #{runtimeperiod10,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod10 != null" >
+        #{stoptimeperiod10,jdbcType=INTEGER},
+      </if>
+      <if test="videourl != null" >
+        #{videourl,jdbcType=NVARCHAR},
+      </if>
+      <if test="tonnage != null" >
+        #{tonnage},
+      </if>
+      <if test="videopuid != null" >
+        #{videopuid},
+      </if>
+      <if test="emissionStandard != null" >
+        #{emissionStandard},
+      </if>
+      <if test="equipment1power != null" >
+        #{equipment1power},
+      </if>
+      <if test="equipment2power != null" >
+        #{equipment2power},
+      </if>
+      <if test="equipment3power != null" >
+        #{equipment3power},
+      </if>
+      <if test="equipment4power != null" >
+        #{equipment4power},
+      </if>
+      <if test="equipment5power != null" >
+        #{equipment5power},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.Sewage" >
+    update sewage
+    <set >
+      <if test="areaid != null" >
+        areaID = #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="controlid != null" >
+        controlID = #{controlid,jdbcType=INTEGER},
+      </if>
+      <if test="administratorid != null" >
+        AdministratorID = #{administratorid,jdbcType=INTEGER},
+      </if>
+      <if test="shortTitle != null" >
+        short_title = #{shortTitle,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=NVARCHAR},
+      </if>
+      <if test="coordinatex != null" >
+        coordinateX = #{coordinatex,jdbcType=DOUBLE},
+      </if>
+      <if test="coordinatey != null" >
+        coordinateY = #{coordinatey,jdbcType=DOUBLE},
+      </if>
+      <if test="equipment1state != null" >
+        equipment1state = #{equipment1state,jdbcType=NVARCHAR},
+      </if>
+      <if test="equipment2state != null" >
+        equipment2state = #{equipment2state,jdbcType=NVARCHAR},
+      </if>
+      <if test="equipment3state != null" >
+        equipment3state = #{equipment3state,jdbcType=NVARCHAR},
+      </if>
+      <if test="equipment4state != null" >
+        equipment4state = #{equipment4state,jdbcType=NVARCHAR},
+      </if>
+      <if test="equipment5state != null" >
+        equipment5state = #{equipment5state,jdbcType=NVARCHAR},
+      </if>
+      <if test="detection1 != null" >
+        detection1 = #{detection1,jdbcType=REAL},
+      </if>
+      <if test="detection1ul != null" >
+        detection1UL = #{detection1ul,jdbcType=REAL},
+      </if>
+      <if test="detection1dl != null" >
+        detection1DL = #{detection1dl,jdbcType=REAL},
+      </if>
+      <if test="detection2 != null" >
+        detection2 = #{detection2,jdbcType=REAL},
+      </if>
+      <if test="detection2ul != null" >
+        detection2UL = #{detection2ul,jdbcType=REAL},
+      </if>
+      <if test="detection2dl != null" >
+        detection2DL = #{detection2dl,jdbcType=REAL},
+      </if>
+      <if test="detection3ul != null" >
+        detection3UL = #{detection3ul,jdbcType=REAL},
+      </if>
+      <if test="detection3 != null" >
+        detection3 = #{detection3,jdbcType=REAL},
+      </if>
+      <if test="detection3dl != null" >
+        detection3DL = #{detection3dl,jdbcType=REAL},
+      </if>
+      <if test="detection4 != null" >
+        detection4 = #{detection4,jdbcType=REAL},
+      </if>
+      <if test="detection4ul != null" >
+        detection4UL = #{detection4ul,jdbcType=REAL},
+      </if>
+      <if test="detection4dl != null" >
+        detection4DL = #{detection4dl,jdbcType=REAL},
+      </if>
+      <if test="detection5 != null" >
+        detection5 = #{detection5,jdbcType=REAL},
+      </if>
+      <if test="detection5ul != null" >
+        detection5UL = #{detection5ul,jdbcType=REAL},
+      </if>
+      <if test="detection5dl != null" >
+        detection5DL = #{detection5dl,jdbcType=REAL},
+      </if>
+      <if test="detection6 != null" >
+        detection6 = #{detection6,jdbcType=REAL},
+      </if>
+      <if test="detection6ul != null" >
+        detection6UL = #{detection6ul,jdbcType=REAL},
+      </if>
+      <if test="detection6dl != null" >
+        detection6DL = #{detection6dl,jdbcType=REAL},
+      </if>
+      <if test="airSched != null" >
+        air_sched = #{airSched,jdbcType=NCHAR},
+      </if>
+      <if test="waterSched != null" >
+        water_sched = #{waterSched,jdbcType=NCHAR},
+      </if>
+      <if test="mudSched != null" >
+        mud_sched = #{mudSched,jdbcType=NCHAR},
+      </if>
+      <if test="flowSched != null" >
+        flow_sched = #{flowSched,jdbcType=NCHAR},
+      </if>
+      <if test="backupSched != null" >
+        backup_sched = #{backupSched,jdbcType=NCHAR},
+      </if>
+      <if test="controlStrategy != null" >
+        control_strategy = #{controlStrategy,jdbcType=NCHAR},
+      </if>
+      <if test="deviceAlert != null" >
+        device_alert = #{deviceAlert,jdbcType=NCHAR},
+      </if>
+      <if test="gratingdays != null" >
+        gratingDays = #{gratingdays,jdbcType=INTEGER},
+      </if>
+      <if test="confirmgratingtime != null" >
+        confirmGratingTime = #{confirmgratingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="action != null" >
+        action = #{action,jdbcType=BIGINT},
+      </if>
+      <if test="waterflow != null" >
+        waterflow = #{waterflow,jdbcType=REAL},
+      </if>
+      <if test="reducecod != null" >
+        reduceCOD = #{reducecod,jdbcType=REAL},
+      </if>
+      <if test="reducenh3n != null" >
+        reduceNH3N = #{reducenh3n,jdbcType=REAL},
+      </if>
+      <if test="reducep != null" >
+        reduceP = #{reducep,jdbcType=REAL},
+      </if>
+      <if test="operationnum != null" >
+        operationnum = #{operationnum,jdbcType=NVARCHAR},
+      </if>
+      <if test="controlmethod != null" >
+        controlMethod = #{controlmethod,jdbcType=INTEGER},
+      </if>
+      <if test="detection7 != null" >
+        detection7 = #{detection7,jdbcType=REAL},
+      </if>
+      <if test="detection8 != null" >
+        detection8 = #{detection8,jdbcType=REAL},
+      </if>
+      <if test="detection9 != null" >
+        detection9 = #{detection9,jdbcType=REAL},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detection10dl != null" >
+        detection10DL = #{detection10dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection11dl != null" >
+        detection11DL = #{detection11dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection12dl != null" >
+        detection12DL = #{detection12dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection13dl != null" >
+        detection13DL = #{detection13dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection14dl != null" >
+        detection14DL = #{detection14dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection15dl != null" >
+        detection15DL = #{detection15dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection16dl != null" >
+        detection16DL = #{detection16dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection17dl != null" >
+        detection17DL = #{detection17dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection18dl != null" >
+        detection18DL = #{detection18dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection19dl != null" >
+        detection19DL = #{detection19dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection20dl != null" >
+        detection20DL = #{detection20dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection10ul != null" >
+        detection10UL = #{detection10ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection11ul != null" >
+        detection11UL = #{detection11ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection12ul != null" >
+        detection12UL = #{detection12ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection13ul != null" >
+        detection13UL = #{detection13ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection14ul != null" >
+        detection14UL = #{detection14ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection15ul != null" >
+        detection15UL = #{detection15ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection16ul != null" >
+        detection16UL = #{detection16ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection17ul != null" >
+        detection17UL = #{detection17ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection18ul != null" >
+        detection18UL = #{detection18ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection19ul != null" >
+        detection19UL = #{detection19ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection20ul != null" >
+        detection20UL = #{detection20ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection7ul != null" >
+        detection7UL = #{detection7ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection7dl != null" >
+        detection7DL = #{detection7dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection8ul != null" >
+        detection8UL = #{detection8ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection8dl != null" >
+        detection8DL = #{detection8dl,jdbcType=NUMERIC},
+      </if>
+      <if test="detection9ul != null" >
+        detection9UL = #{detection9ul,jdbcType=NUMERIC},
+      </if>
+      <if test="detection9dl != null" >
+        detection9DL = #{detection9dl,jdbcType=NUMERIC},
+      </if>
+      <if test="runtimeperiod1 != null" >
+        runtimeperiod1 = #{runtimeperiod1,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod1 != null" >
+        stoptimeperiod1 = #{stoptimeperiod1,jdbcType=INTEGER},
+      </if>
+      <if test="runtimeperiod2 != null" >
+        runtimeperiod2 = #{runtimeperiod2,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod2 != null" >
+        stoptimeperiod2 = #{stoptimeperiod2,jdbcType=INTEGER},
+      </if>
+      <if test="runtimeperiod3 != null" >
+        runtimeperiod3 = #{runtimeperiod3,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod3 != null" >
+        stoptimeperiod3 = #{stoptimeperiod3,jdbcType=INTEGER},
+      </if>
+      <if test="runtimeperiod4 != null" >
+        runtimeperiod4 = #{runtimeperiod4,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod4 != null" >
+        stoptimeperiod4 = #{stoptimeperiod4,jdbcType=INTEGER},
+      </if>
+      <if test="runtimeperiod5 != null" >
+        runtimeperiod5 = #{runtimeperiod5,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod5 != null" >
+        stoptimeperiod5 = #{stoptimeperiod5,jdbcType=INTEGER},
+      </if>
+      <if test="runtimeperiod6 != null" >
+        runtimeperiod6 = #{runtimeperiod6,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod6 != null" >
+        stoptimeperiod6 = #{stoptimeperiod6,jdbcType=INTEGER},
+      </if>
+      <if test="runtimeperiod7 != null" >
+        runtimeperiod7 = #{runtimeperiod7,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod7 != null" >
+        stoptimeperiod7 = #{stoptimeperiod7,jdbcType=INTEGER},
+      </if>
+      <if test="runtimeperiod8 != null" >
+        runtimeperiod8 = #{runtimeperiod8,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod8 != null" >
+        stoptimeperiod8 = #{stoptimeperiod8,jdbcType=INTEGER},
+      </if>
+      <if test="runtimeperiod9 != null" >
+        runtimeperiod9 = #{runtimeperiod9,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod9 != null" >
+        stoptimeperiod9 = #{stoptimeperiod9,jdbcType=INTEGER},
+      </if>
+      <if test="runtimeperiod10 != null" >
+        runtimeperiod10 = #{runtimeperiod10,jdbcType=INTEGER},
+      </if>
+      <if test="stoptimeperiod10 != null" >
+        stoptimeperiod10 = #{stoptimeperiod10,jdbcType=INTEGER},
+      </if>
+      <if test="videourl != null" >
+        videourl = #{videourl,jdbcType=NVARCHAR},
+      </if>
+      <if test="tonnage != null" >
+        tonnage = #{tonnage,jdbcType=NVARCHAR},
+      </if>
+      <if test="videopuid != null" >
+        videopuid = #{videopuid,jdbcType=NVARCHAR},
+      </if>
+      <if test="emissionStandard != null" >
+        emissionStandard = #{emissionStandard,jdbcType=NVARCHAR},
+      </if>
+      <if test="equipment1power != null" >
+        equipment1power = #{equipment1power,jdbcType=REAL},
+      </if>
+      <if test="equipment2power != null" >
+        equipment2power = #{equipment2power,jdbcType=REAL},
+      </if>
+      <if test="equipment3power != null" >
+        equipment3power = #{equipment3power,jdbcType=REAL},
+      </if>
+      <if test="equipment4power != null" >
+        equipment4power = #{equipment4power,jdbcType=REAL},
+      </if>
+      <if test="equipment5power != null" >
+        equipment5power = #{equipment5power,jdbcType=REAL},
+      </if>
+    </set>
+    where sewageID = #{sewageid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.Sewage" >
+    update sewage
+    set areaID = #{areaid,jdbcType=INTEGER},
+      controlID = #{controlid,jdbcType=INTEGER},
+      AdministratorID = #{administratorid,jdbcType=INTEGER},
+      short_title = #{shortTitle,jdbcType=NVARCHAR},
+      name = #{name,jdbcType=NVARCHAR},
+      address = #{address,jdbcType=NVARCHAR},
+      coordinateX = #{coordinatex,jdbcType=DOUBLE},
+      coordinateY = #{coordinatey,jdbcType=DOUBLE},
+      equipment1state = #{equipment1state,jdbcType=NVARCHAR},
+      equipment2state = #{equipment2state,jdbcType=NVARCHAR},
+      equipment3state = #{equipment3state,jdbcType=NVARCHAR},
+      equipment4state = #{equipment4state,jdbcType=NVARCHAR},
+      equipment5state = #{equipment5state,jdbcType=NVARCHAR},
+      detection1 = #{detection1,jdbcType=REAL},
+      detection1UL = #{detection1ul,jdbcType=REAL},
+      detection1DL = #{detection1dl,jdbcType=REAL},
+      detection2 = #{detection2,jdbcType=REAL},
+      detection2UL = #{detection2ul,jdbcType=REAL},
+      detection2DL = #{detection2dl,jdbcType=REAL},
+      detection3UL = #{detection3ul,jdbcType=REAL},
+      detection3 = #{detection3,jdbcType=REAL},
+      detection3DL = #{detection3dl,jdbcType=REAL},
+      detection4 = #{detection4,jdbcType=REAL},
+      detection4UL = #{detection4ul,jdbcType=REAL},
+      detection4DL = #{detection4dl,jdbcType=REAL},
+      detection5 = #{detection5,jdbcType=REAL},
+      detection5UL = #{detection5ul,jdbcType=REAL},
+      detection5DL = #{detection5dl,jdbcType=REAL},
+      detection6 = #{detection6,jdbcType=REAL},
+      detection6UL = #{detection6ul,jdbcType=REAL},
+      detection6DL = #{detection6dl,jdbcType=REAL},
+      air_sched = #{airSched,jdbcType=NCHAR},
+      water_sched = #{waterSched,jdbcType=NCHAR},
+      mud_sched = #{mudSched,jdbcType=NCHAR},
+      flow_sched = #{flowSched,jdbcType=NCHAR},
+      backup_sched = #{backupSched,jdbcType=NCHAR},
+      control_strategy = #{controlStrategy,jdbcType=NCHAR},
+      device_alert = #{deviceAlert,jdbcType=NCHAR},
+      gratingDays = #{gratingdays,jdbcType=INTEGER},
+      confirmGratingTime = #{confirmgratingtime,jdbcType=TIMESTAMP},
+      action = #{action,jdbcType=BIGINT},
+      waterflow = #{waterflow,jdbcType=REAL},
+      reduceCOD = #{reducecod,jdbcType=REAL},
+      reduceNH3N = #{reducenh3n,jdbcType=REAL},
+      reduceP = #{reducep,jdbcType=REAL},
+      operationnum = #{operationnum,jdbcType=NVARCHAR},
+      controlMethod = #{controlmethod,jdbcType=INTEGER},
+      detection7 = #{detection7,jdbcType=REAL},
+      detection8 = #{detection8,jdbcType=REAL},
+      detection9 = #{detection9,jdbcType=REAL},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      detection10DL = #{detection10dl,jdbcType=NUMERIC},
+      detection11DL = #{detection11dl,jdbcType=NUMERIC},
+      detection12DL = #{detection12dl,jdbcType=NUMERIC},
+      detection13DL = #{detection13dl,jdbcType=NUMERIC},
+      detection14DL = #{detection14dl,jdbcType=NUMERIC},
+      detection15DL = #{detection15dl,jdbcType=NUMERIC},
+      detection16DL = #{detection16dl,jdbcType=NUMERIC},
+      detection17DL = #{detection17dl,jdbcType=NUMERIC},
+      detection18DL = #{detection18dl,jdbcType=NUMERIC},
+      detection19DL = #{detection19dl,jdbcType=NUMERIC},
+      detection20DL = #{detection20dl,jdbcType=NUMERIC},
+      detection10UL = #{detection10ul,jdbcType=NUMERIC},
+      detection11UL = #{detection11ul,jdbcType=NUMERIC},
+      detection12UL = #{detection12ul,jdbcType=NUMERIC},
+      detection13UL = #{detection13ul,jdbcType=NUMERIC},
+      detection14UL = #{detection14ul,jdbcType=NUMERIC},
+      detection15UL = #{detection15ul,jdbcType=NUMERIC},
+      detection16UL = #{detection16ul,jdbcType=NUMERIC},
+      detection17UL = #{detection17ul,jdbcType=NUMERIC},
+      detection18UL = #{detection18ul,jdbcType=NUMERIC},
+      detection19UL = #{detection19ul,jdbcType=NUMERIC},
+      detection20UL = #{detection20ul,jdbcType=NUMERIC},
+      detection7UL = #{detection7ul,jdbcType=NUMERIC},
+      detection7DL = #{detection7dl,jdbcType=NUMERIC},
+      detection8UL = #{detection8ul,jdbcType=NUMERIC},
+      detection8DL = #{detection8dl,jdbcType=NUMERIC},
+      detection9UL = #{detection9ul,jdbcType=NUMERIC},
+      detection9DL = #{detection9dl,jdbcType=NUMERIC},
+      runtimeperiod1 = #{runtimeperiod1,jdbcType=INTEGER},
+      stoptimeperiod1 = #{stoptimeperiod1,jdbcType=INTEGER},
+      runtimeperiod2 = #{runtimeperiod2,jdbcType=INTEGER},
+      stoptimeperiod2 = #{stoptimeperiod2,jdbcType=INTEGER},
+      runtimeperiod3 = #{runtimeperiod3,jdbcType=INTEGER},
+      stoptimeperiod3 = #{stoptimeperiod3,jdbcType=INTEGER},
+      runtimeperiod4 = #{runtimeperiod4,jdbcType=INTEGER},
+      stoptimeperiod4 = #{stoptimeperiod4,jdbcType=INTEGER},
+      runtimeperiod5 = #{runtimeperiod5,jdbcType=INTEGER},
+      stoptimeperiod5 = #{stoptimeperiod5,jdbcType=INTEGER},
+      runtimeperiod6 = #{runtimeperiod6,jdbcType=INTEGER},
+      stoptimeperiod6 = #{stoptimeperiod6,jdbcType=INTEGER},
+      runtimeperiod7 = #{runtimeperiod7,jdbcType=INTEGER},
+      stoptimeperiod7 = #{stoptimeperiod7,jdbcType=INTEGER},
+      runtimeperiod8 = #{runtimeperiod8,jdbcType=INTEGER},
+      stoptimeperiod8 = #{stoptimeperiod8,jdbcType=INTEGER},
+      runtimeperiod9 = #{runtimeperiod9,jdbcType=INTEGER},
+      stoptimeperiod9 = #{stoptimeperiod9,jdbcType=INTEGER},
+      runtimeperiod10 = #{runtimeperiod10,jdbcType=INTEGER},
+      stoptimeperiod10 = #{stoptimeperiod10,jdbcType=INTEGER},
+      videourl = #{videourl,jdbcType=NVARCHAR},
+      tonnage = #{tonnage,jdbcType=REAL},
+      videopuid = #{videopuid,jdbcType=NVARCHAR},
+      emissionStandard = #{emissionStandard,jdbcType=NVARCHAR},
+      equipment1power = #{equipment1power,jdbcType=REAL},
+      equipment2power = #{equipment2power,jdbcType=REAL},
+      equipment3power = #{equipment3power,jdbcType=REAL},
+      equipment4power = #{equipment4power,jdbcType=REAL},
+      equipment5power = #{equipment5power,jdbcType=REAL}
+    where sewageID = #{sewageid,jdbcType=INTEGER}
+  </update>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from sewage
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from sewage
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM (
+					 <include refid="selectByPaingAndConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+
+  </select>
+  <sql id="selectByPaingAndConditionSQL" >
+    select top 100 percent sewageID,areaID,controlID,AdministratorID,short_title,name,address,coordinateX,coordinateY,equipment1state,equipment2state,equipment3state,equipment4state,equipment5state,detection1,detection1UL,detection1DL,detection2,detection2UL,detection2DL,detection3UL,detection3,detection3DL,detection4,detection4UL,detection4DL,detection5,detection5UL,detection5DL,detection6,detection6UL,detection6DL,air_sched,water_sched,mud_sched,flow_sched,backup_sched,control_strategy,device_alert,gratingDays,confirmGratingTime,action,waterflow,reduceCOD,reduceNH3N,reduceP,operationnum,controlMethod,detection7,detection8,detection9,updatetime,detection10DL,detection11DL,detection12DL,detection13DL,detection14DL,detection15DL,detection16DL,detection17DL,detection18DL,detection19DL,detection20DL,detection10UL,detection11UL,detection12UL,detection13UL,detection14UL,detection15UL,detection16UL,detection17UL,detection18UL,detection19UL,detection20UL,detection7UL,detection7DL,detection8UL,detection8DL,detection9UL,detection9DL,runtimeperiod1,stoptimeperiod1,runtimeperiod2,stoptimeperiod2,runtimeperiod3,stoptimeperiod3,runtimeperiod4,stoptimeperiod4,runtimeperiod5,stoptimeperiod5,runtimeperiod6,stoptimeperiod6,runtimeperiod7,stoptimeperiod7,runtimeperiod8,stoptimeperiod8,runtimeperiod9,stoptimeperiod9,runtimeperiod10,stoptimeperiod10,videourl,tonnage,videopuid,emissionStandard,equipment1power,equipment2power,equipment3power,equipment4power,equipment5power from sewage where 1=1
+
+  </sql>
+<resultMap id="sewageVO" type="com.yaoli.vo.SewageVO" extends="BaseResultMap">
+  	<result column="areaName" property="areaName" jdbcType="INTEGER" />
+    <result column="admin" property="admin" jdbcType="NVARCHAR" />
+    <result column="adminName" property="adminName" jdbcType="NVARCHAR" />
+  </resultMap>
+   <!-- 获取该站点的水质信息 -->
+   <select id="getLatestSewageDetectionDataBySewageId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select c.sewageID, sewage.short_title, sewage.name, sewage.coordinateX, sewage.coordinateY,sewage.controlMethod,
+		sewage.detection1ul ,sewage.detection1dl ,sewage.detection2ul ,sewage.detection2dl,sewage.detection3ul ,sewage.detection3dl ,
+		sewage.detection4ul ,sewage.detection4dl,sewage.detection5ul ,sewage.detection5dl ,sewage.detection6ul ,sewage.detection6dl,
+		c.* from  
+			(select detection_data.* from detection_data,
+				(select MAX(testingtime) as testingtime,sewageid from detection_data group by sewageID) as a 
+					where 
+					detection_data.testingtime = a.testingtime and detection_data.sewageID = a.sewageID
+			) as c
+		left join sewage on sewage.sewageID = c.sewageid
+		where c.sewageID = 248
+  </select>
+  
+   <select id="getSewageTotalWaterFlow" resultType="java.lang.Double" parameterType="java.lang.Integer">
+		select ISNULL(SUM(detection6),0) from detection_data where 
+		CONVERT(varchar(12),testingtime,111) = CONVERT(varchar(12),GETDATE(),111) and 
+		sewageID = #{sewageId}
+  </select>
+  
+  
+    <!-- 获取所有最新的水质数据 显示在地图之上-->
+  <select id="getLatestSewageDetectionData" resultMap="BaseResultMap">
+	select c.sewageID, sewage.short_title, sewage.name, sewage.coordinateX, sewage.coordinateY,c.* from  
+		(select detection_data.* from detection_data,
+			(select MAX(testingtime) as testingtime,sewageid from detection_data group by sewageID) as a 
+				where 
+				detection_data.testingtime = a.testingtime and detection_data.sewageID = a.sewageID
+		) as c
+	left join sewage on sewage.sewageID = c.sewageid
+  </select>
+  
+  <select id="getSewageCountLinktoAreaBy" resultType="java.lang.Integer">
+    select count(sewageid) from sewage where sewage.areaID = #{areaid}
+  </select>
+  
+	<select id="getSewagesByPaging" resultMap="sewageVO" parameterType="hashmap">
+			SELECT TOP ${pageSize} * 
+			FROM  (
+	       		SELECT ROW_NUMBER() OVER (ORDER BY sewageid) AS RowNumber,* FROM 
+	       			(
+						select area.name as areaName, admin.name as admin,sewage.sewageID,sewage.name,
+						sewage.short_title,sewage.coordinateX,sewage.coordinateY 
+						 from sewage
+						left join area on sewage.areaID = area.id 
+						left join admin_area on admin_area.areaid = area.id
+						left join admin on admin_area.adminid = admin.id
+	       			) as b
+	   		)   as A  
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+	</select>
+	
+   <select id="getTotalSewageCount" resultType="java.lang.Integer">
+    select count(sewageID) from sewage
+  </select>
+  
+  
+  <select id="getAllSewages" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sewage
+  </select>
+  <select id="getSewagesByAreaId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sewage
+    where areaid = #{id,jdbcType=INTEGER} order by sewage.name
+  </select>
+  
+  <select id="getSewagesBySearchNameOrId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sewage where operationnum = #{condition}  or short_title= #{condition}
+  </select>
+  
+<!--   <select id="getSewagesByAreaId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sewage
+    where areaid = #{id,jdbcType=INTEGER}
+  </select> -->
+  
+  <select id="getLatestSewageWithoutElectricAndWater" resultMap="BaseResultMap" >
+	select sewageid from ( select sewageid,max(testingtime) as testingtime from detection_data with(nolock) group by sewageid ) as temp 
+	where  CONVERT(varchar(12),testingtime,111) != CONVERT(varchar(12),getdate() ,111)
+	union all
+	select sewage.sewageid from (select distinct sewageid from detection_data with(nolock)) tmp1 right join sewage on  
+	sewage.sewageid = tmp1.sewageid where tmp1.sewageid is null
+  </select>
+  
+  <select id="getLatestSewageWithoutElectricAndWaterByAreaid" resultMap="BaseResultMap" >
+		(select sewageid from 
+		(select temp1.sewageID,temp1.testingtime,sewage.areaID from 
+			sewage , 
+			(select sewageid,max(testingtime) as testingtime from run_data group by sewageid ) as temp1 
+		 where sewage.sewageID = temp1.sewageId and CONVERT(varchar(12),testingtime,111) != CONVERT(varchar(12),getdate() ,111) and areaid = #{id})
+		 as tmp)
+		union
+		(select sewage.sewageid from (select distinct detection_data.sewageid from detection_data) 
+		tmp1 right join sewage on  
+		sewage.sewageid = tmp1.sewageid where tmp1.sewageid is null and sewage.areaid = #{id})
+  </select>
+  
+   <select id="getWithoutElectricAndWaterByPaingAndCondition" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY sewageid desc) AS RowNumber,* FROM (
+					 <include refid="getWithoutElectricAndWaterByPaingAndConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  
+  <sql id="getWithoutElectricAndWaterByPaingAndConditionSQL" >
+    select temp1.sewageID,sewage.operationnum,sewage.name,temp3.lasttestingtime from
+    (
+      (select sewageid from
+        (select temp1.sewageID,temp1.testingtime,sewage.areaID from
+        sewage left join
+        (select sewageid,max(testingtime) as testingtime from detection_data group by sewageid ) as temp1
+        on sewage.sewageID = temp1.sewageId and CONVERT(varchar(12),testingtime,111) != CONVERT(varchar(12),getdate() ,111)
+        <if test="areaid != null" >
+          and sewage.areaID = #{areaid}
+        </if>
+      )
+      as tmp)
+      union all
+        (select sewage.sewageid from (select distinct detection_data.sewageid from detection_data)
+        tmp1 right join sewage on
+        sewage.sewageid = tmp1.sewageid where tmp1.sewageid is null
+        <if test="areaid != null" >
+          and sewage.areaID = #{areaid}
+        </if>
+      )
+    ) as temp1,sewage  left join (select sewageid,MAX(testingtime) as lasttestingtime from detection_data group by sewageID) as temp3 on temp3.sewageID = sewage.sewageID
+    where temp1.sewageID = sewage.sewageID
+  </sql> 
+  
+  <select id="getWithoutElectricAndWaterPaingAndConditionTotal" resultType="java.lang.Integer" >
+	select count(*) from(<include refid="getWithoutElectricAndWaterByPaingAndConditionSQL"></include>) as temp
+  </select>
+  
+  <select id="getSewageHasRecordYesterday" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+	select COUNT(*) from statistic where CONVERT(varchar(12),getdate()-1,111) =  CONVERT(varchar(12),testingtime,111) and sewageid = #{id}
+  </select>
+  
+  
+<update id="updateSewageByPrimaryKeyCondition" parameterType="com.yaoli.beans.Sewage" >
+    update sewage set 
+        areaID = #{areaid,jdbcType=INTEGER},
+        controlID = #{controlid,jdbcType=INTEGER},
+        short_title = #{shortTitle,jdbcType=NVARCHAR},
+        name = #{name,jdbcType=NVARCHAR},
+        address = #{address,jdbcType=NVARCHAR},
+        coordinateX = #{coordinatex,jdbcType=DOUBLE},
+        coordinateY = #{coordinatey,jdbcType=DOUBLE},
+        detection1UL = #{detection1ul,jdbcType=REAL},
+        detection1DL = #{detection1dl,jdbcType=REAL},
+        detection2UL = #{detection2ul,jdbcType=REAL},
+        detection2DL = #{detection2dl,jdbcType=REAL},
+        detection3UL = #{detection3ul,jdbcType=REAL},
+        detection3DL = #{detection3dl,jdbcType=REAL},
+        detection4UL = #{detection4ul,jdbcType=REAL},
+        detection4DL = #{detection4dl,jdbcType=REAL},
+        detection5UL = #{detection5ul,jdbcType=REAL},
+        detection5DL = #{detection5dl,jdbcType=REAL},
+        detection6UL = #{detection6ul,jdbcType=REAL},
+        reduceCOD = #{reducecod,jdbcType=REAL},
+        reduceNH3N = #{reducenh3n,jdbcType=REAL},
+        reduceP = #{reducep,jdbcType=REAL},
+        operationnum = #{operationnum,jdbcType=NVARCHAR},
+        runtimeperiod1 = #{runtimeperiod1,jdbcType=INTEGER},
+        stoptimeperiod1 = #{stoptimeperiod1,jdbcType=INTEGER},
+        runtimeperiod2 = #{runtimeperiod2,jdbcType=INTEGER},
+        stoptimeperiod2 = #{stoptimeperiod2,jdbcType=INTEGER},
+        runtimeperiod3 = #{runtimeperiod3,jdbcType=INTEGER},
+        stoptimeperiod3 = #{stoptimeperiod3,jdbcType=INTEGER},
+        runtimeperiod4 = #{runtimeperiod4,jdbcType=INTEGER},
+        stoptimeperiod4 = #{stoptimeperiod4,jdbcType=INTEGER},
+        runtimeperiod5 = #{runtimeperiod5,jdbcType=INTEGER},
+        stoptimeperiod5 = #{stoptimeperiod5,jdbcType=INTEGER},
+        runtimeperiod6 = #{runtimeperiod6,jdbcType=INTEGER},
+        stoptimeperiod6 = #{stoptimeperiod6,jdbcType=INTEGER},
+        runtimeperiod7 = #{runtimeperiod7,jdbcType=INTEGER},
+        stoptimeperiod7 = #{stoptimeperiod7,jdbcType=INTEGER},
+        <if test="videourl != null" >
+          videourl = #{videourl,jdbcType = NVARCHAR},
+        </if>
+        controlmethod = #{controlmethod,jdbcType=INTEGER},
+        tonnage = #{tonnage,jdbcType=NVARCHAR},
+        <if test="videopuid != null" >
+          videopuid = #{videopuid,jdbcType=NVARCHAR},
+        </if>
+        emissionStandard = #{emissionStandard,jdbcType=NVARCHAR},
+	    equipment1power = #{equipment1power,jdbcType=REAL},
+		equipment2power = #{equipment2power,jdbcType=REAL},
+		equipment3power = #{equipment3power,jdbcType=REAL},
+		equipment4power = #{equipment4power,jdbcType=REAL},
+        equipment5power = #{equipment5power,jdbcType=REAL}
+    where sewageID = #{sewageid,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="sewageWaterdayCount" resultType="java.lang.Integer" parameterType="hashmap" >
+    select count(*) from (<include refid="sewageWaterdayReportSQL"></include>) as a
+  </select>
+  <select id="sewageWaterdayReport" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY sewageID) AS RowNumber,* FROM (
+					 <include refid="sewageWaterdayReportSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <sql id="sewageWaterdayReportSQL" >
+	select sw.sewageID,
+	sw.name as name,
+	ISNULL(wf.water,0.00) as waterflow,
+	ISNULL(wf.water,0)*ISNULL(sw.reduceCOD,0.00) as reduceCOD,
+	ISNULL(wf.water,0)*ISNULL(sw.reduceNH3N,0.00) as reduceNH3N,
+	ISNULL(wf.water,0)*ISNULL(sw.reduceP,0.00) as reduceP from sewage as sw left join  
+	(
+		select sewageid, water as water from statistic_day
+		where CONVERT(varchar(10),#{testingtime},120) = CONVERT(varchar(10),testingtime,120)
+	) as wf
+	on sw.sewageID = wf.sewageid where 1 = 1
+	<if test="sewageid != null" >
+        and sw.sewageid = #{sewageid}
+    </if>
+	<if test="areaid != null" >
+        and sw.areaid = #{areaid}
+    </if>
+  </sql>
+  
+
+
+  <select id="sewageWatermonthCount" resultType="java.lang.Integer" parameterType="hashmap" >
+    select count(*) from (<include refid="sewageWaterdayReportSQL"></include>) as a
+  </select>
+  <select id="sewageWatermonthReport" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY sewageID) AS RowNumber,* FROM (
+					 <include refid="sewageWatermonthReportSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <sql id="sewageWatermonthReportSQL" >
+	select sw.sewageID,
+	sw.name as name,
+	ISNULL(wf.water,0.00) as waterflow,
+	ISNULL(wf.water,0)*ISNULL(sw.reduceCOD,0.00) as reduceCOD,
+	ISNULL(wf.water,0)*ISNULL(sw.reduceNH3N,0.00) as reduceNH3N,
+	ISNULL(wf.water,0)*ISNULL(sw.reduceP,0.00) as reduceP from sewage as sw left join  
+	(
+		select sewageid, sum(water) as water from statistic_day
+		where CONVERT(varchar(7),#{testingtime},120) = CONVERT(varchar(7),testingtime,120) group by sewageid
+	) as wf
+	on sw.sewageID = wf.sewageid  where 1 = 1
+	<if test="sewageid != null" >
+        and sw.sewageid = #{sewageid}
+    </if>
+	<if test="areaid != null" >
+        and sw.areaid = #{areaid}
+    </if>
+  </sql>
+  
+  
+  <select id="sewageWateryearCount" resultType="java.lang.Integer" parameterType="hashmap" >
+    select count(*) from (<include refid="sewageWaterdayReportSQL"></include>) as a
+  </select>
+  <select id="sewageWateryearReport" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY sewageID) AS RowNumber,* FROM (
+					 <include refid="sewageWateryearReportSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <sql id="sewageWateryearReportSQL" >
+	select sw.sewageID,
+	sw.name as name,
+	ISNULL(wf.water,0.00) as waterflow,
+	ISNULL(wf.water,0)*ISNULL(sw.reduceCOD,0.00) as reduceCOD,
+	ISNULL(wf.water,0)*ISNULL(sw.reduceNH3N,0.00) as reduceNH3N,
+	ISNULL(wf.water,0)*ISNULL(sw.reduceP,0.00) as reduceP from sewage as sw left join  
+	(
+		select sewageid, sum(water) as water from statistic_day
+		where CONVERT(varchar(4),#{testingtime},120) = CONVERT(varchar(4),testingtime,120) group by sewageid
+	) as wf
+	on sw.sewageID = wf.sewageid  where 1 = 1
+	<if test="sewageid != null" >
+        and sw.sewageid = #{sewageid}
+    </if>
+	<if test="areaid != null" >
+        and sw.areaid = #{areaid}
+    </if>
+  </sql>
+  
+  
+  <select id="checkSewageIdExist" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+	select COUNT(*) from sewage where sewageid = #{id}
+  </select>
+  
+  <select id="searchSewageidByOperatornum" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    top 1 sewageid,areaid,operationnum
+    from sewage
+    where operationnum = #{operationnum}
+  </select>
+  
+  <select id="getSewagerecordsearchCount" resultType="java.lang.Integer" parameterType="hashmap" >
+    select count(*) from (<include refid="getSewagerecordsearchSQL"></include>) as a
+  </select>
+  <select id="getSewagerecordsearch" resultMap="sewageVO" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY sewageid) AS RowNumber,* FROM (
+					 <include refid="getSewagerecordsearchSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <sql id="getSewagerecordsearchSQL" >
+    select sewageid, sewage.name as name ,operationnum,controlID,controlMethod,tonnage,emissionStandard,admin.name as adminName from sewage
+    left join admin on admin.id = sewage.AdministratorID where 1 =1
+    <if test="sewageid != null" >
+        and sewage.sewageID = #{sewageid}
+    </if>
+	<if test="areaid != null" >
+        and sewage.areaID = #{areaid}
+    </if>
+	<if test="operationnum != null" >
+        and sewage.operationnum = #{operationnum}
+    </if>
+  </sql>
+
+
+  <!-- NO56 -->
+  <select id="getSumHandleWater" resultType="java.lang.Double" parameterType="hashmap" >
+    select
+	sum(ISNULL(wf.water,0.00)) as waterflow from sewage as sw left join
+	(
+		select sewageid, sum(water) as water from statistic_day
+        <if test="reporttype == 1" >
+          where CONVERT(varchar(10),#{testingtime},120) = CONVERT(varchar(10),testingtime,120) group by sewageid
+        </if>
+        <if test="reporttype == 2" >
+          where CONVERT(varchar(7),#{testingtime},120) = CONVERT(varchar(7),testingtime,120) group by sewageid
+        </if>
+        <if test="reporttype == 3" >
+          where CONVERT(varchar(4),#{testingtime},120) = CONVERT(varchar(4),testingtime,120) group by sewageid
+        </if>
+	) as wf
+	on sw.sewageID = wf.sewageid  where 1 = 1
+    <if test="sewageid != null" >
+      and sw.sewageid = #{sewageid}
+    </if>
+    <if test="areaid != null" >
+      and sw.areaid = #{areaid}
+    </if>
+  </select>
+
+  <!--一次性获得所有断电断线-->
+  <select id="getWithoutElectric" resultMap="BaseResultMap" parameterType="hashmap" >
+    select * from (
+      <include refid="getWithoutElectricAndWaterByPaingAndConditionSQL"></include>
+    ) as a
+  </select>
+
+
+  <select id="getSewageHandleExcel" resultMap="BaseResultMap" parameterType="hashmap" >
+    select * from (
+      <if test="reporttype == 1">
+        <include refid="sewageWaterdayReportSQL"></include>
+      </if>
+      <if test="reporttype == 2">
+        <include refid="sewageWatermonthReportSQL"></include>
+      </if>
+      <if test="reporttype == 3">
+        <include refid="sewageWateryearReportSQL"></include>
+      </if>
+    ) as a
+  </select>
+
+  <select id="getSewageHandleExcelCount" resultType="java.lang.Integer" parameterType="hashmap" >
+    select count(*) from (
+    <if test="reporttype == 1">
+      <include refid="sewageWaterdayReportSQL"></include>
+    </if>
+    <if test="reporttype == 2">
+      <include refid="sewageWatermonthReportSQL"></include>
+    </if>
+    <if test="reporttype == 3">
+      <include refid="sewageWateryearReportSQL"></include>
+    </if>
+    ) as a
+  </select>
+
+
+  <!--根据站点id获取该站点是否断电断线-->
+  <select id="getWithoutElectricBySewageid" resultMap="BaseResultMap" parameterType="hashmap" >
+    select * from (
+    <include refid="getWithoutElectricBySewageidSQL"></include>
+    ) as a
+  </select>
+
+
+  <sql id="getWithoutElectricBySewageidSQL" >
+    select * from withoutElectric_data_abnormal where sewageid = #{sewageid}
+    and  CONVERT(varchar(12),testingtime,111) = CONVERT(varchar(12),getdate() ,111)
+  </sql>
+</mapper>

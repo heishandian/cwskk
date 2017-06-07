@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.DetectionDataAbnormalMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.DetectionDataAbnormal" >
+    <id column="detectionID" property="detectionid" jdbcType="BIGINT" />
+    <result column="sewageID" property="sewageid" jdbcType="INTEGER" />
+    <result column="testingtime" property="testingtime" jdbcType="TIMESTAMP" />
+    <result column="detectionnum" property="detectionnum" jdbcType="DOUBLE" />
+    <result column="detectionno" property="detectionno" jdbcType="TINYINT" />
+    <result column="isrepaired" property="isrepaired" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    detectionID, sewageID, testingtime, detectionnum, detectionno, isrepaired
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from detection_data_abnormal
+    where detectionID = #{detectionid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from detection_data_abnormal
+    where detectionID = #{detectionid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yaoli.beans.DetectionDataAbnormal" >
+    insert into detection_data_abnormal (detectionID, sewageID, testingtime, 
+      detectionnum, detectionno, isrepaired
+      )
+    values (#{detectionid,jdbcType=BIGINT}, #{sewageid,jdbcType=INTEGER}, #{testingtime,jdbcType=TIMESTAMP}, 
+      #{detectionnum,jdbcType=NUMERIC}, #{detectionno,jdbcType=TINYINT}, #{isrepaired,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.DetectionDataAbnormal" >
+    insert into detection_data_abnormal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="detectionid != null" >
+        detectionID,
+      </if>
+      <if test="sewageid != null" >
+        sewageID,
+      </if>
+      <if test="testingtime != null" >
+        testingtime,
+      </if>
+      <if test="detectionnum != null" >
+        detectionnum,
+      </if>
+      <if test="detectionno != null" >
+        detectionno,
+      </if>
+      <if test="isrepaired != null" >
+        isrepaired,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="detectionid != null" >
+        #{detectionid,jdbcType=BIGINT},
+      </if>
+      <if test="sewageid != null" >
+        #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="testingtime != null" >
+        #{testingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detectionnum != null" >
+        #{detectionnum,jdbcType=NUMERIC},
+      </if>
+      <if test="detectionno != null" >
+        #{detectionno,jdbcType=TINYINT},
+      </if>
+      <if test="isrepaired != null" >
+        #{isrepaired,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.DetectionDataAbnormal" >
+    update detection_data_abnormal
+    <set >
+      <if test="sewageid != null" >
+        sewageID = #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="testingtime != null" >
+        testingtime = #{testingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detectionnum != null" >
+        detectionnum = #{detectionnum,jdbcType=NUMERIC},
+      </if>
+      <if test="detectionno != null" >
+        detectionno = #{detectionno,jdbcType=TINYINT},
+      </if>
+      <if test="isrepaired != null" >
+        isrepaired = #{isrepaired,jdbcType=TINYINT},
+      </if>
+    </set>
+    where detectionID = #{detectionid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.DetectionDataAbnormal" >
+    update detection_data_abnormal
+    set sewageID = #{sewageid,jdbcType=INTEGER},
+      testingtime = #{testingtime,jdbcType=TIMESTAMP},
+      detectionnum = #{detectionnum,jdbcType=NUMERIC},
+      detectionno = #{detectionno,jdbcType=TINYINT},
+      isrepaired = #{isrepaired,jdbcType=TINYINT}
+    where detectionID = #{detectionid,jdbcType=BIGINT}
+  </update>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from detection_data_abnormal
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from detection_data_abnormal
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="detectionDataAbnormalVO" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY testingtime desc) AS RowNumber,* FROM (
+					 <include refid="selectByPaingAndConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+
+  </select>
+  <sql id="selectByPaingAndConditionSQL" >
+	select sewage.name as sewageName,sewage.areaID,sewage.controlmethod,sewage.operationnum, rda.* from detection_data_abnormal as rda left join sewage on rda.sewageID = sewage.sewageID 
+	where CONVERT(varchar(12),testingtime,111) = CONVERT(varchar(12),getdate(),111) 
+   	<if test="areaid != null" >
+        and areaid = #{areaid}
+    </if>
+  </sql>
+
+  <resultMap type="com.yaoli.vo.DetectionDataAbnormalVO" id="detectionDataAbnormalVO" extends="BaseResultMap">
+ 	<result column="operationnum" property="operationnum" jdbcType="NVARCHAR" />
+ 	<result column="sewageName" property="sewageName" jdbcType="NVARCHAR" />
+  </resultMap>
+  
+  <select id="getLatestSewageDetectionDataAbnormal" resultMap="BaseResultMap">
+	select distinct sewageID from detection_data_abnormal where CONVERT(varchar(12),testingtime,111) = CONVERT(varchar(12),GETDATE() ,111) and isrepaired = 0
+  </select>
+  
+  <select id="getPaingAndConditionTotal" resultType="java.lang.Integer" >
+	select count(*) from(<include refid="selectByPaingAndConditionSQL"></include>) as temp
+  </select>
+  
+  <select id="getDetectionDataAbnormalsForMessage" resultMap="BaseResultMap">
+	  select * from detection_data_abnormal , (
+			select sewage.sewageID from sewage,area where sewage.areaID = area.id and area.isSendArea = 'true'
+		) as temp where detection_data_abnormal.sewageid = temp.sewageID and 
+	CONVERT(varchar(11),testingtime,120) = CONVERT(varchar(11),GETDATE(),120)
+  </select>
+</mapper>

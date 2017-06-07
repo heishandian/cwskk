@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.SewageMonitorVOMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.vo.SewageMonitorVO" >
+    <id column="sewageID" property="sewageid" jdbcType="INTEGER" />
+    <result column="areaID" property="areaid" jdbcType="INTEGER" />
+    <result column="controlID" property="controlid" jdbcType="INTEGER" />
+    <result column="AdministratorID" property="administratorid" jdbcType="INTEGER" />
+    <result column="short_title" property="shortTitle" jdbcType="NVARCHAR" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="address" property="address" jdbcType="NVARCHAR" />
+    <result column="coordinateX" property="coordinatex" jdbcType="DOUBLE" />
+    <result column="coordinateY" property="coordinatey" jdbcType="DOUBLE" />
+    <result column="equipment1state" property="equipment1state" jdbcType="NVARCHAR" />
+    <result column="equipment2state" property="equipment2state" jdbcType="NVARCHAR" />
+    <result column="equipment3state" property="equipment3state" jdbcType="NVARCHAR" />
+    <result column="equipment4state" property="equipment4state" jdbcType="NVARCHAR" />
+    <result column="equipment5state" property="equipment5state" jdbcType="NVARCHAR" />
+    <result column="detection1" property="detection1" jdbcType="REAL" />
+    <result column="detection1UL" property="detection1ul" jdbcType="REAL" />
+    <result column="detection1DL" property="detection1dl" jdbcType="REAL" />
+    <result column="detection2" property="detection2" jdbcType="REAL" />
+    <result column="detection2UL" property="detection2ul" jdbcType="REAL" />
+    <result column="detection2DL" property="detection2dl" jdbcType="REAL" />
+    <result column="detection3UL" property="detection3ul" jdbcType="REAL" />
+    <result column="detection3" property="detection3" jdbcType="REAL" />
+    <result column="detection3DL" property="detection3dl" jdbcType="REAL" />
+    <result column="detection4" property="detection4" jdbcType="REAL" />
+    <result column="detection4UL" property="detection4ul" jdbcType="REAL" />
+    <result column="detection4DL" property="detection4dl" jdbcType="REAL" />
+    <result column="detection5" property="detection5" jdbcType="REAL" />
+    <result column="detection5UL" property="detection5ul" jdbcType="REAL" />
+    <result column="detection5DL" property="detection5dl" jdbcType="REAL" />
+    <result column="detection6" property="detection6" jdbcType="REAL" />
+    <result column="detection6UL" property="detection6ul" jdbcType="REAL" />
+    <result column="detection6DL" property="detection6dl" jdbcType="REAL" />
+    <result column="air_sched" property="airSched" jdbcType="NCHAR" />
+    <result column="water_sched" property="waterSched" jdbcType="NCHAR" />
+    <result column="mud_sched" property="mudSched" jdbcType="NCHAR" />
+    <result column="flow_sched" property="flowSched" jdbcType="NCHAR" />
+    <result column="backup_sched" property="backupSched" jdbcType="NCHAR" />
+    <result column="control_strategy" property="controlStrategy" jdbcType="NCHAR" />
+    <result column="device_alert" property="deviceAlert" jdbcType="NCHAR" />
+    <result column="gratingDays" property="gratingdays" jdbcType="INTEGER" />
+    <result column="confirmGratingTime" property="confirmgratingtime" jdbcType="TIMESTAMP" />
+    <result column="action" property="action" jdbcType="BIGINT" />
+    <result column="waterflow" property="waterflow" jdbcType="REAL" />
+    <result column="reduceCOD" property="reducecod" jdbcType="REAL" />
+    <result column="reduceNH3N" property="reducenh3n" jdbcType="REAL" />
+    <result column="reduceP" property="reducep" jdbcType="REAL" />
+    <result column="operationnum" property="operationnum" jdbcType="NVARCHAR" />
+    <result column="controlMethod" property="controlmethod" jdbcType="INTEGER" />
+    <result column="detection7" property="detection7" jdbcType="REAL" />
+    <result column="detection8" property="detection8" jdbcType="REAL" />
+    <result column="detection9" property="detection9" jdbcType="REAL" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="detection10DL" property="detection10dl" jdbcType="NUMERIC" />
+    <result column="detection11DL" property="detection11dl" jdbcType="NUMERIC" />
+    <result column="detection12DL" property="detection12dl" jdbcType="NUMERIC" />
+    <result column="detection13DL" property="detection13dl" jdbcType="NUMERIC" />
+    <result column="detection14DL" property="detection14dl" jdbcType="NUMERIC" />
+    <result column="detection15DL" property="detection15dl" jdbcType="NUMERIC" />
+    <result column="detection16DL" property="detection16dl" jdbcType="NUMERIC" />
+    <result column="detection17DL" property="detection17dl" jdbcType="NUMERIC" />
+    <result column="detection18DL" property="detection18dl" jdbcType="NUMERIC" />
+    <result column="detection19DL" property="detection19dl" jdbcType="NUMERIC" />
+    <result column="detection20DL" property="detection20dl" jdbcType="NUMERIC" />
+    <result column="detection10UL" property="detection10ul" jdbcType="NUMERIC" />
+    <result column="detection11UL" property="detection11ul" jdbcType="NUMERIC" />
+    <result column="detection12UL" property="detection12ul" jdbcType="NUMERIC" />
+    <result column="detection13UL" property="detection13ul" jdbcType="NUMERIC" />
+    <result column="detection14UL" property="detection14ul" jdbcType="NUMERIC" />
+    <result column="detection15UL" property="detection15ul" jdbcType="NUMERIC" />
+    <result column="detection16UL" property="detection16ul" jdbcType="NUMERIC" />
+    <result column="detection17UL" property="detection17ul" jdbcType="NUMERIC" />
+    <result column="detection18UL" property="detection18ul" jdbcType="NUMERIC" />
+    <result column="detection19UL" property="detection19ul" jdbcType="NUMERIC" />
+    <result column="detection20UL" property="detection20ul" jdbcType="NUMERIC" />
+    <result column="detection7UL" property="detection7ul" jdbcType="NUMERIC" />
+    <result column="detection7DL" property="detection7dl" jdbcType="NUMERIC" />
+    <result column="detection8UL" property="detection8ul" jdbcType="NUMERIC" />
+    <result column="detection8DL" property="detection8dl" jdbcType="NUMERIC" />
+    <result column="detection9UL" property="detection9ul" jdbcType="NUMERIC" />
+    <result column="detection9DL" property="detection9dl" jdbcType="NUMERIC" />
+    <result column="runtimeperiod1" property="runtimeperiod1" jdbcType="INTEGER" />
+    <result column="stoptimeperiod1" property="stoptimeperiod1" jdbcType="INTEGER" />
+    <result column="runtimeperiod2" property="runtimeperiod2" jdbcType="INTEGER" />
+    <result column="stoptimeperiod2" property="stoptimeperiod2" jdbcType="INTEGER" />
+    <result column="runtimeperiod3" property="runtimeperiod3" jdbcType="INTEGER" />
+    <result column="stoptimeperiod3" property="stoptimeperiod3" jdbcType="INTEGER" />
+    <result column="runtimeperiod4" property="runtimeperiod4" jdbcType="INTEGER" />
+    <result column="stoptimeperiod4" property="stoptimeperiod4" jdbcType="INTEGER" />
+    <result column="runtimeperiod5" property="runtimeperiod5" jdbcType="INTEGER" />
+    <result column="stoptimeperiod5" property="stoptimeperiod5" jdbcType="INTEGER" />
+    <result column="runtimeperiod6" property="runtimeperiod6" jdbcType="INTEGER" />
+    <result column="stoptimeperiod6" property="stoptimeperiod6" jdbcType="INTEGER" />
+    <result column="runtimeperiod7" property="runtimeperiod7" jdbcType="INTEGER" />
+    <result column="stoptimeperiod7" property="stoptimeperiod7" jdbcType="INTEGER" />
+    <result column="runtimeperiod8" property="runtimeperiod8" jdbcType="INTEGER" />
+    <result column="stoptimeperiod8" property="stoptimeperiod8" jdbcType="INTEGER" />
+    <result column="runtimeperiod9" property="runtimeperiod9" jdbcType="INTEGER" />
+    <result column="stoptimeperiod9" property="stoptimeperiod9" jdbcType="INTEGER" />
+    <result column="runtimeperiod10" property="runtimeperiod10" jdbcType="INTEGER" />
+    <result column="stoptimeperiod10" property="stoptimeperiod10" jdbcType="INTEGER" />
+    <result column="videourl" property="videourl" jdbcType="NVARCHAR" />
+    <result column="tonnage" property="tonnage" jdbcType="REAL" />
+	<result column="videopuid" property="videopuid" jdbcType="NVARCHAR" />
+	<result column="emissionStandard" property="emissionStandard" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sewageID, areaID, controlID, AdministratorID, short_title, name, address, coordinateX, 
+    coordinateY, equipment1state, equipment2state, equipment3state, equipment4state, 
+    equipment5state, detection1, detection1UL, detection1DL, detection2, detection2UL, 
+    detection2DL, detection3UL, detection3, detection3DL, detection4, detection4UL, detection4DL, 
+    detection5, detection5UL, detection5DL, detection6, detection6UL, detection6DL, air_sched, 
+    water_sched, mud_sched, flow_sched, backup_sched, control_strategy, device_alert, 
+    gratingDays, confirmGratingTime, action, waterflow, reduceCOD, reduceNH3N, reduceP, 
+    operationnum, controlMethod, detection7, detection8, detection9, updatetime, detection10DL, 
+    detection11DL, detection12DL, detection13DL, detection14DL, detection15DL, detection16DL, 
+    detection17DL, detection18DL, detection19DL, detection20DL, detection10UL, detection11UL, 
+    detection12UL, detection13UL, detection14UL, detection15UL, detection16UL, detection17UL, 
+    detection18UL, detection19UL, detection20UL, detection7UL, detection7DL, detection8UL, 
+    detection8DL, detection9UL, detection9DL, runtimeperiod1, stoptimeperiod1, runtimeperiod2, 
+    stoptimeperiod2, runtimeperiod3, stoptimeperiod3, runtimeperiod4, stoptimeperiod4, 
+    runtimeperiod5, stoptimeperiod5, runtimeperiod6, stoptimeperiod6, runtimeperiod7, 
+    stoptimeperiod7, runtimeperiod8, stoptimeperiod8, runtimeperiod9, stoptimeperiod9, 
+    runtimeperiod10, stoptimeperiod10,videourl,tonnage,videopuid,emissionStandard
+  </sql>
+  
+  <select id="getSewageMonitorVOBySewageId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sewage
+    where sewageID = #{sewageid,jdbcType=INTEGER}
+  </select>
+</mapper>

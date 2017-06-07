@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.BreakdownStateMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.BreakdownState" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="breakdownId" property="breakdownid" jdbcType="INTEGER" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="itemStateId" property="itemstateid" jdbcType="INTEGER" />
+    <result column="operatorId" property="operatorid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, breakdownId, updateTime, itemStateId, operatorId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from breakdownState
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from breakdownState
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yaoli.beans.BreakdownState" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into breakdownState (breakdownId, updateTime, itemStateId, 
+      operatorId)
+    values (#{breakdownid,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP}, #{itemstateid,jdbcType=INTEGER}, 
+      #{operatorid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.BreakdownState" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into breakdownState
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="breakdownid != null" >
+        breakdownId,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="itemstateid != null" >
+        itemStateId,
+      </if>
+      <if test="operatorid != null" >
+        operatorId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="breakdownid != null" >
+        #{breakdownid,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemstateid != null" >
+        #{itemstateid,jdbcType=INTEGER},
+      </if>
+      <if test="operatorid != null" >
+        #{operatorid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.BreakdownState" >
+    update breakdownState
+    <set >
+      <if test="breakdownid != null" >
+        breakdownId = #{breakdownid,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemstateid != null" >
+        itemStateId = #{itemstateid,jdbcType=INTEGER},
+      </if>
+      <if test="operatorid != null" >
+        operatorId = #{operatorid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.BreakdownState" >
+    update breakdownState
+    set breakdownId = #{breakdownid,jdbcType=INTEGER},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      itemStateId = #{itemstateid,jdbcType=INTEGER},
+      operatorId = #{operatorid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from breakdownState
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from breakdownState
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (				 SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM ( 
+					 <include refid="selectByPaingAndConditionSQL"></include> 
+				 ) as b 
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+
+  <sql id="selectByPaingAndConditionSQL" >
+    select top 100 percent id,breakdownId,updateTime,itemStateId,operatorId from breakdownState where 1=1 
+  </sql>
+
+  <select id="selectMaxStateIdByBreakdownId" resultType="com.yaoli.beans.BreakdownState" parameterType="java.lang.Integer">
+    select MAX(itemStateId) as itemStateId from breakdownState where breakdownId = #{breakdownid}
+  </select>
+
+  <select id="getBreakdownStateListByBreakdownId" resultType="com.yaoli.beans.BreakdownState">
+    select * from breakdownstate where breakdownid = #{breakdownid} order by updateTime asc
+  </select>
+</mapper>

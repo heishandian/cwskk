@@ -1,0 +1,200 @@
+UNKNOWN {
+	COLOR: midnightblue; LINE-HEIGHT: 16px; TEXT-DECORATION: none
+}
+A:link {
+	COLOR: midnightblue; TEXT-DECORATION: none; COLOR: black
+}
+A:visited {
+	COLOR: darkblue; TEXT-DECORATION: underline
+}
+A:hover {
+	COLOR: dimgray; TEXT-DECORATION: underline
+}
+A.external:link {
+	COLOR: blue
+}
+A.external:visited {
+	COLOR: midnightblue
+}
+A.external:hover {
+	COLOR: white
+}
+TD {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; FONT-SIZE: x-small; BORDER-LEFT-COLOR: dimgray; BORDER-BOTTOM-WIDTH: 0px; BORDER-BOTTOM-COLOR: dimgray; BORDER-TOP-COLOR: dimgray; LINE-HEIGHT: 1.2; BORDER-RIGHT-WIDTH: 0px; BORDER-RIGHT-COLOR: dimgray
+}
+BODY {
+	MARGIN-TOP: 0px; FONT-SIZE: x-small; LINE-HEIGHT: 1.2; FONT-FAMILY: MS UI Gothic, monospace
+}
+HR {
+	WIDTH: 100%
+}
+IMG {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+}
+.tr-menu-kisuu {
+	BACKGROUND-COLOR: white
+}
+.tr-menu-guusuu {
+	BACKGROUND-COLOR: linen
+}
+.td-menu-setsumei {
+	FONT-SIZE: x-small; VERTICAL-ALIGN: bottom; COLOR: black; BACKGROUND-COLOR: #F0F5FD; TEXT-ALIGN: left
+}
+TABLE {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+.table-back {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BACKGROUND-COLOR: dimgray; BORDER-RIGHT-WIDTH: 0px
+}
+.tr-body-title {
+	MARGIN-TOP: 0px; MARGIN-LEFT: 0px; WIDTH: 100%; COLOR: black; BACKGROUND-COLOR: #ffcc66; TEXT-ALIGN: left
+}
+.body-title {
+	FONT-WEIGHT: bold
+}
+.block-title {
+	FONT-SIZE: x-small; COLOR: midnightblue; LINE-HEIGHT: 1.2; FONT-FAMILY: MS UI Gothic, monospace
+}
+.block-hissu-title {
+	FONT-WEIGHT: bold; FONT-SIZE: x-small; COLOR: red; LINE-HEIGHT: 1.2; FONT-FAMILY: MS UI Gothic, monospace
+}
+.menu-background {
+	BACKGROUND: #ffffff no-repeat
+}
+.tr-header-top {
+	MARGIN-TOP: 0px; MARGIN-LEFT: 0px; WIDTH: 100%; BACKGROUND-COLOR: #d2ffd0; TEXT-ALIGN: center
+}
+.tr-header-bottom {
+	MARGIN-TOP: 0px; MARGIN-LEFT: 0px; WIDTH: 100%; BACKGROUND-COLOR: #ffcc00
+}
+.td-header-id {
+	TEXT-ALIGN: right
+}
+.td-header {
+	DISPLAY: none
+}
+.tr-list-captions {
+	BACKGROUND-COLOR: #ffcc33
+}
+.tr-list-kisuu {
+	BACKGROUND-COLOR: white
+}
+.tr-list-guusuu {
+	BACKGROUND-COLOR: F0F5FD
+}
+.td-list-caption {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; VERTICAL-ALIGN: middle; WHITE-SPACE: nowrap; TEXT-ALIGN: left; BORDER-STYLE: RIDGE
+}
+.td-list-hissu-caption {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; VERTICAL-ALIGN: middle; COLOR: red; WHITE-SPACE: nowrap; TEXT-ALIGN: center
+}
+.td-list-center {
+	VERTICAL-ALIGN: middle; TEXT-ALIGN: center
+}
+.caption {
+	FONT-WEIGHT: bold; VERTICAL-ALIGN: middle; COLOR: #222222; WHITE-SPACE: nowrap; TEXT-ALIGN: right
+}
+.hissu-caption {
+	FONT-WEIGHT: bold; VERTICAL-ALIGN: middle; COLOR: red; WHITE-SPACE: nowrap; TEXT-ALIGN: right
+}
+.suuchi {
+	TEXT-ALIGN: right
+}
+.number-text {
+	IME-MODE: disabled; WIDTH: 90px; TEXT-ALIGN: right
+}
+.code-text {
+	IME-MODE: disabled; WIDTH: 90px
+}
+.date-text {
+	IME-MODE: disabled; WIDTH: 70px; TEXT-ALIGN: right
+}
+.month-text {
+	IME-MODE: disabled; WIDTH: 55px; TEXT-ALIGN: right
+}
+.year-text {
+	IME-MODE: disabled; WIDTH: 40px; TEXT-ALIGN: right
+}
+.second-text {
+	IME-MODE: disabled; WIDTH: 55px; TEXT-ALIGN: right
+}
+.time-text {
+	IME-MODE: disabled; WIDTH: 40px; TEXT-ALIGN: right
+}
+.name-short-text {
+	IME-MODE: active; WIDTH: 400px
+}
+.name-long-text {
+	IME-MODE: active; WIDTH: 500px
+}
+.address-text {
+	IME-MODE: active; WIDTH: 400px; HEIGHT: 50px
+}
+.name-kana-text {
+	IME-MODE: active; WIDTH: 400px
+}
+.name-eiji-text {
+	IME-MODE: disabled; WIDTH: 400px
+}
+.image-text {
+	IME-MODE: inactive; WIDTH: 400px
+}
+.money-text {
+	IME-MODE: disabled; WIDTH: 135px; TEXT-ALIGN: right
+}
+.suuryo-text {
+	IME-MODE: disabled; WIDTH: 85px; TEXT-ALIGN: right
+}
+.rate-text {
+	IME-MODE: disabled; WIDTH: 80px; TEXT-ALIGN: right
+}
+.tel-text {
+	IME-MODE: disabled; WIDTH: 150px
+}
+.zip-text {
+	IME-MODE: disabled; WIDTH: 90px
+}
+.setsumei-short-text {
+	IME-MODE: active; WIDTH: 500px
+}
+.setsumei-middle-text {
+	IME-MODE: active; WIDTH: 500px; HEIGHT: 50px
+}
+.setsumei-long-text {
+	IME-MODE: active; WIDTH: 500px; HEIGHT: 75px
+}
+.setsumei-super-text {
+	IME-MODE: active; WIDTH: 500px; HEIGHT: 200px
+}
+.datetime-text {
+	IME-MODE: disabled; WIDTH: 95px; TEXT-ALIGN: right
+}
+.datesecond-text {
+	IME-MODE: disabled; WIDTH: 110px; TEXT-ALIGN: right
+}
+.zenkaku-text {
+	IME-MODE: active
+}
+.hankaku-text {
+	IME-MODE: disabled
+}
+.suuchi-text {
+	IME-MODE: disabled; TEXT-ALIGN: right
+}
+.error-msg {
+	COLOR: red
+}
+.warning-msg {
+	COLOR: red
+}
+
+.DisplayText{
+    x:expression(this.readOnly=true); border-style:none; border-width:0; width:600 }
+
+.login-caption {
+	FONT-WEIGHT: bold; VERTICAL-ALIGN: middle; COLOR: #666666; WHITE-SPACE: nowrap; TEXT-ALIGN: right; FONT-FAMILY: MS UI Gothic
+}
+
+.panel-title {
+    color: #0080C0; font-size: 15px; font-family: SimSun; font-weight: bold
+}

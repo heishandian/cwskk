@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.UserLoginRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.UserLoginRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="userlogintime" property="userlogintime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userid, userlogintime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from userloginrecord
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userloginrecord
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yaoli.beans.UserLoginRecord" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT @@IDENTITY
+    </selectKey>
+    insert into userloginrecord (userid, userlogintime)
+    values (#{userid,jdbcType=INTEGER}, #{userlogintime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.UserLoginRecord" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT @@IDENTITY
+    </selectKey>
+    insert into userloginrecord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="userlogintime != null" >
+        userlogintime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="userlogintime != null" >
+        #{userlogintime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.UserLoginRecord" >
+    update userloginrecord
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="userlogintime != null" >
+        userlogintime = #{userlogintime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.UserLoginRecord" >
+    update userloginrecord
+    set userid = #{userid,jdbcType=INTEGER},
+      userlogintime = #{userlogintime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from userloginrecord
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from userloginrecord
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (				 SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM ( 
+					 <include refid="selectByPaingAndConditionSQL"></include> 
+				 ) as b 
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <sql id="selectByPaingAndConditionSQL" >
+    select top 100 percent id,userid,userlogintime from userloginrecord where 1=1 
+  </sql>
+  
+  
+  <resultMap id="userLoginRecordVO" type="com.yaoli.vo.UserLoginRecordVO"  extends="BaseResultMap">
+      <result column="username" property="username" jdbcType="NVARCHAR" />
+      <result column="loginname" property="loginname" jdbcType="NVARCHAR" />
+
+  </resultMap>
+  <select id="getUserLoginRecordTotal" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(*) from (<include refid="getUserLoginRecordSQL"></include>) as temp
+  </select>
+  <select id="getUserLoginRecord" resultMap="userLoginRecordVO" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (				 SELECT ROW_NUMBER() OVER (ORDER BY userlogintime desc) AS RowNumber,* FROM ( 
+					 <include refid="getUserLoginRecordSQL"></include> 
+				 ) as b 
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <sql id="getUserLoginRecordSQL" >
+      select  top 100 percent userloginrecord.id,userloginrecord.userlogintime,userloginrecord.userid,sysuser.username as username,sysuser.loginname as loginname from userloginrecord inner join sysuser on userloginrecord.userid = sysuser.id
+      <if test="begintime != null" >
+	   		<![CDATA[
+	       		and userlogintime >= #{begintime}
+	        ]]>
+	    </if>
+	   	<if test="endtime != null" >
+	   		<![CDATA[
+	       		and userlogintime <= #{endtime}
+	        ]]>
+	    </if>
+	   	<if test="username != null" >
+	   		<![CDATA[
+	       		and sysuser.loginname = #{username}
+	        ]]>
+	    </if>
+  </sql>
+
+
+    <!-- 获取用户登录次数 -->
+    <select id="getUserLoginTimes" resultType="java.lang.Integer" parameterType="hashmap" >
+        select count(*) from (<include refid="getUserLoginRecordSQL"></include>) as temp
+    </select>
+</mapper>

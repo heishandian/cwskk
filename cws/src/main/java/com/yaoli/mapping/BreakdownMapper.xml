@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.BreakdownMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.Breakdown" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="itemName" property="itemname" jdbcType="NVARCHAR" />
+    <result column="itemNO" property="itemno" jdbcType="NVARCHAR" />
+    <result column="sourceId" property="sourceid" jdbcType="INTEGER" />
+    <result column="breakdownDescription" property="breakdowndescription" jdbcType="NVARCHAR" />
+    <result column="breakdownTypeId" property="breakdowntypeid" jdbcType="INTEGER" />
+    <result column="breakdownTime" property="breakdowntime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <resultMap id="breakdownvo" type="com.yaoli.vo.BreakdownVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="itemName" property="itemname" jdbcType="NVARCHAR" />
+    <result column="itemNO" property="itemno" jdbcType="NVARCHAR" />
+    <result column="sourceId" property="sourceid" jdbcType="INTEGER" />
+    <result column="breakdownDescription" property="breakdowndescription" jdbcType="NVARCHAR" />
+    <result column="breakdownTypeId" property="breakdowntypeid" jdbcType="INTEGER" />
+    <result column="breakdownTime" property="breakdowntime" jdbcType="TIMESTAMP" />
+
+    <result column="itemStateId" property="itemstateid" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="NVARCHAR" />
+    <result column="breakdowntype" property="breakdowntype" jdbcType="NVARCHAR" />
+    <result column="itemstate" property="itemstate" jdbcType="NVARCHAR" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+
+    <result column="operator" property="operator" jdbcType="NVARCHAR" />
+
+    <result column="numSongJian" property="numSongJian" jdbcType="NVARCHAR" />
+    <result column="numZaiChuLi" property="numZaiChuLi" jdbcType="NVARCHAR" />
+    <result column="numBaoFei" property="numBaoFei" jdbcType="NVARCHAR" />
+    <result column="numWeiXiuWanChen" property="numWeiXiuWanChen" jdbcType="NVARCHAR" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List" >
+    id, itemName, itemNO, sourceId, breakdownDescription, breakdownTypeId, breakdownTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from breakdown
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from breakdown
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yaoli.beans.Breakdown" useGeneratedKeys="true" keyProperty="id">
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT @@IDENTITY
+    </selectKey>
+    insert into breakdown (itemName, itemNO, sourceId, 
+      breakdownDescription, breakdownTypeId, 
+      breakdownTime)
+    values (#{itemname,jdbcType=NVARCHAR}, #{itemno,jdbcType=NVARCHAR}, #{sourceid,jdbcType=INTEGER}, 
+      #{breakdowndescription,jdbcType=NVARCHAR}, #{breakdowntypeid,jdbcType=INTEGER}, 
+      #{breakdowntime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.Breakdown" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into breakdown
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemname != null" >
+        itemName,
+      </if>
+      <if test="itemno != null" >
+        itemNO,
+      </if>
+      <if test="sourceid != null" >
+        sourceId,
+      </if>
+      <if test="breakdowndescription != null" >
+        breakdownDescription,
+      </if>
+      <if test="breakdowntypeid != null" >
+        breakdownTypeId,
+      </if>
+      <if test="breakdowntime != null" >
+        breakdownTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemname != null" >
+        #{itemname,jdbcType=NVARCHAR},
+      </if>
+      <if test="itemno != null" >
+        #{itemno,jdbcType=NVARCHAR},
+      </if>
+      <if test="sourceid != null" >
+        #{sourceid,jdbcType=INTEGER},
+      </if>
+      <if test="breakdowndescription != null" >
+        #{breakdowndescription,jdbcType=NVARCHAR},
+      </if>
+      <if test="breakdowntypeid != null" >
+        #{breakdowntypeid,jdbcType=INTEGER},
+      </if>
+      <if test="breakdowntime != null" >
+        #{breakdowntime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.Breakdown" >
+    update breakdown
+    <set >
+      <if test="itemname != null" >
+        itemName = #{itemname,jdbcType=NVARCHAR},
+      </if>
+      <if test="itemno != null" >
+        itemNO = #{itemno,jdbcType=NVARCHAR},
+      </if>
+      <if test="sourceid != null" >
+        sourceId = #{sourceid,jdbcType=INTEGER},
+      </if>
+      <if test="breakdowndescription != null" >
+        breakdownDescription = #{breakdowndescription,jdbcType=NVARCHAR},
+      </if>
+      <if test="breakdowntypeid != null" >
+        breakdownTypeId = #{breakdowntypeid,jdbcType=INTEGER},
+      </if>
+      <if test="breakdowntime != null" >
+        breakdownTime = #{breakdowntime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.Breakdown" >
+    update breakdown
+    set itemName = #{itemname,jdbcType=NVARCHAR},
+      itemNO = #{itemno,jdbcType=NVARCHAR},
+      sourceId = #{sourceid,jdbcType=INTEGER},
+      breakdownDescription = #{breakdowndescription,jdbcType=NVARCHAR},
+      breakdownTypeId = #{breakdowntypeid,jdbcType=INTEGER},
+      breakdownTime = #{breakdowntime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from breakdown
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from breakdown
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (				 SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM ( 
+					 <include refid="selectByPaingAndConditionSQL"></include> 
+				 ) as b 
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <!--<select id="selectByItemno" ></select>-->
+
+  <select id="selectByItemno" resultType="com.yaoli.beans.Breakdown" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from breakdown
+    where itemNO = #{itemno}
+  </select>
+
+  <sql id="selectByPaingAndConditionSQL" >
+    select top 100 percent id,itemName,itemNO,sourceId,breakdownDescription,breakdownTypeId,breakdownTime from breakdown where 1=1 
+  </sql>
+
+  <select id="showFaultReview" resultType="com.yaoli.vo.BreakdownVO">
+    SELECT TOP ${pageSize} *
+    FROM  (				 SELECT ROW_NUMBER() OVER (ORDER BY breakdownTime desc) AS RowNumber,* FROM (
+    <include refid="showFaultReviewSQL"></include>
+    ) as b
+    ) as A
+    WHERE RowNumber > ${pageSize} * (${pageNum} - 1)
+  </select>
+  <select id="showFaultReviewCount" resultType="java.lang.Integer">
+    select count(*) from (<include refid="showFaultReviewSQL"></include>) as temp;
+  </select>
+
+  <sql id="showFaultReviewSQL" >
+    select * from breakdown left join
+    (
+        select a.breakdownId,b.itemStateId,b.operatorId,b.updateTime from (select MAX(updatetime) as updatetime,breakdownid from breakdownState group by breakdownId) as a left join
+        breakdownState as b
+        on b.breakdownId = a.breakdownId and a.updatetime = b.updateTime
+    ) as c
+    on breakdown.id = c.breakdownId
+  WHERE 1= 1
+    <if test="itemname != null" >
+      and itemName = #{itemname}
+    </if>
+    <if test="itemno != null" >
+      and itemNO = #{itemno}
+    </if>
+    <if test="sourceid != null" >
+      and sourceId = #{sourceid}
+    </if>
+    <if test="itemstateid != null" >
+      and itemstateid = #{itemstateid}
+    </if>
+
+    <if test="begintime != null" >
+      <![CDATA[
+      and breakdowntime >= #{begintime}
+      ]]>
+    </if>
+    <if test="endtime != null" >
+      <![CDATA[
+      and breakdowntime <= #{endtime}
+    ]]>
+    </if>
+  </sql>
+
+  <select id="getFaultStatisticReport" resultType="com.yaoli.vo.BreakdownVO" parameterType="hashmap">
+    SELECT TOP ${pageSize} *
+    FROM  (				 SELECT ROW_NUMBER() OVER (order by itemName) AS RowNumber,* FROM (
+    <include refid="getFaultStatisticReportSQL"></include>
+    ) as b
+    ) as A
+    WHERE RowNumber > ${pageSize} * (${pageNum} - 1)
+  </select>
+
+  <select id="getFaultStatisticReportCount" resultType="java.lang.Integer" parameterType="hashmap">
+    select count(*) from (<include refid="getFaultStatisticReportSQL"></include>) as temp;
+  </select>
+
+
+
+  <!-- 转置 -->
+  <!-- http://blog.csdn.net/linybo/article/details/44421767 -->
+  <sql id="getFaultStatisticReportSQL">
+select itemname,isnull([0],0) as numSongJian,isnull([1] + [2],0) as numZaiChuLi ,isnull([3],0) as numBaoFei,isnull([4],0) as numWeiXiuWanChen
+from
+	(
+		select itemName,itemStateId,COUNT(itemstateid) as num from
+		(
+			select b.id,b.itemName,b.itemNO,b.breakdownTime,s.itemStateId,b.sourceId from breakdown as b left join
+				(select MAX(itemStateId) as itemStateId,breakdownId from breakdownState group by breakdownId) as s on b.id = s.breakdownId
+				where 1 = 1
+
+                <if test="sourceid != null" >
+                  and sourceId = #{sourceid}
+                </if>
+
+                <if test="reporttype == '1'" >
+                  and CONVERT(varchar(7),breakdownTime,120) = CONVERT(varchar(7),#{testingtime},120)
+                </if>
+                <if test="reporttype == '2'" >
+                  and CONVERT(varchar(4),breakdownTime,120) = CONVERT(varchar(4),#{testingtime},120)
+                </if>
+
+		) as temp group by itemName,itemStateId
+	) as temp2
+
+	pivot(
+			sum(num) for itemStateId in (
+				[0],[1],[2],[3],[4]
+			)
+
+		 ) as my
+  </sql>
+
+  <select id="getAllFaultStatisticReport" resultType="com.yaoli.vo.BreakdownVO" parameterType="hashmap">
+    <include refid="getFaultStatisticReportSQL" ></include>
+  </select>
+
+</mapper>

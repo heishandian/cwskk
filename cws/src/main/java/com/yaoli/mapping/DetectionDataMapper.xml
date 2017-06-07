@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.DetectionDataMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.DetectionData" >
+    <id column="detectionID" property="detectionid" jdbcType="BIGINT" />
+    <result column="sewageID" property="sewageid" jdbcType="INTEGER" />
+    <result column="testingtime" property="testingtime" jdbcType="TIMESTAMP" />
+    <result column="detection1" property="detection1" jdbcType="DOUBLE" />
+    <result column="detection2" property="detection2" jdbcType="DOUBLE" />
+    <result column="detection3" property="detection3" jdbcType="DOUBLE" />
+    <result column="detection4" property="detection4" jdbcType="DOUBLE" />
+    <result column="detection5" property="detection5" jdbcType="DOUBLE" />
+    <result column="detection6" property="detection6" jdbcType="DOUBLE" />
+    <result column="detection7" property="detection7" jdbcType="DOUBLE" />
+    <result column="detection8" property="detection8" jdbcType="DOUBLE" />
+    <result column="detection9" property="detection9" jdbcType="DOUBLE" />
+    <result column="detection10" property="detection10" jdbcType="DOUBLE" />
+    <result column="detection11" property="detection11" jdbcType="DOUBLE" />
+    <result column="detection12" property="detection12" jdbcType="DOUBLE" />
+    <result column="detection13" property="detection13" jdbcType="DOUBLE" />
+    <result column="detection14" property="detection14" jdbcType="DOUBLE" />
+    <result column="detection15" property="detection15" jdbcType="DOUBLE" />
+    <result column="detection16" property="detection16" jdbcType="DOUBLE" />
+    <result column="detection17" property="detection17" jdbcType="DOUBLE" />
+    <result column="detection18" property="detection18" jdbcType="DOUBLE" />
+    <result column="detection19" property="detection19" jdbcType="DOUBLE" />
+    <result column="detection20" property="detection20" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    detectionID, sewageID, testingtime, detection1, detection2, detection3, detection4, 
+    detection5, detection6, detection7, detection8, detection9, detection10, detection11, 
+    detection12, detection13, detection14, detection15, detection16, detection17, detection18, 
+    detection19, detection20
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from detection_data
+    where detectionID = #{detectionid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from detection_data
+    where detectionID = #{detectionid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yaoli.beans.DetectionData" >
+    <selectKey resultType="java.lang.Integer" keyProperty="detectionid" order="AFTER" >
+      SELECT @@IDENTITY
+    </selectKey>
+    insert into detection_data (detectionID, sewageID, testingtime, 
+      detection1, detection2, detection3, 
+      detection4, detection5, detection6, 
+      detection7, detection8, detection9, 
+      detection10, detection11, detection12, 
+      detection13, detection14, detection15, 
+      detection16, detection17, detection18, 
+      detection19, detection20)
+    values (#{detectionid,jdbcType=BIGINT}, #{sewageid,jdbcType=INTEGER}, #{testingtime,jdbcType=TIMESTAMP}, 
+      #{detection1,jdbcType=DOUBLE}, #{detection2,jdbcType=DOUBLE}, #{detection3,jdbcType=DOUBLE}, 
+      #{detection4,jdbcType=DOUBLE}, #{detection5,jdbcType=DOUBLE}, #{detection6,jdbcType=DOUBLE}, 
+      #{detection7,jdbcType=DOUBLE}, #{detection8,jdbcType=DOUBLE}, #{detection9,jdbcType=DOUBLE}, 
+      #{detection10,jdbcType=DOUBLE}, #{detection11,jdbcType=DOUBLE}, #{detection12,jdbcType=DOUBLE}, 
+      #{detection13,jdbcType=DOUBLE}, #{detection14,jdbcType=DOUBLE}, #{detection15,jdbcType=DOUBLE}, 
+      #{detection16,jdbcType=DOUBLE}, #{detection17,jdbcType=DOUBLE}, #{detection18,jdbcType=DOUBLE}, 
+      #{detection19,jdbcType=DOUBLE}, #{detection20,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.DetectionData" >
+    <selectKey resultType="java.lang.Integer" keyProperty="detectionid" order="AFTER" >
+      SELECT @@IDENTITY
+    </selectKey>
+    insert into detection_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="detectionid != null" >
+        detectionID,
+      </if>
+      <if test="sewageid != null" >
+        sewageID,
+      </if>
+      <if test="testingtime != null" >
+        testingtime,
+      </if>
+      <if test="detection1 != null" >
+        detection1,
+      </if>
+      <if test="detection2 != null" >
+        detection2,
+      </if>
+      <if test="detection3 != null" >
+        detection3,
+      </if>
+      <if test="detection4 != null" >
+        detection4,
+      </if>
+      <if test="detection5 != null" >
+        detection5,
+      </if>
+      <if test="detection6 != null" >
+        detection6,
+      </if>
+      <if test="detection7 != null" >
+        detection7,
+      </if>
+      <if test="detection8 != null" >
+        detection8,
+      </if>
+      <if test="detection9 != null" >
+        detection9,
+      </if>
+      <if test="detection10 != null" >
+        detection10,
+      </if>
+      <if test="detection11 != null" >
+        detection11,
+      </if>
+      <if test="detection12 != null" >
+        detection12,
+      </if>
+      <if test="detection13 != null" >
+        detection13,
+      </if>
+      <if test="detection14 != null" >
+        detection14,
+      </if>
+      <if test="detection15 != null" >
+        detection15,
+      </if>
+      <if test="detection16 != null" >
+        detection16,
+      </if>
+      <if test="detection17 != null" >
+        detection17,
+      </if>
+      <if test="detection18 != null" >
+        detection18,
+      </if>
+      <if test="detection19 != null" >
+        detection19,
+      </if>
+      <if test="detection20 != null" >
+        detection20,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="detectionid != null" >
+        #{detectionid,jdbcType=BIGINT},
+      </if>
+      <if test="sewageid != null" >
+        #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="testingtime != null" >
+        #{testingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detection1 != null" >
+        #{detection1,jdbcType=DOUBLE},
+      </if>
+      <if test="detection2 != null" >
+        #{detection2,jdbcType=DOUBLE},
+      </if>
+      <if test="detection3 != null" >
+        #{detection3,jdbcType=DOUBLE},
+      </if>
+      <if test="detection4 != null" >
+        #{detection4,jdbcType=DOUBLE},
+      </if>
+      <if test="detection5 != null" >
+        #{detection5,jdbcType=DOUBLE},
+      </if>
+      <if test="detection6 != null" >
+        #{detection6,jdbcType=DOUBLE},
+      </if>
+      <if test="detection7 != null" >
+        #{detection7,jdbcType=DOUBLE},
+      </if>
+      <if test="detection8 != null" >
+        #{detection8,jdbcType=DOUBLE},
+      </if>
+      <if test="detection9 != null" >
+        #{detection9,jdbcType=DOUBLE},
+      </if>
+      <if test="detection10 != null" >
+        #{detection10,jdbcType=DOUBLE},
+      </if>
+      <if test="detection11 != null" >
+        #{detection11,jdbcType=DOUBLE},
+      </if>
+      <if test="detection12 != null" >
+        #{detection12,jdbcType=DOUBLE},
+      </if>
+      <if test="detection13 != null" >
+        #{detection13,jdbcType=DOUBLE},
+      </if>
+      <if test="detection14 != null" >
+        #{detection14,jdbcType=DOUBLE},
+      </if>
+      <if test="detection15 != null" >
+        #{detection15,jdbcType=DOUBLE},
+      </if>
+      <if test="detection16 != null" >
+        #{detection16,jdbcType=DOUBLE},
+      </if>
+      <if test="detection17 != null" >
+        #{detection17,jdbcType=DOUBLE},
+      </if>
+      <if test="detection18 != null" >
+        #{detection18,jdbcType=DOUBLE},
+      </if>
+      <if test="detection19 != null" >
+        #{detection19,jdbcType=DOUBLE},
+      </if>
+      <if test="detection20 != null" >
+        #{detection20,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.DetectionData" >
+    update detection_data
+    <set >
+      <if test="sewageid != null" >
+        sewageID = #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="testingtime != null" >
+        testingtime = #{testingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detection1 != null" >
+        detection1 = #{detection1,jdbcType=DOUBLE},
+      </if>
+      <if test="detection2 != null" >
+        detection2 = #{detection2,jdbcType=DOUBLE},
+      </if>
+      <if test="detection3 != null" >
+        detection3 = #{detection3,jdbcType=DOUBLE},
+      </if>
+      <if test="detection4 != null" >
+        detection4 = #{detection4,jdbcType=DOUBLE},
+      </if>
+      <if test="detection5 != null" >
+        detection5 = #{detection5,jdbcType=DOUBLE},
+      </if>
+      <if test="detection6 != null" >
+        detection6 = #{detection6,jdbcType=DOUBLE},
+      </if>
+      <if test="detection7 != null" >
+        detection7 = #{detection7,jdbcType=DOUBLE},
+      </if>
+      <if test="detection8 != null" >
+        detection8 = #{detection8,jdbcType=DOUBLE},
+      </if>
+      <if test="detection9 != null" >
+        detection9 = #{detection9,jdbcType=DOUBLE},
+      </if>
+      <if test="detection10 != null" >
+        detection10 = #{detection10,jdbcType=DOUBLE},
+      </if>
+      <if test="detection11 != null" >
+        detection11 = #{detection11,jdbcType=DOUBLE},
+      </if>
+      <if test="detection12 != null" >
+        detection12 = #{detection12,jdbcType=DOUBLE},
+      </if>
+      <if test="detection13 != null" >
+        detection13 = #{detection13,jdbcType=DOUBLE},
+      </if>
+      <if test="detection14 != null" >
+        detection14 = #{detection14,jdbcType=DOUBLE},
+      </if>
+      <if test="detection15 != null" >
+        detection15 = #{detection15,jdbcType=DOUBLE},
+      </if>
+      <if test="detection16 != null" >
+        detection16 = #{detection16,jdbcType=DOUBLE},
+      </if>
+      <if test="detection17 != null" >
+        detection17 = #{detection17,jdbcType=DOUBLE},
+      </if>
+      <if test="detection18 != null" >
+        detection18 = #{detection18,jdbcType=DOUBLE},
+      </if>
+      <if test="detection19 != null" >
+        detection19 = #{detection19,jdbcType=DOUBLE},
+      </if>
+      <if test="detection20 != null" >
+        detection20 = #{detection20,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where detectionID = #{detectionid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.DetectionData" >
+    update detection_data
+    set sewageID = #{sewageid,jdbcType=INTEGER},
+      testingtime = #{testingtime,jdbcType=TIMESTAMP},
+      detection1 = #{detection1,jdbcType=DOUBLE},
+      detection2 = #{detection2,jdbcType=DOUBLE},
+      detection3 = #{detection3,jdbcType=DOUBLE},
+      detection4 = #{detection4,jdbcType=DOUBLE},
+      detection5 = #{detection5,jdbcType=DOUBLE},
+      detection6 = #{detection6,jdbcType=DOUBLE},
+      detection7 = #{detection7,jdbcType=DOUBLE},
+      detection8 = #{detection8,jdbcType=DOUBLE},
+      detection9 = #{detection9,jdbcType=DOUBLE},
+      detection10 = #{detection10,jdbcType=DOUBLE},
+      detection11 = #{detection11,jdbcType=DOUBLE},
+      detection12 = #{detection12,jdbcType=DOUBLE},
+      detection13 = #{detection13,jdbcType=DOUBLE},
+      detection14 = #{detection14,jdbcType=DOUBLE},
+      detection15 = #{detection15,jdbcType=DOUBLE},
+      detection16 = #{detection16,jdbcType=DOUBLE},
+      detection17 = #{detection17,jdbcType=DOUBLE},
+      detection18 = #{detection18,jdbcType=DOUBLE},
+      detection19 = #{detection19,jdbcType=DOUBLE},
+      detection20 = #{detection20,jdbcType=DOUBLE}
+    where detectionID = #{detectionid,jdbcType=BIGINT}
+  </update>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from detection_data
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from detection_data
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM (
+					 <include refid="selectByPaingAndConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+
+  </select>
+  <sql id="selectByPaingAndConditionSQL" >
+    select top 100 percent detectionID,sewageID,testingtime,detection1,detection2,detection3,detection4,detection5,detection6,detection7,detection8,detection9,detection10,detection11,detection12,detection13,detection14,detection15,detection16,detection17,detection18,detection19,detection20 from detection_data where 1=1 
+
+  </sql>
+  
+  
+  
+  <select id="gettop5info" resultMap="detectionDataVO" parameterType="java.lang.Integer" >
+	<!-- select top 1  <include refid="Base_Column_List" /> from detection_data where sewageid = #{sewageid,jdbcType=INTEGER} order by testingtime desc -->
+	select 
+	sum(temp1.detection1) as detection1,sum(temp1.detection2) as detection2,sum(temp1.detection3) as detection3,sum(temp1.detection4) as detection4,sum(temp1.detection5) as detection5,
+	sum(temp1.detection6) as detection6,sum(temp1.detection7) as detection7,sum(temp1.detection8) as detection8,sum(temp1.detection9) as detection9,sum(temp1.detection10) as detection10,
+	sum(temp1.detection11) as detection11,sum(temp1.detection12) as detection12,sum(temp1.detection13) as detection13,sum(temp1.detection14) as detection14,
+	hourname,count(hourname) as hourcount from 
+	(
+	  select detection_data.*,datename(hour,detection_data.testingtime) as hourname from detection_data 
+	  where CONVERT(varchar(12),GETDATE(),111) = CONVERT(varchar(12),detection_data.testingtime,111) and detection_data.sewageid = #{id}
+	)as temp1 group by hourname
+  </select> 
+  	<!-- 获取站点最新的数据 -->
+  	<!-- fix 获取该站点最新的数据，而不是当天最新的数据，去掉下面这句话即可
+  		 where CONVERT(varchar(12),GETDATE(),111) = CONVERT(varchar(12),testingtime,111)
+  	-->
+    <select id="getLatestSewageDetectionData" resultMap="BaseResultMap" >
+		select * from (select sewageid,max(testingtime) as testingtime from detection_data with(nolock) group by sewageid) as temp left join detection_data with(nolock)
+		on detection_data.testingtime = temp.testingtime and detection_data.sewageid = temp.sewageid
+  	</select>
+  	
+  	<!-- 获取站点最新的数据 -->
+  	<!-- fix 获取该站点最新的数据，而不是当天最新的数据，去掉下面这句话即可
+  		 where CONVERT(varchar(12),GETDATE(),111) = CONVERT(varchar(12),testingtime,111)
+  	-->
+  	<select id="getLatestSewageDetectionDataByAreaId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select * from 
+		(select temp1.sewageID,temp1.testingtime,sewage.areaID from sewage , (select sewageid,max(testingtime) as testingtime from detection_data group by sewageid ) as temp1 
+		where sewage.sewageID = temp1.sewageID and areaid = #{id}) 
+		as tmp 
+		left join detection_data 
+		on detection_data.testingtime = tmp.testingtime and detection_data.sewageid = tmp.sewageid
+  	</select>
+  
+  <resultMap id="detectionDataVO" type="com.yaoli.vo.DetectionDataVO" extends="BaseResultMap">
+  	<result column="hourname" property="hourname" jdbcType="INTEGER" />
+  	<result column="hourcount" property="hourcount" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="getLatestDetectionData" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+	select top 1  * from detection_data where 
+	sewageid = #{sewageid,jdbcType=INTEGER} 
+	order by testingtime desc
+  </select>
+  
+  <select id="getDetectionDataRecord" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY testingtime desc) AS RowNumber,* FROM (
+					 <include refid="getDetectionDataRecordSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <sql id="getDetectionDataRecordSQL" >
+    select top 100 percent detection_data.* from detection_data,sewage where sewage.sewageID=detection_data.sewageID
+          and
+          (
+              <if test="sewageid != null" >
+                  sewage.sewageID = #{sewageid}
+              </if>
+              <if test="sewageid != null and sewageName != null " >
+                  or
+              </if>
+              <if test="sewageName != null" >
+                  sewage.name = #{sewageName}
+              </if>
+              <if test="(sewageid != null or sewageName != null) and operationnum != null" >
+                  or
+              </if>
+              <if test="operationnum != null" >
+                  sewage.operationnum = #{operationnum}
+              </if>
+          )
+
+          <if test="begintime != null" >
+              <![CDATA[
+                    and testingtime >= #{begintime}
+                ]]>
+          </if>
+          <if test="endtime != null" >
+              <![CDATA[
+                    and testingtime <= #{endtime}
+                ]]>
+          </if>
+  </sql>
+  <select id="getDetectionDataRecordTotal" resultType="java.lang.Integer" >
+	select count(*) from(<include refid="getDetectionDataRecordSQL"></include>) as temp
+  </select>
+  
+  
+  <!-- 从detection_data表中获取今天的数据 -->
+  <select id="getStatisticDayWater" resultMap="detectionDataVO" parameterType="hashmap">
+	<!-- select top 1  <include refid="Base_Column_List" /> from detection_data where sewageid = #{sewageid,jdbcType=INTEGER} order by testingtime desc -->
+	select sum(temp1.detection6) as detection6,hourname from 
+	(
+	  select sewage.operationnum, detection_data.*,datename(hour,detection_data.testingtime) as hourname from detection_data,sewage
+	  where sewage.sewageID= detection_data.sewageID and CONVERT(varchar(12),GETDATE(),111) = CONVERT(varchar(12),detection_data.testingtime,111) 
+  		<if test="sewageid != null" >
+	   		<![CDATA[
+	       		and detection_data.sewageid = #{sewageid}
+	        ]]>
+	    </if>
+	   	<if test="operationnum != null" >
+	   		<![CDATA[
+	       		and sewage.operationnum = #{operationnum}
+	        ]]>
+	    </if>
+	)as temp1 group by hourname
+  </select> 
+  
+  <!-- 从 statistic表中获取昨天 或者 昨天以前的数据-->
+    <select id="getStatisticDayWaterFromStatisticTable" resultMap="detectionDataVO" parameterType="hashmap">
+	select detection6,CONVERT(int,SUBSTRING(testingtime,11,12)) as hourname from (
+		select sewage.operationnum, statistic.sewageid,CONVERT(varchar(13),testingtime,120) as testingtime,statistic.waterflow as detection6 from statistic,sewage 
+		where sewage.sewageID = statistic.sewageID and CONVERT(varchar(10),testingtime,120) = #{testingtime}
+				<if test="sewageid != null" >
+			   		<![CDATA[
+			       		and sewage.sewageid = #{sewageid}
+			        ]]>
+			    </if>
+			   	<if test="operationnum != null" >
+			   		<![CDATA[
+			       		and sewage.operationnum = #{operationnum}
+			        ]]>
+			    </if>
+	) as temp1
+  </select> 
+  
+  <!-- 获取每月的的处理水量 返回detection6作为 流量，这样可以与之前的复用-->
+  <select id="getStatisticMonthWater" resultMap="detectionDataVO" parameterType="hashmap">
+	select detection6,CONVERT(int,SUBSTRING(dayname,9,10)) as dayname from (
+		select SUM(waterflow) as detection6,dayname from 
+		(
+			select sewage.operationnum, statistic.id, statistic.sewageid,statistic.testingtime, CONVERT(varchar(10),statistic.testingtime,120) as dayname,statistic.waterflow from statistic,sewage
+			where sewage.sewageID = statistic.sewageid and CONVERT(varchar(7),statistic.testingtime,120)=CONVERT(varchar(7),#{testingtime},120) 
+			<if test="sewageid != null" >
+		   		<![CDATA[
+		       		and statistic.sewageid = #{sewageid}
+		        ]]>
+		    </if>
+		   	<if test="operationnum != null" >
+		   		<![CDATA[
+		       		and operationnum = #{operationnum}
+		        ]]>
+		    </if>
+		) as temp group by dayname
+	) as temp2 order by dayname 
+  </select> 
+  
+  <!-- 获取某个站点某年的处理水量 返回detection6作为 流量，这样可以与之前的复用 -->
+  <select id="getStatisticYearWater" resultMap="detectionDataVO" parameterType="hashmap">
+	select detection6,CONVERT(int,SUBSTRING(monthname,6,7)) as monthname from (
+		select SUM(waterflow) as detection6,monthname from 
+		(
+			select sewage.operationnum, statistic.id, statistic.sewageid,statistic.testingtime, CONVERT(varchar(7),statistic.testingtime,120) as monthname,statistic.waterflow from statistic,sewage
+			where sewage.sewageID = statistic.sewageid and CONVERT(varchar(4),statistic.testingtime,120)=CONVERT(varchar(4),#{testingtime},111) 
+		   	<if test="sewageid != null" >
+		   		<![CDATA[
+		       		and statistic.sewageid = #{sewageid}
+		        ]]>
+		    </if>
+		   	<if test="operationnum != null" >
+		   		<![CDATA[
+		       		and operationnum = #{operationnum}
+		        ]]>
+		    </if>
+		) as temp group by monthname
+	) as temp2 order by monthname 
+  </select>
+
+
+    <select id="getDetectionDataBySewageidAndDatetime" resultMap="BaseResultMap" parameterType="hashmap">
+      select top 1 * from detection_data where sewageID = #{sewageid} and CONVERT(varchar(11),testingtime,120)=CONVERT(varchar(11),#{testingtime},120) order by testingtime desc
+    </select>
+
+    <select id="getMaxPreDetectionDataBySewageidAndDatetime" resultMap="BaseResultMap" parameterType="hashmap">
+        <![CDATA[
+          select top 1 * from detection_data where sewageID = #{sewageid} and CONVERT(varchar(11),testingtime,120)< CONVERT(varchar(11),#{testingtime},120) order by testingtime desc
+        ]]>
+    </select>
+
+</mapper>

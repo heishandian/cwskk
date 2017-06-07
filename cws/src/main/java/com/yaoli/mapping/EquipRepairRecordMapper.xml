@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.EquipRepairRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.EquipRepairRecord" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sewageid" property="sewageid" jdbcType="INTEGER" />
+    <!-- 6月3日 36号 需求-->
+    <!-- <result column="deviceid" property="deviceid" jdbcType="INTEGER" /> -->
+    <!-- <result column="time" property="time" jdbcType="TIMESTAMP" /> -->
+    <!-- <result column="consumetime" property="consumetime" jdbcType="VARCHAR" /> -->
+    <result column="repairreason" property="repairreason" jdbcType="NVARCHAR" />
+    <result column="repaircontent" property="repaircontent" jdbcType="NVARCHAR" />
+    <result column="consumematerial" property="consumematerial" jdbcType="NVARCHAR" />
+    <result column="repairman" property="repairman" jdbcType="VARCHAR" />
+    <result column="completetime" property="completetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sewageid, <!-- deviceid, time, consumetime,  -->repairreason, repaircontent, consumematerial, 
+    repairman, completetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from equiprepairrecord
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from equiprepairrecord
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yaoli.beans.EquipRepairRecord" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into equiprepairrecord (sewageid, deviceid, time, 
+      consumetime, repairreason, repaircontent, 
+      consumematerial, repairman, completetime
+      )
+    values (#{sewageid,jdbcType=INTEGER}, #{deviceid,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, 
+      #{consumetime,jdbcType=VARCHAR}, #{repairreason,jdbcType=NVARCHAR}, #{repaircontent,jdbcType=NVARCHAR}, 
+      #{consumematerial,jdbcType=NVARCHAR}, #{repairman,jdbcType=VARCHAR}, #{completetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.EquipRepairRecord" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into equiprepairrecord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sewageid != null" >
+        sewageid,
+      </if>
+      <if test="deviceid != null" >
+        deviceid,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="consumetime != null" >
+        consumetime,
+      </if>
+      <if test="repairreason != null" >
+        repairreason,
+      </if>
+      <if test="repaircontent != null" >
+        repaircontent,
+      </if>
+      <if test="consumematerial != null" >
+        consumematerial,
+      </if>
+      <if test="repairman != null" >
+        repairman,
+      </if>
+      <if test="completetime != null" >
+        completetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sewageid != null" >
+        #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="deviceid != null" >
+        #{deviceid,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="consumetime != null" >
+        #{consumetime,jdbcType=VARCHAR},
+      </if>
+      <if test="repairreason != null" >
+        #{repairreason,jdbcType=NVARCHAR},
+      </if>
+      <if test="repaircontent != null" >
+        #{repaircontent,jdbcType=NVARCHAR},
+      </if>
+      <if test="consumematerial != null" >
+        #{consumematerial,jdbcType=NVARCHAR},
+      </if>
+      <if test="repairman != null" >
+        #{repairman,jdbcType=VARCHAR},
+      </if>
+      <if test="completetime != null" >
+        #{completetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.EquipRepairRecord" >
+    update equiprepairrecord
+    <set >
+      <if test="sewageid != null" >
+        sewageid = #{sewageid,jdbcType=INTEGER},
+      </if>
+      <if test="deviceid != null" >
+        deviceid = #{deviceid,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="consumetime != null" >
+        consumetime = #{consumetime,jdbcType=VARCHAR},
+      </if>
+      <if test="repairreason != null" >
+        repairreason = #{repairreason,jdbcType=NVARCHAR},
+      </if>
+      <if test="repaircontent != null" >
+        repaircontent = #{repaircontent,jdbcType=NVARCHAR},
+      </if>
+      <if test="consumematerial != null" >
+        consumematerial = #{consumematerial,jdbcType=NVARCHAR},
+      </if>
+      <if test="repairman != null" >
+        repairman = #{repairman,jdbcType=VARCHAR},
+      </if>
+      <if test="completetime != null" >
+        completetime = #{completetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.EquipRepairRecord" >
+    update equiprepairrecord
+    set sewageid = #{sewageid,jdbcType=INTEGER},
+      deviceid = #{deviceid,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      consumetime = #{consumetime,jdbcType=VARCHAR},
+      repairreason = #{repairreason,jdbcType=NVARCHAR},
+      repaircontent = #{repaircontent,jdbcType=NVARCHAR},
+      consumematerial = #{consumematerial,jdbcType=NVARCHAR},
+      repairman = #{repairman,jdbcType=VARCHAR},
+      completetime = #{completetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from equiprepairrecord
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from equiprepairrecord
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="equipRepairRecordVO" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY id desc) AS RowNumber,* FROM (
+					 <include refid="selectByPaingAndConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+
+  </select>
+  
+  <sql id="selectByPaingAndConditionSQL" >
+    select top 100 percent sewage.name as sewagename,sewage.operationnum, e.id,e.sewageid,e.deviceid,e.time,e.consumetime,e.repairreason,e.repaircontent,e.consumematerial,e.repairman,e.completetime 
+	from equiprepairrecord as e inner join sewage on e.sewageid = sewage.sewageID and e.sewageid = sewage.sewageID
+	<if test="sewageid != null" >
+       and e.sewageid = #{sewageid}
+    </if>
+	<if test="areaid != null" >
+       and sewage.areaid = #{areaid}
+    </if>
+   	<if test="begintime != null" >
+   		<![CDATA[
+       		and e.completetime >= #{begintime}
+        ]]>
+    </if>
+   	<if test="endtime != null" >
+   		<![CDATA[
+       		and e.completetime <= #{endtime}
+        ]]>
+    </if>
+   	<if test="repairman != null" >
+   		<![CDATA[
+       		and e.repairman = #{repairman}
+        ]]>
+    </if>
+  </sql>
+  
+   <select id="selectByPaingAndConditionTotalCount" resultType="java.lang.Integer" >
+    select count(*) from ( <include refid="selectByPaingAndConditionSQL"></include>) as temp
+  </select>
+ 
+   <resultMap id="equipRepairRecordVO" type="com.yaoli.vo.EquipRepairRecordVO" extends="BaseResultMap">
+    <result column="devicename" property="devicename" jdbcType="NVARCHAR" />
+    <result column="sewagename" property="sewagename" jdbcType="NVARCHAR" />
+    <result column="operationnum" property="operationnum" jdbcType="NVARCHAR" />
+  </resultMap>
+
+
+  <select id="getEquipRepairedTimes" resultType="java.lang.Integer" >
+    select count(*) from ( <include refid="selectByPaingAndConditionSQL"></include>) as temp
+  </select>
+
+</mapper>

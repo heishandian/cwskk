@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.ProblemGatherMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.ProblemGather" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="NVARCHAR" />
+    <result column="description" property="description" jdbcType="NVARCHAR" />
+    <result column="finder" property="finder" jdbcType="NVARCHAR" />
+    <result column="findtime" property="findtime" jdbcType="TIMESTAMP" />
+    <result column="sewageid" property="sewageid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, description, finder, findtime, sewageid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from problemGather
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from problemGather
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yaoli.beans.ProblemGather" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into problemGather (title, description, finder, 
+      findtime, sewageid)
+    values (#{title,jdbcType=NVARCHAR}, #{description,jdbcType=NVARCHAR}, #{finder,jdbcType=NVARCHAR}, 
+      #{findtime,jdbcType=TIMESTAMP}, #{sewageid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.ProblemGather" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into problemGather
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="finder != null" >
+        finder,
+      </if>
+      <if test="findtime != null" >
+        findtime,
+      </if>
+      <if test="sewageid != null" >
+        sewageid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="title != null" >
+        #{title,jdbcType=NVARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=NVARCHAR},
+      </if>
+      <if test="finder != null" >
+        #{finder,jdbcType=NVARCHAR},
+      </if>
+      <if test="findtime != null" >
+        #{findtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sewageid != null" >
+        #{sewageid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.ProblemGather" >
+    update problemGather
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=NVARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=NVARCHAR},
+      </if>
+      <if test="finder != null" >
+        finder = #{finder,jdbcType=NVARCHAR},
+      </if>
+      <if test="findtime != null" >
+        findtime = #{findtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sewageid != null" >
+        sewageid = #{sewageid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.ProblemGather" >
+    update problemGather
+    set title = #{title,jdbcType=NVARCHAR},
+      description = #{description,jdbcType=NVARCHAR},
+      finder = #{finder,jdbcType=NVARCHAR},
+      findtime = #{findtime,jdbcType=TIMESTAMP},
+      sewageid = #{sewageid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from problemGather
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from problemGather
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (				 SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM ( 
+					 <include refid="selectByPaingAndConditionSQL"></include> 
+				 ) as b 
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <sql id="selectByPaingAndConditionSQL" >
+    select top 100 percent id,title,description,finder,findtime,sewageid from problemGather where 1=1 
+  </sql>
+  
+  
+  <resultMap id="problemGatherVO" type="com.yaoli.vo.ProblemGatherVO" extends="BaseResultMap">
+  	<result column="sewagename" property="sewagename" jdbcType="INTEGER" />
+  </resultMap>  
+  <select id="getProblemGatherVOsCountByCondition" resultType="java.lang.Integer" parameterType="hashmap" >
+    select count(*) from (<include refid="getProblemGatherVOsByConditionSQL"></include>) as a
+  </select>
+  <select id="getProblemGatherVOsByCondition" resultMap="problemGatherVO" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY findtime desc) AS RowNumber,* FROM (
+					 <include refid="getProblemGatherVOsByConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <sql id="getProblemGatherVOsByConditionSQL" >
+	select id,title,description,finder,findtime,problemGather.sewageid,sewage.name as sewagename,sewage.operationnum from problemGather inner join sewage on problemGather.sewageid = sewage.sewageID 
+	<if test="sewageid != null" >
+        and sewage.sewageID = #{sewageid}  
+    </if>
+	<if test="areaid != null" >
+        and sewage.areaID = #{areaid}
+    </if>
+	<if test="operationnum != null" >
+        and sewage.operationnum = #{operationnum}
+    </if>
+  </sql>
+</mapper>

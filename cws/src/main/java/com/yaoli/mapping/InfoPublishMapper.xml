@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.InfoPublishMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.InfoPublish" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="insertTime" property="inserttime" jdbcType="TIMESTAMP" />
+    <result column="publisherId" property="publisherid" jdbcType="INTEGER" />
+    <result column="beginTime" property="begintime" jdbcType="TIMESTAMP" />
+    <result column="endTime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="publishContent" property="publishcontent" jdbcType="NVARCHAR" />
+  </resultMap>
+
+
+
+  <sql id="Base_Column_List" >
+    id, insertTime, publisherId, beginTime, endTime, publishContent
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from infoPublish
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from infoPublish
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yaoli.beans.InfoPublish" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into infoPublish (insertTime, publisherId, beginTime, 
+      endTime, publishContent)
+    values (#{inserttime,jdbcType=TIMESTAMP}, #{publisherid,jdbcType=INTEGER}, #{begintime,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIMESTAMP}, #{publishcontent,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.InfoPublish" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into infoPublish
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="inserttime != null" >
+        insertTime,
+      </if>
+      <if test="publisherid != null" >
+        publisherId,
+      </if>
+      <if test="begintime != null" >
+        beginTime,
+      </if>
+      <if test="endtime != null" >
+        endTime,
+      </if>
+      <if test="publishcontent != null" >
+        publishContent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="inserttime != null" >
+        #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publisherid != null" >
+        #{publisherid,jdbcType=INTEGER},
+      </if>
+      <if test="begintime != null" >
+        #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishcontent != null" >
+        #{publishcontent,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.InfoPublish" >
+    update infoPublish
+    <set >
+      <if test="inserttime != null" >
+        insertTime = #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publisherid != null" >
+        publisherId = #{publisherid,jdbcType=INTEGER},
+      </if>
+      <if test="begintime != null" >
+        beginTime = #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        endTime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishcontent != null" >
+        publishContent = #{publishcontent,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.InfoPublish" >
+    update infoPublish
+    set insertTime = #{inserttime,jdbcType=TIMESTAMP},
+      publisherId = #{publisherid,jdbcType=INTEGER},
+      beginTime = #{begintime,jdbcType=TIMESTAMP},
+      endTime = #{endtime,jdbcType=TIMESTAMP},
+      publishContent = #{publishcontent,jdbcType=NVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from infoPublish
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from infoPublish
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="BaseResultMap" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (				 SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM ( 
+					 <include refid="selectByPaingAndConditionSQL"></include> 
+				 ) as b 
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select>
+  <sql id="selectByPaingAndConditionSQL" >
+    select top 100 percent id,insertTime,publisherId,beginTime,endTime,publishContent from infoPublish where 1=1 
+  </sql>
+
+
+
+
+
+  <resultMap id="infoPublishVO2" type="com.yaoli.vo.InfoPublishVO">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="insertTime" property="inserttime" jdbcType="TIMESTAMP" />
+    <result column="publisherId" property="publisherid" jdbcType="INTEGER" />
+    <result column="beginTime" property="begintime" jdbcType="TIMESTAMP" />
+    <result column="endTime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="publishContent" property="publishcontent" jdbcType="NVARCHAR" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+  </resultMap>
+
+  <select id="getInfoPublisherVOCount" resultType="java.lang.Integer" parameterType="hashmap" >
+    select count(*) from (<include refid="getInfoPublisherVOSQL"></include>) as temp
+  </select>
+
+  <select id="getInfoPublisherVO" resultMap="infoPublishVO2" parameterType="hashmap">
+    SELECT TOP ${pageSize} *
+    FROM  (
+    SELECT ROW_NUMBER() OVER (ORDER BY inserttime desc) AS RowNumber,* FROM (
+    <include refid="getInfoPublisherVOSQL"></include>
+    ) as b
+    ) as A
+    WHERE RowNumber > ${pageSize} * (${pageNum} - 1)
+  </select>
+
+  <sql id="getInfoPublisherVOSQL" >
+    select infoPublish.id,inserttime,begintime,endtime,publishcontent,sysuser.username as name from infoPublish left join sysuser on sysuser.id = infoPublish.publisherId
+    where 1 = 1
+    <if test="begintime != null" >
+      <![CDATA[
+      and infoPublish.begintime >= #{begintime}
+      ]]>
+    </if>
+    <if test="endtime != null" >
+      <![CDATA[
+      and infoPublish.endtime <= #{endtime}
+    ]]>
+  </if>
+  <if test="publisher != null" >
+      and sysuser.username like '%'+#{publisher}+'%'
+  </if>
+  </sql>
+
+
+  <select id="getSearchNoticePublish" resultMap="infoPublishVO2" parameterType="hashmap">
+    <![CDATA[
+      select inserttime,begintime,endtime,publishcontent,sysuser.username as name from infoPublish left join sysuser on sysuser.id = infoPublish.publisherId where 1 = 1
+      and infoPublish.begintime <= GETDATE()
+      and infoPublish.endtime >= GETDATE()
+    ]]>
+  </select>
+</mapper>

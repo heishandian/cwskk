@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
+<mapper namespace="com.yaoli.dao.DeviceDocMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.DeviceDoc" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <!-- 注释部分在6.3日的34需求上取消 -->
+    <!-- <result column="number" property="number" jdbcType="INTEGER" /> -->
+    <result column="devicename" property="devicename" jdbcType="VARCHAR" />
+    <result column="devicetype" property="devicetype" jdbcType="VARCHAR" />
+    <result column="setuptime" property="setuptime" jdbcType="TIMESTAMP" />
+    <!-- <result column="lastrepairtime" property="lastrepairtime" jdbcType="TIMESTAMP" /> -->
+    <!-- <result column="maintaincycleday" property="maintaincycleday" jdbcType="INTEGER" /> -->
+    <!-- <result column="limityears" property="limityears" jdbcType="INTEGER" /> -->
+    <!-- <result column="repairrecord" property="repairrecord" jdbcType="INTEGER" /> -->
+    <result column="sewageid" property="sewageid" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap type="com.yaoli.vo.DeviceDocVO" id="DeviceDocVO" extends="BaseResultMap">
+  	<result column="name" property="name" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, <!-- number, --> devicename, devicetype, setuptime, <!-- lastrepairtime, maintaincycleday, --> 
+   <!--  limityears, repairrecord, --> sewageid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from devicedoc
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from devicedoc
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yaoli.beans.DeviceDoc" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT @@IDENTITY
+    </selectKey>
+    insert into devicedoc (number, devicename, devicetype, 
+      setuptime, lastrepairtime, maintaincycleday, 
+      limityears, repairrecord, sewageid
+      )
+    values (#{number,jdbcType=INTEGER}, #{devicename,jdbcType=VARCHAR}, #{devicetype,jdbcType=VARCHAR}, 
+      #{setuptime,jdbcType=TIMESTAMP}, #{lastrepairtime,jdbcType=TIMESTAMP}, #{maintaincycleday,jdbcType=INTEGER}, 
+      #{limityears,jdbcType=INTEGER}, #{repairrecord,jdbcType=INTEGER}, #{sewageid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.DeviceDoc" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT @@IDENTITY
+    </selectKey>
+    insert into devicedoc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="devicename != null" >
+        devicename,
+      </if>
+      <if test="devicetype != null" >
+        devicetype,
+      </if>
+      <if test="setuptime != null" >
+        setuptime,
+      </if>
+      <if test="lastrepairtime != null" >
+        lastrepairtime,
+      </if>
+      <if test="maintaincycleday != null" >
+        maintaincycleday,
+      </if>
+      <if test="limityears != null" >
+        limityears,
+      </if>
+      <if test="repairrecord != null" >
+        repairrecord,
+      </if>
+      <if test="sewageid != null" >
+        sewageid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="devicename != null" >
+        #{devicename,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetype != null" >
+        #{devicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="setuptime != null" >
+        #{setuptime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastrepairtime != null" >
+        #{lastrepairtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintaincycleday != null" >
+        #{maintaincycleday,jdbcType=INTEGER},
+      </if>
+      <if test="limityears != null" >
+        #{limityears,jdbcType=INTEGER},
+      </if>
+      <if test="repairrecord != null" >
+        #{repairrecord,jdbcType=INTEGER},
+      </if>
+      <if test="sewageid != null" >
+        #{sewageid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.DeviceDoc" >
+    update devicedoc
+    <set >
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="devicename != null" >
+        devicename = #{devicename,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetype != null" >
+        devicetype = #{devicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="setuptime != null" >
+        setuptime = #{setuptime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastrepairtime != null" >
+        lastrepairtime = #{lastrepairtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintaincycleday != null" >
+        maintaincycleday = #{maintaincycleday,jdbcType=INTEGER},
+      </if>
+      <if test="limityears != null" >
+        limityears = #{limityears,jdbcType=INTEGER},
+      </if>
+      <if test="repairrecord != null" >
+        repairrecord = #{repairrecord,jdbcType=INTEGER},
+      </if>
+      <if test="sewageid != null" >
+        sewageid = #{sewageid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.DeviceDoc" >
+    update devicedoc
+    set number = #{number,jdbcType=INTEGER},
+      devicename = #{devicename,jdbcType=VARCHAR},
+      devicetype = #{devicetype,jdbcType=VARCHAR},
+      setuptime = #{setuptime,jdbcType=TIMESTAMP},
+      lastrepairtime = #{lastrepairtime,jdbcType=TIMESTAMP},
+      maintaincycleday = #{maintaincycleday,jdbcType=INTEGER},
+      limityears = #{limityears,jdbcType=INTEGER},
+      repairrecord = #{repairrecord,jdbcType=INTEGER},
+      sewageid = #{sewageid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="getTotalCount" resultType="java.lang.Integer" >
+    select count(*) from devicedoc
+  </select>
+  <select id="getCountByParameterName" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(#{parameter}) from devicedoc
+  </select>
+  <select id="selectByPaingAndCondition" resultMap="DeviceDocVO" parameterType="hashmap" >
+    		SELECT TOP ${pageSize} * 
+			 FROM  (
+				 SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM (
+					 <include refid="selectByPaingAndConditionSQL"></include>
+				 ) as b
+			 ) as A 
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+
+  </select>
+  <sql id="selectByPaingAndConditionSQL" >
+    select top 100 percent id,devicename,devicetype,setuptime,sewage.sewageid,sewage.name from devicedoc 
+	inner join sewage on sewage.sewageID = devicedoc.sewageid where 1=1 
+ 	<if test="sewageid != null" >
+        and devicedoc.sewageid = #{sewageid}
+    </if>
+ 	<if test="areaid != null" >
+        and sewage.areaid = #{areaid}
+    </if>
+  </sql>
+  
+   <select id="getPaingAndConditionTotalCountBySewageid" resultType="java.lang.Integer" parameterType="hashmap" >
+    select count(*) from (<include refid="selectByPaingAndConditionSQL"></include>) as temp
+  </select>
+  
+  
+    <select id="getAllDeviceDocs" resultMap="BaseResultMap">
+  	select * from devicedoc
+  </select>
+</mapper>

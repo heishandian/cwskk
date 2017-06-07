@@ -1,0 +1,23 @@
+.myButton {
+    -moz-box-shadow:inset 0px 1px 0px -1px #000000;
+    -webkit-box-shadow:inset 0px 1px 0px -1px #000000;
+    box-shadow:inset 0px 1px 0px -1px #000000;
+    background-color:transparent;
+    display:inline-block;
+    cursor:pointer;
+    color:#000000;
+    font-family:Courier New;
+    font-size:20px;
+    font-weight:bold;
+    padding:40px 60px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #ffffff;
+    font-family:'黑体';
+}
+.myButton:hover {
+    background-color:transparent;
+}
+.myButton:active {
+    position:relative;
+    top:1px;
+}

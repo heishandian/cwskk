@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.Admin" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="adress" property="adress" jdbcType="NVARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, telephone, adress, email
+  </sql>
+  
+   <select id="getAdminsByPaing" resultMap="BaseResultMap" >
+	SELECT TOP ${pageSize} * 
+		FROM  (
+     		SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM 
+     				(
+	     			    select 
+    						<include refid="Base_Column_List" /> from admin
+     			) as b
+	 		)   as A  
+		WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+  </select> 
+  
+   <select id="getTotalCount" resultType="java.lang.Integer">
+   	select count(id) from admin
+   </select>
+  
+  
+  <select id="getAllAdmins" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from admin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.yaoli.beans.Admin" >
+    insert into admin (name, 
+      telephone, adress, email)
+    values (#{name,jdbcType=NVARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{adress,jdbcType=NVARCHAR}, #{email,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.Admin" >
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="adress != null" >
+        adress,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="adress != null" >
+        #{adress,jdbcType=NVARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.Admin" >
+    update admin
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="adress != null" >
+        adress = #{adress,jdbcType=NVARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.Admin" >
+    update admin
+    set
+      name = #{name,jdbcType=NVARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      adress = #{adress,jdbcType=NVARCHAR},
+      email = #{email,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

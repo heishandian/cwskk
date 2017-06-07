@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.SysRoleMapper">
+	<resultMap id="BaseResultMap" type="com.yaoli.beans.SysRole">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		sysrole.id, sysrole.name, sysrole.description
+	</sql>
+	
+	
+	
+	<select id="getRoleBindingUserCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		 select COUNT(ID) from sysuserrole where sysuserrole.roleid = #{id}
+	</select>
+	<select id="getRolesByPaging" resultMap="BaseResultMap">
+			SELECT TOP ${pageSize} * 
+			FROM  (
+        		SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM 
+        			(
+        			select * from sysrole
+        			) as b
+    		)   as A  
+		 WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
+	</select>
+	
+	
+	
+	<delete id="deleteRoleMenuByRoleId" parameterType="java.lang.Integer">
+		delete from sysrolemenu where roleid = #{id,jdbcType=INTEGER}
+	</delete>
+		
+	<select id="getTotalCount" resultType="java.lang.Integer">
+		SELECT
+		count(id)
+		FROM
+		sysrole
+	</select>	
+	
+	
+	
+	<select id="getAllRoles" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		sysrole
+	</select>
+	
+	<select id="getMenusByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		sysrole ,sysuserrole,sysuser
+		WHERE sysuser.`id` = sysuserrole.`userid`
+		AND sysuserrole.`roleid` = sysrole.`id`
+		AND sysuser.`id` = #{id,jdbcType=INTEGER}
+	</select>
+	
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select * from sysrole where id = #{id}
+<!-- 		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		sysrole ,sysuserrole,sysuser
+		WHERE sysuser.`id` = sysuserrole.`userid`
+		AND sysuserrole.`roleid` = sysrole.`id`
+		AND sysuser.`id` = #{id,jdbcType=INTEGER} -->
+	</select>
+
+	<select id="getUserRolesByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		roleid as id,
+		name as name
+		from sysuserrole left join sysrole on sysuserrole.roleid = sysrole.id
+		where userid = #{id,jdbcType=INTEGER}
+	</select>
+
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		sysrole
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.yaoli.beans.SysRole">
+		insert into sysrole (
+		name, description
+		)
+		values (
+		#{name,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.yaoli.beans.SysRole">
+		insert into sysrole
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.SysRole">
+		update sysrole
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.yaoli.beans.SysRole">
+		update sysrole
+		set name = #{name,jdbcType=VARCHAR},
+		description =
+		#{description,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>
