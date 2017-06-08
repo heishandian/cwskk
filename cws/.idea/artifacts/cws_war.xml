@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="war" name="cws:war">
     <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="CWS_JY.war">
+    <root id="archive" name="CWS_XS.war">
       <element id="artifact" artifact-name="cws:war exploded" />
     </root>
   </artifact>
