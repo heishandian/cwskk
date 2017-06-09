@@ -13,21 +13,21 @@
   </sql>
   
    <select id="getAdminsByPaing" resultMap="BaseResultMap" >
-	SELECT TOP ${pageSize} * 
+	SELECT TOP ${pageSize} *
 		FROM  (
-     		SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM 
+     		SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM
      				(
-	     			    select 
+	     			    select
     						<include refid="Base_Column_List" /> from admin
      			) as b
-	 		)   as A  
-		WHERE RowNumber > ${pageSize} * (${pageNum} - 1) 
-  </select> 
-  
+	 		)   as A
+		WHERE RowNumber > ${pageSize} * (${pageNum} - 1)
+  </select>
+
    <select id="getTotalCount" resultType="java.lang.Integer">
    	select count(id) from admin
    </select>
-  
+
   
   <select id="getAllAdmins" resultMap="BaseResultMap" >
     select 

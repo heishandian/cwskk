@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" build-on-make="true" name="cws:war exploded">
-    <output-path>E:/Program Files/tomcat/apache-tomcat-6.0.45/webapps/CWS</output-path>
+    <output-path>$PROJECT_DIR$/target/cws-0.0.1-SNAPSHOT</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">

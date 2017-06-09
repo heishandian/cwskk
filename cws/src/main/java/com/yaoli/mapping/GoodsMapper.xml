@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.Goods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="goods_status_id" property="goodsStatusId" jdbcType="INTEGER" />
+    <result column="goods_origin_id" property="goodsOriginId" jdbcType="INTEGER" />
+    <result column="goods_status_changetime" property="goodsStatusChangetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, number, goods_status_id, goods_origin_id, goods_status_changetime
+  </sql>
+  <select id="getAllGoods" resultMap="BaseResultMap" >
+   SELECT * FROM goods
+  </select>
+
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yaoli.beans.Goods" >
+    insert into goods (id, name, number, 
+      goods_status_id, goods_origin_id, goods_status_changetime
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{number,jdbcType=VARCHAR}, 
+      #{goodsStatusId,jdbcType=INTEGER}, #{goodsOriginId,jdbcType=INTEGER}, #{goodsStatusChangetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.Goods" >
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="goodsStatusId != null" >
+        goods_status_id,
+      </if>
+      <if test="goodsOriginId != null" >
+        goods_origin_id,
+      </if>
+      <if test="goodsStatusChangetime != null" >
+        goods_status_changetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsStatusId != null" >
+        #{goodsStatusId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsOriginId != null" >
+        #{goodsOriginId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsStatusChangetime != null" >
+        #{goodsStatusChangetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.Goods" >
+    update goods
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsStatusId != null" >
+        goods_status_id = #{goodsStatusId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsOriginId != null" >
+        goods_origin_id = #{goodsOriginId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsStatusChangetime != null" >
+        goods_status_changetime = #{goodsStatusChangetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.Goods" >
+    update goods
+    set name = #{name,jdbcType=NVARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      goods_status_id = #{goodsStatusId,jdbcType=INTEGER},
+      goods_origin_id = #{goodsOriginId,jdbcType=INTEGER},
+      goods_status_changetime = #{goodsStatusChangetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
