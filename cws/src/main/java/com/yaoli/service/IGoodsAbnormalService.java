@@ -1,8 +1,12 @@
-package com.yaoli.dao;
+package com.yaoli.service;
 
 import com.yaoli.beans.Goods_abnormal;
 
-public interface Goods_abnormalMapper {
+/**
+ * Created by kk on 2017/6/13.
+ */
+public interface IGoodsAbnormalService {
+    Goods_abnormal selectByGoodsId(Integer id);
 
     int deleteByPrimaryKey(Integer id);
 

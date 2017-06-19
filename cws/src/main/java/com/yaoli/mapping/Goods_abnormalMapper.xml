@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.yaoli.dao.Goods_abnormalMapper" >
+<mapper namespace="com.yaoli.dao.GoodsAbnormalMapper" >
   <resultMap id="BaseResultMap" type="com.yaoli.beans.Goods_abnormal" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
@@ -18,15 +18,22 @@
     from goods_abnormal
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByGoodsId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from goods_abnormal
+    where goods_id = #{id,jdbcType=INTEGER}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from goods_abnormal
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yaoli.beans.Goods_abnormal" >
-    insert into goods_abnormal (id, goods_id, description, 
+    insert into goods_abnormal (goods_id, description,
       goods_abnormal_typeid, goods_abnormal_analyse, 
       goods_abnormal_time)
-    values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{description,jdbcType=NVARCHAR}, 
+    values ( #{goodsId,jdbcType=INTEGER}, #{description,jdbcType=NVARCHAR},
       #{goodsAbnormalTypeid,jdbcType=INTEGER}, #{goodsAbnormalAnalyse,jdbcType=NVARCHAR}, 
       #{goodsAbnormalTime,jdbcType=TIMESTAMP})
   </insert>

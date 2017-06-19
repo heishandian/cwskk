@@ -9,13 +9,25 @@
     <result column="goods_origin_id" property="goodsOriginId" jdbcType="INTEGER" />
     <result column="goods_status_changetime" property="goodsStatusChangetime" jdbcType="TIMESTAMP" />
   </resultMap>
+
+  <resultMap id="goodsNameResultMap" type="java.lang.String" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+  </resultMap>
+
   <sql id="Base_Column_List" >
     id, name, number, goods_status_id, goods_origin_id, goods_status_changetime
   </sql>
-  <select id="getAllGoods" resultMap="BaseResultMap" >
-   SELECT * FROM goods
+
+  <select id="getAllGoodsName" resultMap="goodsNameResultMap" >
+   select distinct (name) from goods
   </select>
 
+  <select id="selectGoodsByGoodsNameAndNumber" resultMap="BaseResultMap"  parameterType="com.yaoli.beans.Goods">
+    select
+    <include refid="Base_Column_List" />
+    from goods
+    where name = #{name,jdbcType=NVARCHAR} and number = #{number,jdbcType=NVARCHAR}
+  </select>
 
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -29,10 +41,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yaoli.beans.Goods" >
-    insert into goods (id, name, number, 
+    insert into goods ( name, number,
       goods_status_id, goods_origin_id, goods_status_changetime
       )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{number,jdbcType=VARCHAR}, 
+    values ( #{name,jdbcType=NVARCHAR}, #{number,jdbcType=VARCHAR},
       #{goodsStatusId,jdbcType=INTEGER}, #{goodsOriginId,jdbcType=INTEGER}, #{goodsStatusChangetime,jdbcType=TIMESTAMP}
       )
   </insert>

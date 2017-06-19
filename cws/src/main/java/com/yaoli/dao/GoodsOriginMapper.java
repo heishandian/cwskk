@@ -4,8 +4,10 @@ import com.yaoli.beans.Goods_origin;
 
 import java.util.List;
 
-public interface Goods_originMapper {
+public interface GoodsOriginMapper {
     List<Goods_origin> getAllGoods_origin();
+
+    Goods_origin selectByName(String name);
 
     int deleteByPrimaryKey(Integer id);
 

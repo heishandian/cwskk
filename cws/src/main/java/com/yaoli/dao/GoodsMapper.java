@@ -5,7 +5,10 @@ import com.yaoli.beans.Goods;
 import java.util.List;
 
 public interface GoodsMapper {
-    List<Goods> getAllGoods();
+
+    List<String> getAllGoodsName();
+
+    Goods selectGoodsByGoodsNameAndNumber(Goods goods);
 
     int deleteByPrimaryKey(Integer id);
 

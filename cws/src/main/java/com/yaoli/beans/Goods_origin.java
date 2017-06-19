@@ -20,4 +20,12 @@ public class Goods_origin {
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
     }
+
+    public Goods_origin(String name) {
+        this.name = name;
+    }
+
+    public Goods_origin() {
+
+    }
 }

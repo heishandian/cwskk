@@ -62,4 +62,27 @@ public class Goods_abnormal {
     public void setGoodsAbnormalTime(Date goodsAbnormalTime) {
         this.goodsAbnormalTime = goodsAbnormalTime;
     }
+
+    public Goods_abnormal(Integer goodsId, String description, Integer goodsAbnormalTypeid, String goodsAbnormalAnalyse, Date goodsAbnormalTime) {
+        this.goodsId = goodsId;
+        this.description = description;
+        this.goodsAbnormalTypeid = goodsAbnormalTypeid;
+        this.goodsAbnormalAnalyse = goodsAbnormalAnalyse;
+        this.goodsAbnormalTime = goodsAbnormalTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Goods_abnormal{" +
+                "id=" + id +
+                ", goodsId=" + goodsId +
+                ", description='" + description + '\'' +
+                ", goodsAbnormalTypeid=" + goodsAbnormalTypeid +
+                ", goodsAbnormalAnalyse='" + goodsAbnormalAnalyse + '\'' +
+                ", goodsAbnormalTime=" + goodsAbnormalTime +
+                '}';
+    }
+
+    public Goods_abnormal() {
+    }
 }

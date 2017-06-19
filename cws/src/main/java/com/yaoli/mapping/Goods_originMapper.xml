@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.yaoli.dao.Goods_originMapper" >
+<mapper namespace="com.yaoli.dao.GoodsOriginMapper" >
   <resultMap id="BaseResultMap" type="com.yaoli.beans.Goods_origin" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="NVARCHAR" />
@@ -8,9 +8,15 @@
   <sql id="Base_Column_List" >
     id, name
   </sql>
+
   <select id="getAllGoods_origin" resultMap="BaseResultMap" >
     SELECT * FROM goods_origin
   </select>
+
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT * FROM goods_origin WHERE name = #{name,jdbcType=NVARCHAR}
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -22,8 +28,8 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yaoli.beans.Goods_origin" >
-    insert into goods_origin (id, name)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR})
+    insert into goods_origin (name)
+    values ( #{name,jdbcType=NVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yaoli.beans.Goods_origin" >
     insert into goods_origin

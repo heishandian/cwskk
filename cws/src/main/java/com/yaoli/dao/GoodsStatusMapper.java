@@ -4,8 +4,10 @@ import com.yaoli.beans.Goods_status;
 
 import java.util.List;
 
-public interface Goods_statusMapper {
+public interface GoodsStatusMapper {
     List<Goods_status> getAllGoods_status();
+
+    Goods_status selectByName(String name);
 
     int deleteByPrimaryKey(Integer id);
 

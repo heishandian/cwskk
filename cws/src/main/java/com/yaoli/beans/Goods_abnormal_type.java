@@ -20,4 +20,11 @@ public class Goods_abnormal_type {
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
     }
+
+    public Goods_abnormal_type(String name) {
+        this.name = name;
+    }
+    public Goods_abnormal_type() {
+        this.name = name;
+    }
 }

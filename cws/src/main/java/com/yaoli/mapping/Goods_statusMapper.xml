@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.yaoli.dao.Goods_statusMapper" >
+<mapper namespace="com.yaoli.dao.GoodsStatusMapper" >
   <resultMap id="BaseResultMap" type="com.yaoli.beans.Goods_status" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="NVARCHAR" />
@@ -11,6 +11,14 @@
   <select id="getAllGoods_status" resultMap="BaseResultMap" >
     SELECT * FROM goods_status
   </select>
+
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from goods_status
+    where name = #{name,jdbcType=INTEGER}
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

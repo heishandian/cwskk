@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.yaoli.dao.Goods_abnormal_typeMapper" >
+<mapper namespace="com.yaoli.dao.GoodsAbnormalTypeMapper" >
   <resultMap id="BaseResultMap" type="com.yaoli.beans.Goods_abnormal_type" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="NVARCHAR" />
@@ -11,6 +11,11 @@
   <select id="getAllGoods_abnormal_type" resultMap="BaseResultMap" >
     SELECT * FROM goods_abnormal_type
   </select>
+
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT * FROM goods_abnormal_type WHERE  name= #{name,jdbcType=NVARCHAR}
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -22,8 +27,8 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yaoli.beans.Goods_abnormal_type" >
-    insert into goods_abnormal_type (id, name)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR})
+    insert into goods_abnormal_type ( name)
+    values ( #{name,jdbcType=NVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yaoli.beans.Goods_abnormal_type" >
     insert into goods_abnormal_type

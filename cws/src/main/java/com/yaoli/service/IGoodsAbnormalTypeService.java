@@ -1,11 +1,13 @@
-package com.yaoli.dao;
+package com.yaoli.service;
 
 import com.yaoli.beans.Goods_abnormal_type;
 
 import java.util.List;
 
-public interface Goods_abnormal_typeMapper {
+public interface IGoodsAbnormalTypeService {
     List<Goods_abnormal_type> getAllGoods_abnormal_type();
+
+    Goods_abnormal_type selectByName(String name);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -18,4 +20,6 @@ public interface Goods_abnormal_typeMapper {
     int updateByPrimaryKeySelective(Goods_abnormal_type record);
 
     int updateByPrimaryKey(Goods_abnormal_type record);
+
+
 }

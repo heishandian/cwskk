@@ -62,4 +62,33 @@ public class Goods {
     public void setGoodsStatusChangetime(Date goodsStatusChangetime) {
         this.goodsStatusChangetime = goodsStatusChangetime;
     }
+
+    public Goods(String name, String number, Integer goodsStatusId, Integer goodsOriginId, Date goodsStatusChangetime) {
+        this.name = name;
+        this.number = number;
+        this.goodsStatusId = goodsStatusId;
+        this.goodsOriginId = goodsOriginId;
+        this.goodsStatusChangetime = goodsStatusChangetime;
+    }
+
+    public Goods(String name, String number) {
+        this.name = name;
+        this.number = number;
+    }
+
+    public Goods() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", number='" + number + '\'' +
+                ", goodsStatusId=" + goodsStatusId +
+                ", goodsOriginId=" + goodsOriginId +
+                ", goodsStatusChangetime=" + goodsStatusChangetime +
+                '}';
+    }
 }
