@@ -9,9 +9,105 @@
     <result column="goods_abnormal_analyse" property="goodsAbnormalAnalyse" jdbcType="NVARCHAR" />
     <result column="goods_abnormal_time" property="goodsAbnormalTime" jdbcType="TIMESTAMP" />
   </resultMap>
+
+  <resultMap id="abnormalSearchResultMap" type="com.yaoli.beans.GoodsAbnormalSearchResult" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="origin" property="origin" jdbcType="NVARCHAR" />
+    <result column="abnormalType" property="abnormalType" jdbcType="NVARCHAR" />
+    <result column="abnormalTime" property="abnormalTime" jdbcType="TIMESTAMP" />
+    <result column="description" property="description" jdbcType="NVARCHAR" />
+    <result column="abnormalAnalyse" property="abnormalAnalyse" jdbcType="NVARCHAR" />
+    <result column="currentState" property="currentState" jdbcType="NVARCHAR" />
+    <result column="currentStateTime" property="currentStateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <resultMap id="abnormalStasticMap" type="com.yaoli.vo.huangkai.AbnormalStasticSearchResultVO" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="status" property="status" jdbcType="NVARCHAR" />
+    <result column="total" property="total" jdbcType="INTEGER" />
+  </resultMap>
+
   <sql id="Base_Column_List" >
     id, goods_id, description, goods_abnormal_typeid, goods_abnormal_analyse, goods_abnormal_time
   </sql>
+
+  <sql id="selectByPagingAndConditionSQL" >
+    select top 100 percent goods_abnormal.id as id, goods.name as name, goods.number as number, goods_origin.name as origin, goods_abnormal_type.name as abnormalType, CONVERT(varchar(10),goods_abnormal.goods_abnormal_time ,120) as abnormalTime,
+    goods_abnormal.description as description,goods_abnormal.goods_abnormal_analyse as abnormalAnalyse,goods_status.name as currentState,CONVERT(varchar(10),goods.goods_status_changetime ,120) as currentStateTime
+    from  goods_abnormal,goods,goods_origin,goods_status,goods_abnormal_type
+    where goods_abnormal.goods_id = goods.id and goods_abnormal.goods_abnormal_typeid = goods_abnormal_type.id
+    and goods.goods_origin_id = goods_origin.id and goods.goods_status_id = goods_status.id
+    <if test="name != null" >
+      and goods.name = #{name,jdbcType=NVARCHAR}
+    </if>
+    <if test="number != null" >
+      and goods.number = #{number,jdbcType=VARCHAR}
+    </if>
+    <if test="origin != null" >
+      and goods_origin.name = #{origin,jdbcType=NVARCHAR}
+    </if>
+    <if test="status != null" >
+      and goods_status.name = #{status,jdbcType=NVARCHAR}
+    </if>
+    <if test="starttime != null" >
+      <![CDATA[
+       		and goods_abnormal.goods_abnormal_time >= #{starttime,jdbcType=TIMESTAMP}
+        ]]>
+    </if>
+    <if test="endtime != null" >
+      <![CDATA[
+       		 and goods_abnormal.goods_abnormal_time <= #{endtime,jdbcType=TIMESTAMP}
+        ]]>
+    </if>
+
+</sql>
+
+  <sql id="abnormalStasticSQL" >
+    select  distinct(goods.name) as name,goods_status.name as status,COUNT(*) as total from goods,goods_abnormal,goods_status,goods_origin
+    where goods.id = goods_abnormal.goods_id and goods.goods_status_id = goods_status.id and goods.goods_origin_id = goods_origin.id
+    <choose>
+      <when test="flag == 'year'">
+        and CONVERT(varchar(4),goods_abnormal.goods_abnormal_time,120) = CONVERT(varchar(4),#{time,jdbcType=TIMESTAMP},120)
+      </when>
+      <otherwise>
+        and CONVERT(varchar(7),goods_abnormal.goods_abnormal_time,120) = CONVERT(varchar(7),#{time,jdbcType=TIMESTAMP},120)
+      </otherwise>
+    </choose>
+    <if test="origin != null" >
+      and goods_origin.name = #{origin,jdbcType=NVARCHAR}
+    </if>
+
+    group by goods.name,goods_status.name
+  </sql>
+
+
+  <select id="selectAllGoodsAbnormalRecordByPaging" resultMap="abnormalSearchResultMap" parameterType="com.yaoli.vo.huangkai.GoodsAbnormalSearchConditionVO" >
+    SELECT TOP ${rows} *
+    FROM  (
+    SELECT ROW_NUMBER() OVER (ORDER BY abnormalTime desc) AS RowNumber,* FROM (
+    <include refid="selectByPagingAndConditionSQL"></include>
+    ) as b
+    ) as A
+    WHERE RowNumber > ${rows} * (${page} - 1)
+  </select>
+
+  <select id="selectAbnormalRecordCount" resultType="java.lang.Integer" parameterType="com.yaoli.vo.huangkai.GoodsAbnormalSearchConditionVO" >
+  select count(*) from (<include refid="selectByPagingAndConditionSQL"></include> ) as temp
+  </select>
+
+  <select id="selectAllAbnormalStatisticByPaging" resultMap="abnormalStasticMap" parameterType="com.yaoli.vo.huangkai.AbnormalStasticSearchConditionVO" >
+    SELECT TOP ${rows} *
+    FROM  (
+    SELECT ROW_NUMBER() OVER (ORDER BY name desc) AS RowNumber,* FROM (
+    <include refid="abnormalStasticSQL"></include>
+    ) as b
+    ) as A
+    WHERE RowNumber > ${rows} * (${page} - 1)
+  </select>
+
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -103,11 +199,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.Goods_abnormal" >
     update goods_abnormal
-    set goods_id = #{goodsId,jdbcType=INTEGER},
-      description = #{description,jdbcType=NVARCHAR},
-      goods_abnormal_typeid = #{goodsAbnormalTypeid,jdbcType=INTEGER},
-      goods_abnormal_analyse = #{goodsAbnormalAnalyse,jdbcType=NVARCHAR},
-      goods_abnormal_time = #{goodsAbnormalTime,jdbcType=TIMESTAMP}
+    set
+      goods_abnormal_analyse = #{goodsAbnormalAnalyse,jdbcType=NVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

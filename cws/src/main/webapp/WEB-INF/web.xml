@@ -10,7 +10,7 @@
   <!-- Spring配置 applicationContext.xml -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>/WEB-INF/urlrewrite.xml;/WEB-INF/application-dao.xml;/WEB-INF/application-shiro.xml</param-value>
+    <param-value><!--/WEB-INF/urlrewrite.xml;-->/WEB-INF/application-dao.xml;/WEB-INF/application-shiro.xml</param-value>
   </context-param>
   
 	<filter>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layui</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="layui.css"  media="all">
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+
+</head>
+<body>
+
+ <button id="btn" onclick="test();"> 点击我</button>        
+<script src="layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+layui.use('layer');
+function test(){
+/*layer.alert('dian ji que ding', {
+  skin: 'layui-layer-molv' //样式类名
+  ,closeBtn: 0
+}, function(){
+  layer.alert('shen lan', {
+    skin: 'layui-layer-lan'
+    ,closeBtn: 0
+    ,anim: 1 //动画类型
+  });
+});*/
+
+/*layer.msg('wan ming jia zai zhong ');*/
+
+layer.tips('你好', '#btn');
+
+/*layer.msg('que ding hen shuai ma？', {
+  time: 0 //不自动关闭
+  ,btn: ['yes', 'no']
+  ,yes: function(index){
+    layer.close(index);
+    layer.msg('O.o', {
+      icon: 6
+      ,btn: ['嗷','嗷','嗷']
+    });
+  }
+});*/
+
+/*layer.alert('dian ji que ding', {
+  skin: 'layui-layer-molv', //样式类名
+  closeBtn: 1,
+  anim: 6
+});*/
+
+
+/*layer.tips('Hi，我是tips', '#btn');
+var index = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2  加载层
+var index = layer.load(1, {  //loading 层
+  shade: [0.1,'#fff'] //0.1透明度的白色背景
+});*/
+
+/*layer.open({
+  type: 1,
+  shade: false,
+  title: false, //不显示标题
+  content: $('.#btn'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+  cancel: function(){
+    layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构', {time: 5000, icon:6});
+  }
+});*/
+
+/* //iframe层
+layer.open({
+  type: 2,
+  title: 'layer mobile页',
+  shadeClose: true,
+  shade: 0.8,
+  area: ['380px', '90%'],
+  content: 'mobile/' //iframe的url
+});
+
+
+
+/*layer.open({  //iframe 窗口
+  type: 2,
+  title: 'layer mobile页',
+  shadeClose: false,
+  shade: 0.8,
+  area: ['380px', '90%'],
+  content: 'http://www.baidu.com' //iframe的url
+});*/
+
+
+/*var a = 1;
+if (a>1) {
+	///////////////////////////////////////////////////////////
+	layer.alert('leirong', {
+		icon: 1,
+		skin: 'layer-ext-moon' //该皮肤由layer.seaning.com友情扩展。关于皮肤的扩展规则，去这里查阅
+    });
+	//////////////////////////////////////////////////
+} else {
+ ////////-confirm begin-/////////////////////////////////////////////////
+  layer.confirm(
+  'kan dai qian duan kai fa', 
+  { btn: ['zhong yao ','qi pa '] }, 
+  function(){
+	layer.msg('de que hen zhong yao', {icon: 1});
+  }, 
+  function(){
+	 layer.msg(
+		'ye ke yi zhe yang', 
+		{
+			time: 20000, //20s后自动关闭
+			btn: ['mingbaile', 'zhidaole']
+		}
+	  );
+	}
+);
+//////////-confirm end-/////////////////////////////////////////////
+}*///else end
+
+} 
+
+
+</script>
+
+</body>
+</html>

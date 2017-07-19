@@ -104,10 +104,10 @@ function initxtoken(){
 $(document).ready(function(){
 	//设置地区选择
 	$.ajax({
-		type : "POST",
+		type : "GET",
 		url : getContextPath()+"/warming/ajaxgetareas.do",
 		dataType : "json",
-		contentType : "application/json;charset=utf-8",
+        contentType : "application/json;charset=utf-8",
 		async : true,
 		success : function(returndata) {
 		    $.each(returndata,function(index,data){

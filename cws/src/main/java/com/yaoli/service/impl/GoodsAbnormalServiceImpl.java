@@ -1,11 +1,16 @@
 package com.yaoli.service.impl;
 
+import com.yaoli.beans.GoodsAbnormalSearchResult;
 import com.yaoli.beans.Goods_abnormal;
 import com.yaoli.dao.GoodsAbnormalMapper;
 import com.yaoli.service.IGoodsAbnormalService;
+import com.yaoli.vo.huangkai.AbnormalStasticSearchConditionVO;
+import com.yaoli.vo.huangkai.AbnormalStasticSearchResultVO;
+import com.yaoli.vo.huangkai.GoodsAbnormalSearchConditionVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by kk on 2017/6/13.
@@ -14,6 +19,21 @@ import javax.annotation.Resource;
 public class GoodsAbnormalServiceImpl implements IGoodsAbnormalService {
     @Resource
     private GoodsAbnormalMapper goodsAbnormalMapper;
+
+    @Override
+    public List<AbnormalStasticSearchResultVO> selectAllAbnormalStatisticByPaging(AbnormalStasticSearchConditionVO abnormalStasticSearchCondition) {
+        return goodsAbnormalMapper.selectAllAbnormalStatisticByPaging(abnormalStasticSearchCondition);
+    }
+
+    @Override
+    public List<GoodsAbnormalSearchResult> selectAllGoodsAbnormalRecordByPaging(GoodsAbnormalSearchConditionVO goodsAbnormalSearchCondition) {
+        return goodsAbnormalMapper.selectAllGoodsAbnormalRecordByPaging(goodsAbnormalSearchCondition);
+    }
+
+    @Override
+    public int selectAbnormalRecordCount(GoodsAbnormalSearchConditionVO goodsAbnormalSearchCondition) {
+        return goodsAbnormalMapper.selectAbnormalRecordCount(goodsAbnormalSearchCondition);
+    }
 
     @Override
     public Goods_abnormal selectByGoodsId(Integer id) {

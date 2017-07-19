@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.CarManageMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.CarManage" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="gorupid" property="gorupid" jdbcType="INTEGER" />
+    <result column="carnumber" property="carnumber" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="startkm" property="startkm" jdbcType="NUMERIC" />
+    <result column="endkm" property="endkm" jdbcType="NUMERIC" />
+    <result column="driver" property="driver" jdbcType="NVARCHAR" />
+    <result column="application" property="application" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gorupid, carnumber, time, startkm, endkm, driver, application
+  </sql>
+
+  <select id="isCarManageMessageExisted" resultMap="BaseResultMap" parameterType="com.yaoli.beans.CarManage" >
+    select
+    <include refid="Base_Column_List" />
+    from carmanage
+    where carnumber = #{carnumber,jdbcType=VARCHAR} and convert(varchar(10),time,120) = #{time,jdbcType=TIMESTAMP}
+  </select>
+
+  <select id="selectByCarNumber" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select top 1
+    <include refid="Base_Column_List" />
+    from carmanage
+    where carnumber = #{carNumber,jdbcType=VARCHAR}
+    order by time desc
+  </select>
+  <sql id="selectByPagingAndConditionSQL" >
+    select id,gorupid,carnumber,convert(varchar(10),time,120) as time ,startkm,(endkm-startkm) as endkm, driver, application from carmanage where 1=1
+    <if test="carnumber != null" >
+      and carnumber = #{carnumber,jdbcType=VARCHAR}
+    </if>
+    <if test="starttime != null" >
+      <![CDATA[
+       		and convert(varchar(10),time,120) >= #{starttime,jdbcType=TIMESTAMP}
+        ]]>
+    </if>
+    <if test="endtime != null" >
+      <![CDATA[
+       		 and convert(varchar(10),time,120) <= #{endtime,jdbcType=TIMESTAMP}
+        ]]>
+    </if>
+  </sql>
+
+  <select id="selectAllCarManageMessagesByPaging" resultMap="BaseResultMap" parameterType="com.yaoli.vo.huangkai.CarManageSearchConditionVO" >
+    SELECT TOP ${rows} *
+    FROM  (
+    SELECT ROW_NUMBER() OVER (ORDER BY time desc) AS RowNumber,* FROM (
+    <include refid="selectByPagingAndConditionSQL"></include>
+    ) as b
+    ) as A
+    WHERE RowNumber > ${rows} * (${page} - 1)
+  </select>
+
+  <select id="getAllCarManageMessageCount" resultType="java.lang.Integer" parameterType="com.yaoli.vo.huangkai.CarManageSearchConditionVO" >
+    SELECT count(*)
+    FROM (
+    <include refid="selectByPagingAndConditionSQL"></include>) as a
+  </select>
+
+  <select id="getAllCarKMByCondition" resultMap="BaseResultMap" parameterType="com.yaoli.vo.huangkai.CarKMChangeDiaramSearchConditon" >
+    select
+     id, gorupid, carnumber, convert(varchar(10),time,120) as time, startkm, (endkm-startkm) as endkm, driver, application
+    from carmanage
+    where convert(varchar(7),time,120) = #{time ,jdbcType=INTEGER} and carnumber = #{carnumber ,jdbcType=NVARCHAR}
+    order by time asc
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from carmanage
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from carmanage
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yaoli.beans.CarManage" >
+    insert into carmanage (id, gorupid, carnumber, 
+      time, startkm, endkm, 
+      driver, application)
+    values (#{id,jdbcType=INTEGER}, #{gorupid,jdbcType=INTEGER}, #{carnumber,jdbcType=VARCHAR}, 
+      #{time,jdbcType=TIMESTAMP}, #{startkm,jdbcType=NUMERIC}, #{endkm,jdbcType=NUMERIC}, 
+      #{driver,jdbcType=NVARCHAR}, #{application,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.CarManage" >
+    insert into carmanage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gorupid != null" >
+        gorupid,
+      </if>
+      <if test="carnumber != null" >
+        carnumber,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="startkm != null" >
+        startkm,
+      </if>
+      <if test="endkm != null" >
+        endkm,
+      </if>
+      <if test="driver != null" >
+        driver,
+      </if>
+      <if test="application != null" >
+        application,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gorupid != null" >
+        #{gorupid,jdbcType=INTEGER},
+      </if>
+      <if test="carnumber != null" >
+        #{carnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startkm != null" >
+        #{startkm,jdbcType=NUMERIC},
+      </if>
+      <if test="endkm != null" >
+        #{endkm,jdbcType=NUMERIC},
+      </if>
+      <if test="driver != null" >
+        #{driver,jdbcType=NVARCHAR},
+      </if>
+      <if test="application != null" >
+        #{application,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.CarManage" >
+    update carmanage
+    <set >
+      <if test="gorupid != null" >
+        gorupid = #{gorupid,jdbcType=INTEGER},
+      </if>
+      <if test="carnumber != null" >
+        carnumber = #{carnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startkm != null" >
+        startkm = #{startkm,jdbcType=NUMERIC},
+      </if>
+      <if test="endkm != null" >
+        endkm = #{endkm,jdbcType=NUMERIC},
+      </if>
+      <if test="driver != null" >
+        driver = #{driver,jdbcType=NVARCHAR},
+      </if>
+      <if test="application != null" >
+        application = #{application,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.CarManage" >
+    update carmanage
+    set
+      endkm = #{endkm,jdbcType=NUMERIC}
+    where carnumber = #{carnumber,jdbcType=VARCHAR} and convert(varchar(10),time,120) = #{time,jdbcType=TIMESTAMP}
+  </update>
+</mapper>

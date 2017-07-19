@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.GroupWorkLoadMapper" >
+  <resultMap id="BaseResultMap" type="com.yaoli.beans.GroupWorkLoad" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="groupid" property="groupid" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="inspection" property="inspection" jdbcType="VARCHAR" />
+    <result column="equipmaintain" property="equipmaintain" jdbcType="VARCHAR" />
+    <result column="equipprotect" property="equipprotect" jdbcType="VARCHAR" />
+    <result column="envirprotect" property="envirprotect" jdbcType="VARCHAR" />
+    <result column="workassist" property="workassist" jdbcType="VARCHAR" />
+    <result column="other" property="other" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, groupid, time, inspection, equipmaintain, equipprotect, envirprotect, workassist, 
+    other
+  </sql>
+
+  <select id="selectByGroupId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from groupworkload
+    where groupid = #{groupId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from groupworkload
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from groupworkload
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yaoli.beans.GroupWorkLoad" >
+    insert into groupworkload (groupid, time,
+      inspection, equipmaintain, equipprotect, 
+      envirprotect, workassist, other
+      )
+    values (#{groupid,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP},
+      #{inspection,jdbcType=VARCHAR}, #{equipmaintain,jdbcType=VARCHAR}, #{equipprotect,jdbcType=VARCHAR}, 
+      #{envirprotect,jdbcType=VARCHAR}, #{workassist,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yaoli.beans.GroupWorkLoad" >
+    insert into groupworkload
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupid != null" >
+        groupid,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="inspection != null" >
+        inspection,
+      </if>
+      <if test="equipmaintain != null" >
+        equipmaintain,
+      </if>
+      <if test="equipprotect != null" >
+        equipprotect,
+      </if>
+      <if test="envirprotect != null" >
+        envirprotect,
+      </if>
+      <if test="workassist != null" >
+        workassist,
+      </if>
+      <if test="other != null" >
+        other,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+      <if test="groupid != null" >
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inspection != null" >
+        #{inspection,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmaintain != null" >
+        #{equipmaintain,jdbcType=VARCHAR},
+      </if>
+      <if test="equipprotect != null" >
+        #{equipprotect,jdbcType=VARCHAR},
+      </if>
+      <if test="envirprotect != null" >
+        #{envirprotect,jdbcType=VARCHAR},
+      </if>
+      <if test="workassist != null" >
+        #{workassist,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null" >
+        #{other,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.GroupWorkLoad" >
+    update groupworkload
+    <set >
+      <if test="groupid != null" >
+        groupid = #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inspection != null" >
+        inspection = #{inspection,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmaintain != null" >
+        equipmaintain = #{equipmaintain,jdbcType=VARCHAR},
+      </if>
+      <if test="equipprotect != null" >
+        equipprotect = #{equipprotect,jdbcType=VARCHAR},
+      </if>
+      <if test="envirprotect != null" >
+        envirprotect = #{envirprotect,jdbcType=VARCHAR},
+      </if>
+      <if test="workassist != null" >
+        workassist = #{workassist,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null" >
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.GroupWorkLoad" >
+    update groupworkload
+    set groupid = #{groupid,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      inspection = #{inspection,jdbcType=VARCHAR},
+      equipmaintain = #{equipmaintain,jdbcType=VARCHAR},
+      equipprotect = #{equipprotect,jdbcType=VARCHAR},
+      envirprotect = #{envirprotect,jdbcType=VARCHAR},
+      workassist = #{workassist,jdbcType=VARCHAR},
+      other = #{other,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

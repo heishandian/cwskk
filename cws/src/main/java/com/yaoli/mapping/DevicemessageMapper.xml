@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yaoli.dao.DevicemessageMapper">
+    <resultMap id="BaseResultMap" type="com.yaoli.beans.Devicemessage">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="serialnumber" property="serialnumber" jdbcType="VARCHAR"/>
+        <result column="assemblytime" property="assemblytime" jdbcType="TIMESTAMP"/>
+        <result column="assemblers" property="assemblers" jdbcType="NVARCHAR"/>
+        <result column="testtime" property="testtime" jdbcType="TIMESTAMP"/>
+        <result column="testers" property="testers" jdbcType="NVARCHAR"/>
+        <result column="entrytime" property="entrytime" jdbcType="NVARCHAR"/>
+        <result column="recdepartment" property="recdepartment" jdbcType="NVARCHAR"/>
+        <result column="deliverytime" property="deliverytime" jdbcType="TIMESTAMP"/>
+        <result column="recpeople" property="recpeople" jdbcType="NVARCHAR"/>
+        <result column="installtime" property="installtime" jdbcType="TIMESTAMP"/>
+        <result column="installpeople" property="installpeople" jdbcType="NVARCHAR"/>
+        <result column="controllID" property="controllid" jdbcType="VARCHAR"/>
+        <result column="proaffiliation" property="proaffiliation" jdbcType="NVARCHAR"/>
+        <result column="installsite" property="installsite" jdbcType="NVARCHAR"/>
+        <result column="currentstatus" property="currentstatus" jdbcType="NVARCHAR"/>
+    </resultMap>
+    <resultMap id="equipmentStatus" type="java.lang.String">
+        <result column="currentstatus" property="currentstatus" jdbcType="NVARCHAR"/>
+    </resultMap>
+    <resultMap id="recdepartments" type="java.lang.String">
+        <result column="recdepartment" property="recdepartment" jdbcType="NVARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, serialnumber, CONVERT(varchar(10),assemblytime,120) as assemblytime, assemblers, CONVERT(varchar(10),testtime,120) as testtime, testers,  CONVERT(varchar(10),entrytime,120) as entrytime, recdepartment,
+    CONVERT(varchar(10),deliverytime,120) as deliverytime, recpeople, CONVERT(varchar(10),installtime,120) as installtime, installpeople, controllID, proaffiliation,
+    installsite, currentstatus
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from devicemessage
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectAllEquipmentMessage" resultMap="BaseResultMap" parameterType="com.yaoli.vo.huangkai.ProductMessageSearchConditionVO">
+        select
+        <include refid="Base_Column_List"/>
+        from devicemessage
+        where 1 = 1
+        <if test="serialnumber != null">
+           and serialnumber = #{serialnumber,jdbcType=VARCHAR}
+        </if>
+        <if test="currentstatus != null">
+            and currentstatus = #{currentstatus,jdbcType=NVARCHAR}
+        </if>
+        <if test="recdepartment != null">
+            and recdepartment = #{recdepartment,jdbcType=NVARCHAR}
+        </if>
+        order by serialnumber ASC
+    </select>
+    <select id="selectAllRecdepartment" resultMap="recdepartments">
+    select distinct (recdepartment) from devicemessage where (recdepartment is not null) and recdepartment!='' order by recdepartment asc
+  </select>
+
+    <select id="selectAllEquipmentStatus" resultMap="equipmentStatus">
+    select distinct (currentstatus) from devicemessage  where (currentstatus is not null) and currentstatus!='' order by currentstatus asc
+  </select>
+
+    <select id="selectBySerialnumber" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from devicemessage
+        where serialnumber = #{serialnumber,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from devicemessage
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.yaoli.beans.Devicemessage">
+    insert into devicemessage ( serialnumber, assemblytime,
+      assemblers, testtime, testers, 
+      entrytime, recdepartment, deliverytime, 
+      recpeople, installtime, installpeople, 
+      controllID, proaffiliation, installsite, 
+      currentstatus)
+    values ( #{serialnumber,jdbcType=VARCHAR}, #{assemblytime,jdbcType=TIMESTAMP},
+      #{assemblers,jdbcType=NVARCHAR}, #{testtime,jdbcType=TIMESTAMP}, #{testers,jdbcType=NVARCHAR}, 
+      #{entrytime,jdbcType=NVARCHAR}, #{recdepartment,jdbcType=NVARCHAR}, #{deliverytime,jdbcType=TIMESTAMP}, 
+      #{recpeople,jdbcType=NVARCHAR}, #{installtime,jdbcType=TIMESTAMP}, #{installpeople,jdbcType=NVARCHAR}, 
+      #{controllid,jdbcType=VARCHAR}, #{proaffiliation,jdbcType=NVARCHAR}, #{installsite,jdbcType=NVARCHAR}, 
+      #{currentstatus,jdbcType=NVARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.yaoli.beans.Devicemessage">
+        insert into devicemessage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="serialnumber != null and serialnumber!=''">
+                serialnumber,
+            </if>
+            <if test="assemblytime != null and assemblytime!=''">
+                assemblytime,
+            </if>
+            <if test="assemblers != null and assemblers!=''">
+                assemblers,
+            </if>
+            <if test="testtime != null and testtime!=''">
+                testtime,
+            </if>
+            <if test="testers != null and testers!=''">
+                testers,
+            </if>
+            <if test="entrytime != null and entrytime!=''">
+                entrytime,
+            </if>
+            <if test="recdepartment != null and recdepartment!=''">
+                recdepartment,
+            </if>
+            <if test="deliverytime != null and deliverytime!=''">
+                deliverytime,
+            </if>
+            <if test="recpeople != null and recpeople!=''">
+                recpeople,
+            </if>
+            <if test="installtime != null and installtime!=''">
+                installtime,
+            </if>
+            <if test="installpeople != null and installpeople!=''">
+                installpeople,
+            </if>
+            <if test="controllid != null and controllid!=''">
+                controllID,
+            </if>
+            <if test="proaffiliation != null and proaffiliation!=''">
+                proaffiliation,
+            </if>
+            <if test="installsite != null and installsite!=''">
+                installsite,
+            </if>
+            <if test="currentstatus != null and currentstatus!=''">
+                currentstatus,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="serialnumber != null and serialnumber!=''">
+                #{serialnumber,jdbcType=VARCHAR},
+            </if>
+            <if test="assemblytime != null and assemblytime!=''">
+                #{assemblytime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="assemblers != null and assemblers!=''">
+                #{assemblers,jdbcType=NVARCHAR},
+            </if>
+            <if test="testtime != null and testtime!=''">
+                #{testtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="testers != null and testers!=''">
+                #{testers,jdbcType=NVARCHAR},
+            </if>
+            <if test="entrytime != null and entrytime!=''">
+                #{entrytime,jdbcType=NVARCHAR},
+            </if>
+            <if test="recdepartment != null and recdepartment!=''">
+                #{recdepartment,jdbcType=NVARCHAR},
+            </if>
+            <if test="deliverytime != null and deliverytime!=''">
+                #{deliverytime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="recpeople != null and recpeople!=''">
+                #{recpeople,jdbcType=NVARCHAR},
+            </if>
+            <if test="installtime != null and installtime!=''">
+                #{installtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="installpeople != null and installpeople!=''">
+                #{installpeople,jdbcType=NVARCHAR},
+            </if>
+            <if test="controllid != null and controllid!=''">
+                #{controllid,jdbcType=VARCHAR},
+            </if>
+            <if test="proaffiliation != null and proaffiliation!=''">
+                #{proaffiliation,jdbcType=NVARCHAR},
+            </if>
+            <if test="installsite != null and installsite!=''">
+                #{installsite,jdbcType=NVARCHAR},
+            </if>
+            <if test="currentstatus != null and currentstatus!=''">
+                #{currentstatus,jdbcType=NVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.yaoli.beans.Devicemessage">
+        update devicemessage
+        <set>
+            <if test="serialnumber != null">
+                serialnumber = #{serialnumber,jdbcType=VARCHAR},
+            </if>
+            <if test="assemblytime != null">
+                assemblytime = #{assemblytime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="assemblers != null">
+                assemblers = #{assemblers,jdbcType=NVARCHAR},
+            </if>
+            <if test="testtime != null">
+                testtime = #{testtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="testers != null">
+                testers = #{testers,jdbcType=NVARCHAR},
+            </if>
+            <if test="entrytime != null">
+                entrytime = #{entrytime,jdbcType=NVARCHAR},
+            </if>
+            <if test="recdepartment != null">
+                recdepartment = #{recdepartment,jdbcType=NVARCHAR},
+            </if>
+            <if test="deliverytime != null">
+                deliverytime = #{deliverytime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="recpeople != null">
+                recpeople = #{recpeople,jdbcType=NVARCHAR},
+            </if>
+            <if test="installtime != null">
+                installtime = #{installtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="installpeople != null">
+                installpeople = #{installpeople,jdbcType=NVARCHAR},
+            </if>
+            <if test="controllid != null">
+                controllID = #{controllid,jdbcType=VARCHAR},
+            </if>
+            <if test="proaffiliation != null">
+                proaffiliation = #{proaffiliation,jdbcType=NVARCHAR},
+            </if>
+            <if test="installsite != null">
+                installsite = #{installsite,jdbcType=NVARCHAR},
+            </if>
+            <if test="currentstatus != null">
+                currentstatus = #{currentstatus,jdbcType=NVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateBySerialnumber" parameterType="com.yaoli.beans.Devicemessage">
+        update devicemessage
+        <set>
+            <if test="assemblytime != null">
+                assemblytime = #{assemblytime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="assemblers != null">
+                assemblers = #{assemblers,jdbcType=NVARCHAR},
+            </if>
+            <if test="testtime != null">
+                testtime = #{testtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="testers != null">
+                testers = #{testers,jdbcType=NVARCHAR},
+            </if>
+            <if test="entrytime != null">
+                entrytime = #{entrytime,jdbcType=NVARCHAR},
+            </if>
+            <if test="recdepartment != null">
+                recdepartment = #{recdepartment,jdbcType=NVARCHAR},
+            </if>
+            <if test="deliverytime != null">
+                deliverytime = #{deliverytime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="recpeople != null">
+                recpeople = #{recpeople,jdbcType=NVARCHAR},
+            </if>
+            <if test="installtime != null">
+                installtime = #{installtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="installpeople != null">
+                installpeople = #{installpeople,jdbcType=NVARCHAR},
+            </if>
+            <if test="controllid != null">
+                controllID = #{controllid,jdbcType=VARCHAR},
+            </if>
+            <if test="proaffiliation != null">
+                proaffiliation = #{proaffiliation,jdbcType=NVARCHAR},
+            </if>
+            <if test="installsite != null">
+                installsite = #{installsite,jdbcType=NVARCHAR},
+            </if>
+            <if test="currentstatus != null">
+                currentstatus = #{currentstatus,jdbcType=NVARCHAR},
+            </if>
+        </set>
+        where serialnumber = #{serialnumber,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.yaoli.beans.Devicemessage">
+    update devicemessage
+    set serialnumber = #{serialnumber,jdbcType=VARCHAR},
+      assemblytime = #{assemblytime,jdbcType=TIMESTAMP},
+      assemblers = #{assemblers,jdbcType=NVARCHAR},
+      testtime = #{testtime,jdbcType=TIMESTAMP},
+      testers = #{testers,jdbcType=NVARCHAR},
+      entrytime = #{entrytime,jdbcType=NVARCHAR},
+      recdepartment = #{recdepartment,jdbcType=NVARCHAR},
+      deliverytime = #{deliverytime,jdbcType=TIMESTAMP},
+      recpeople = #{recpeople,jdbcType=NVARCHAR},
+      installtime = #{installtime,jdbcType=TIMESTAMP},
+      installpeople = #{installpeople,jdbcType=NVARCHAR},
+      controllID = #{controllid,jdbcType=VARCHAR},
+      proaffiliation = #{proaffiliation,jdbcType=NVARCHAR},
+      installsite = #{installsite,jdbcType=NVARCHAR},
+      currentstatus = #{currentstatus,jdbcType=NVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

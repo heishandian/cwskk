@@ -94,7 +94,9 @@
 					<td width="30%">最后更新时间：<label id="lastUpdatetime"></label></td>
 
 					<!--flag 显示 真实曲线-->
-					<td width="30%"><input type="checkbox" id="showTrueCurve" name="showTrueCurve"></td>
+					<td width="30%">
+						<input type="checkbox" id="showTrueCurve" name="showTrueCurve">
+					</td>
 
 
 				</tr>
